@@ -1,0 +1,103 @@
+PODS:
+  - ActionButton (0.1.4)
+  - Alamofire (3.2.0)
+  - CryptoSwift (0.2.2)
+  - Eureka (1.3.1)
+  - IBAnimatable (1.0.1)
+  - ImagePickerSheetController (0.9.1)
+  - JSONWebToken (1.4.2):
+    - CryptoSwift (= 0.2.2)
+  - LTMorphingLabel (0.1.1)
+  - ObjectMapper (1.1.2)
+  - SAWaveToast (0.2.0)
+  - SQLite.swift (0.9.2)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - ActionButton
+  - Alamofire (from `https://github.com/Alamofire/Alamofire`)
+  - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift`)
+  - Eureka (from `https://github.com/xmartlabs/Eureka`)
+  - IBAnimatable (from `https://github.com/JakeLin/IBAnimatable`)
+  - ImagePickerSheetController (from `https://github.com/larcus94/ImagePickerSheetController.git`)
+  - JSONWebToken (from `https://github.com/kylef/JSONWebToken.swift`)
+  - LTMorphingLabel (from `https://github.com/lexrus/LTMorphingLabel.git`)
+  - ObjectMapper (from `https://github.com/Hearst-DD/ObjectMapper`)
+  - SAWaveToast (from `https://github.com/szk-atmosphere/SAWaveToast`)
+  - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :git: https://github.com/Alamofire/Alamofire
+  CryptoSwift:
+    :git: https://github.com/krzyzanowskim/CryptoSwift
+  Eureka:
+    :git: https://github.com/xmartlabs/Eureka
+  IBAnimatable:
+    :git: https://github.com/JakeLin/IBAnimatable
+  ImagePickerSheetController:
+    :git: https://github.com/larcus94/ImagePickerSheetController.git
+  JSONWebToken:
+    :git: https://github.com/kylef/JSONWebToken.swift
+  LTMorphingLabel:
+    :git: https://github.com/lexrus/LTMorphingLabel.git
+  ObjectMapper:
+    :git: https://github.com/Hearst-DD/ObjectMapper
+  SAWaveToast:
+    :git: https://github.com/szk-atmosphere/SAWaveToast
+  SQLite.swift:
+    :git: https://github.com/stephencelis/SQLite.swift.git
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 59ef4f5da3fdba44649026603c6512fd6c5dabd0
+    :git: https://github.com/Alamofire/Alamofire
+  CryptoSwift:
+    :commit: 743ecbcf5486f134fa04cbab7a4f44add6ea5fa5
+    :git: https://github.com/krzyzanowskim/CryptoSwift
+  Eureka:
+    :commit: fc807c546ac652ff39e97da7162734479fa22207
+    :git: https://github.com/xmartlabs/Eureka
+  IBAnimatable:
+    :commit: fd8340885a73975472f57e2b02073c41726c6a28
+    :git: https://github.com/JakeLin/IBAnimatable
+  ImagePickerSheetController:
+    :commit: 974f16b23a29811a4d56bf0357cecdfdde0ab77e
+    :git: https://github.com/larcus94/ImagePickerSheetController.git
+  JSONWebToken:
+    :commit: 6df50e23abe6c25caebcfaba8aa42c85f72d7ee4
+    :git: https://github.com/kylef/JSONWebToken.swift
+  LTMorphingLabel:
+    :commit: 06c315da25467dad6804f299d0de6db07642019a
+    :git: https://github.com/lexrus/LTMorphingLabel.git
+  ObjectMapper:
+    :commit: 6f5d1aab530eb93809a2a3620f9ce54e5d36023d
+    :git: https://github.com/Hearst-DD/ObjectMapper
+  SAWaveToast:
+    :commit: 43bbece5b1e7ab63346baea71904016571787e32
+    :git: https://github.com/szk-atmosphere/SAWaveToast
+  SQLite.swift:
+    :commit: 8f6be4ab8be6f206eda549f005c0849994e7af8e
+    :git: https://github.com/stephencelis/SQLite.swift.git
+  SwiftyJSON:
+    :commit: 42bdb102d2624b143c07850ebdc1537d5b6579b6
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  ActionButton: 1b94024013cf57e960d09aa56792f29e1bb545e0
+  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  CryptoSwift: d382228d6301c09474132417878a741c2a2e68cd
+  Eureka: 10df73e578ed8ec1f30c8fda5b4ffc8739786b74
+  IBAnimatable: 4bb0f4099ed89f8e94ae0a2d9a615ff01a9ab9e5
+  ImagePickerSheetController: 3c58c9fee6dcf36485222358a021f6b734f997ba
+  JSONWebToken: 273e93a6239407b4911091c1aaa4e3ce77206c52
+  LTMorphingLabel: 254c44f9ef5afa79d3464f8b89d7b00567e5aebc
+  ObjectMapper: 148765647481443b1a18983b4ac8ec3189cbce35
+  SAWaveToast: 64bcf3f0ff1f8147d4c8c18bf51d1594fe22af81
+  SQLite.swift: 5dca22dbf6634fdb9c3270fae9491830804e9b2d
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+COCOAPODS: 0.39.0
