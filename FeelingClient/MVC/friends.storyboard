@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fq9-vW-fW2">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="PSJ-JJ-rTV">
+            <objects>
+                <viewController storyboardIdentifier="friends" id="fq9-vW-fW2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mIa-do-86w"/>
+                        <viewControllerLayoutGuide type="bottom" id="u0j-aK-qDl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bks-8t-uuQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRw-Ps-v9X">
+                                <rect key="frame" x="276" y="285" width="48" height="30"/>
+                                <state key="normal" title="friends"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JRw-Ps-v9X" firstAttribute="centerX" secondItem="bks-8t-uuQ" secondAttribute="centerX" id="1OM-2D-Hgk"/>
+                            <constraint firstItem="JRw-Ps-v9X" firstAttribute="centerY" secondItem="bks-8t-uuQ" secondAttribute="centerY" id="8LK-bv-Uq9"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="2" badgeValue="2" systemItem="mostViewed" id="FF8-Yy-LFo"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Is9-H4-PFE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="403" y="291"/>
+        </scene>
+    </scenes>
+</document>

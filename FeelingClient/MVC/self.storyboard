@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="25T-P7-b6Q">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="9k6-vh-PLq">
+            <objects>
+                <viewController id="25T-P7-b6Q" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aOU-Na-HYi"/>
+                        <viewControllerLayoutGuide type="bottom" id="5e7-8b-qoX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dyp-Hb-jbD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t58-0H-uyP">
+                                <rect key="frame" x="277" y="285" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="ncA-Sz-Fmq"/>
+                                </constraints>
+                                <state key="normal" title="self"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="t58-0H-uyP" firstAttribute="centerX" secondItem="Dyp-Hb-jbD" secondAttribute="centerX" id="ZBP-IZ-hRM"/>
+                            <constraint firstItem="t58-0H-uyP" firstAttribute="centerY" secondItem="Dyp-Hb-jbD" secondAttribute="centerY" id="o3T-gU-2YL"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="4" badgeValue="4" systemItem="contacts" id="cYc-9s-2cb"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TAb-Vf-jNK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="480" y="266"/>
+        </scene>
+    </scenes>
+</document>
