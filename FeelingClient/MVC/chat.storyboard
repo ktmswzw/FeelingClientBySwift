@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--消息-->
         <scene sceneID="q18-xy-sps">
             <objects>
                 <viewController storyboardIdentifier="chat" id="XgY-6Z-pPg" sceneMemberID="viewController">
@@ -31,7 +31,7 @@
                             <constraint firstItem="6h2-ZG-BHC" firstAttribute="centerY" secondItem="Trd-kY-nmW" secondAttribute="centerY" id="AY8-oF-nrQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" badgeValue="1" systemItem="recents" id="Vge-vN-mcQ"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="消息" image="chat" id="Vge-vN-mcQ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K6z-Sg-yrJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -39,4 +39,7 @@
             <point key="canvasLocation" x="128" y="414"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="chat" width="22" height="22"/>
+    </resources>
 </document>

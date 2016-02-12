@@ -29,7 +29,7 @@
         <scene sceneID="Mt5-vH-4pe">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="friends" storyboardName="friends" id="QbY-Gp-CXh" colorLabel="IBBuiltInLabel-Blue" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="vSJ-V7-chX"/>
+                    <tabBarItem key="tabBarItem" title="好友" image="friends" id="vSJ-V7-chX"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEN-ev-omf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -39,7 +39,7 @@
         <scene sceneID="3Xa-hm-BFe">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="center" storyboardName="center" id="ShK-sV-fw0" colorLabel="IBBuiltInLabel-Orange" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="search" id="2dW-BZ-def"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="center" id="2dW-BZ-def"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYe-Nf-yCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,7 +49,7 @@
         <scene sceneID="C4u-qS-WFk">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="self" storyboardName="self" id="FQh-RY-vEi" colorLabel="IBBuiltInLabel-Green" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="6il-da-QDn"/>
+                    <tabBarItem key="tabBarItem" title="我" image="self" id="6il-da-QDn"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZQ-uo-Wvs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -59,11 +59,17 @@
         <scene sceneID="sqq-fO-uFa">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="chat" storyboardName="chat" id="Mht-Qq-bXP" colorLabel="IBBuiltInLabel-Yellow" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="LzD-5s-i35"/>
+                    <tabBarItem key="tabBarItem" title="信息" image="chat" id="LzD-5s-i35"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gcf-jW-nBN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-130.5" y="843"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="center" width="22" height="22"/>
+        <image name="chat" width="22" height="22"/>
+        <image name="friends" width="22" height="22"/>
+        <image name="self" width="22" height="22"/>
+    </resources>
 </document>

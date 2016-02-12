@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--我-->
         <scene sceneID="9k6-vh-PLq">
             <objects>
                 <viewController id="25T-P7-b6Q" sceneMemberID="viewController">
@@ -31,7 +31,7 @@
                             <constraint firstItem="t58-0H-uyP" firstAttribute="centerY" secondItem="Dyp-Hb-jbD" secondAttribute="centerY" id="o3T-gU-2YL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="4" badgeValue="4" systemItem="contacts" id="cYc-9s-2cb"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="我" image="self" id="cYc-9s-2cb"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TAb-Vf-jNK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -39,4 +39,7 @@
             <point key="canvasLocation" x="480" y="266"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="self" width="22" height="22"/>
+    </resources>
 </document>

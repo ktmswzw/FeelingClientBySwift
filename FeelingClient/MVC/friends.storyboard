@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--好友-->
         <scene sceneID="PSJ-JJ-rTV">
             <objects>
                 <viewController storyboardIdentifier="friends" id="fq9-vW-fW2" sceneMemberID="viewController">
@@ -28,7 +28,7 @@
                             <constraint firstItem="JRw-Ps-v9X" firstAttribute="centerY" secondItem="bks-8t-uuQ" secondAttribute="centerY" id="8LK-bv-Uq9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" badgeValue="2" systemItem="mostViewed" id="FF8-Yy-LFo"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="好友" image="friends" id="FF8-Yy-LFo"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
@@ -37,4 +37,7 @@
             <point key="canvasLocation" x="403" y="291"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="friends" width="22" height="22"/>
+    </resources>
 </document>

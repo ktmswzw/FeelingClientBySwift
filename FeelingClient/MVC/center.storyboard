@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--发现-->
         <scene sceneID="sho-cJ-6YT">
             <objects>
                 <viewController storyboardIdentifier="center" useStoryboardIdentifierAsRestorationIdentifier="YES" id="njR-f0-QS0" sceneMemberID="viewController">
@@ -31,7 +31,7 @@
                             <constraint firstItem="OOy-6j-ixh" firstAttribute="centerY" secondItem="1TA-FO-b4B" secondAttribute="centerY" id="Yyq-1L-VyA"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" badgeValue="3" systemItem="favorites" id="I09-U8-j42"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="center" id="I09-U8-j42"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Cg-dO-yKr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -39,4 +39,7 @@
             <point key="canvasLocation" x="376" y="382"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="center" width="22" height="22"/>
+    </resources>
 </document>
