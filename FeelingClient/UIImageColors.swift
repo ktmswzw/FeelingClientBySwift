@@ -8,6 +8,8 @@
 
 import UIKit
 
+import Accelerate
+
 public struct UIImageColors {
     public var backgroundColor: UIColor!
     public var primaryColor: UIColor!
@@ -235,6 +237,5 @@ extension UIImage {
         }
         
         return result
-    }
-    
+    }    
 }

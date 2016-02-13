@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="b5i-Rp-Q6N">
             <objects>
-                <viewController storyboardIdentifier="login" id="Oep-RU-AZT" customClass="MainViewController" customModule="FeelingClient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" id="Oep-RU-AZT" customClass="LoginViewController" customModule="FeelingClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9WW-tc-v7g"/>
                         <viewControllerLayoutGuide type="bottom" id="LH4-NU-pi9"/>
@@ -18,24 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhS-Y0-UN8">
-                                <rect key="frame" x="20" y="20" width="560" height="180"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="JiC-6c-bRf">
-                                        <rect key="frame" x="230" y="72" width="100" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="C2l-fb-2Dn"/>
-                                            <constraint firstAttribute="height" constant="100" id="uJN-qT-SiW"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="JiC-6c-bRf" firstAttribute="centerX" secondItem="hhS-Y0-UN8" secondAttribute="centerX" id="054-gI-4Fi"/>
-                                    <constraint firstAttribute="bottom" secondItem="JiC-6c-bRf" secondAttribute="bottom" constant="8" id="W7G-ch-Bzn"/>
-                                    <constraint firstAttribute="height" constant="180" id="sUG-d6-x8M"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypG-nD-dML">
                                 <rect key="frame" x="20" y="292" width="560" height="90"/>
                                 <subviews>
@@ -68,7 +50,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="password"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="lock"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="leftImageRightPadding">
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
@@ -120,8 +102,26 @@
                                     <segue destination="pjJ-Nw-vue" kind="show" id="DID-hj-YQE"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhS-Y0-UN8">
+                                <rect key="frame" x="20" y="20" width="560" height="180"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="JiC-6c-bRf">
+                                        <rect key="frame" x="230" y="72" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="C2l-fb-2Dn"/>
+                                            <constraint firstAttribute="height" constant="100" id="uJN-qT-SiW"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="JiC-6c-bRf" firstAttribute="centerX" secondItem="hhS-Y0-UN8" secondAttribute="centerX" id="054-gI-4Fi"/>
+                                    <constraint firstAttribute="bottom" secondItem="JiC-6c-bRf" secondAttribute="bottom" constant="8" id="W7G-ch-Bzn"/>
+                                    <constraint firstAttribute="height" constant="180" id="sUG-d6-x8M"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="4Ie-5W-rG5" firstAttribute="leading" secondItem="ypG-nD-dML" secondAttribute="leading" id="1R7-t9-cPG"/>
                             <constraint firstAttribute="leadingMargin" secondItem="ypG-nD-dML" secondAttribute="leading" id="1ZQ-sF-n3i"/>
@@ -157,8 +157,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="lock" width="22" height="22"/>
         <image name="logo" width="300" height="300"/>
-        <image name="password" width="20" height="22"/>
         <image name="self" width="22" height="22"/>
     </resources>
 </document>

@@ -39,6 +39,9 @@ func textFieldShouldReturn(textField: UITextField) -> Bool {
 override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     self.view.endEditing(true)
 }
+    
+    
+
 //    
 //    
 //    override func viewDidLoad() {
