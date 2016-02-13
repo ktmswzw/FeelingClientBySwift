@@ -8,7 +8,7 @@
         <!--消息-->
         <scene sceneID="q18-xy-sps">
             <objects>
-                <viewController storyboardIdentifier="chat" id="XgY-6Z-pPg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chat" id="XgY-6Z-pPg" customClass="ChatViewController" customModule="FeelingClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XFN-w8-Dkx"/>
                         <viewControllerLayoutGuide type="bottom" id="Snu-jY-ocJ"/>

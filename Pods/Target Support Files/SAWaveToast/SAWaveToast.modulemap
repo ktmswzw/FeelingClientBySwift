@@ -1,6 +1,0 @@
-framework module SAWaveToast {
-  umbrella header "SAWaveToast-umbrella.h"
-
-  export *
-  module * { export * }
-}

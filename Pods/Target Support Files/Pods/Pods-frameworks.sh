@@ -84,7 +84,6 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods/ActionButton.framework"
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/CryptoSwift.framework"
   install_framework "Pods/Eureka.framework"
@@ -93,12 +92,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/JWT.framework"
   install_framework "Pods/LTMorphingLabel.framework"
   install_framework "Pods/ObjectMapper.framework"
-  install_framework "Pods/SAWaveToast.framework"
   install_framework "Pods/SQLite.framework"
   install_framework "Pods/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods/ActionButton.framework"
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/CryptoSwift.framework"
   install_framework "Pods/Eureka.framework"
@@ -107,7 +104,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/JWT.framework"
   install_framework "Pods/LTMorphingLabel.framework"
   install_framework "Pods/ObjectMapper.framework"
-  install_framework "Pods/SAWaveToast.framework"
   install_framework "Pods/SQLite.framework"
   install_framework "Pods/SwiftyJSON.framework"
 fi

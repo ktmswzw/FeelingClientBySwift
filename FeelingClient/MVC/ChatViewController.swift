@@ -1,19 +1,18 @@
 //
-//  MainViewController.swift
+//  ChatViewController.swift
 //  FeelingClient
 //
-//  Created by vincent on 12/2/16.
+//  Created by vincent on 13/2/16.
 //  Copyright © 2016 xecoder. All rights reserved.
 //
 
 import UIKit
 
-class MainViewController: UIViewController {
+class ChatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //self.view.layer.contents = UIImage(named: "Backgroup.png")?.CGImage
+        sleep(1)
         // Do any additional setup after loading the view.
     }
 
