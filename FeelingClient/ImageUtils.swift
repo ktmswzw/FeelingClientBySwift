@@ -25,35 +25,42 @@ func getAssetThumbnail(asset: PHAsset) -> UIImage {
 }
 
 extension UIViewController {
-
-/**
- * Called when 'return' key pressed. return NO to ignore.
- */
+    
+    /**
+     * Called when 'return' key pressed. return NO to ignore.
+     */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-
-
-/**
- * Called when the user click on the view (outside the UITextField).
- */
+    
+    
+    /**
+     * Called when the user click on the view (outside the UITextField).
+     */
     override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
-        
     
-
-
+    
+    
+    
 }
+//
+//
+//
+//class LoginViewController: UIViewController, MyAlertMsg {
+//    
 
-protocol MyAlertMsg{
-    func alertMsg(str: String ,view: LoginViewController, second: NSTimeInterval)
-}
-
-extension MyAlertMsg{
-    func alertMsg(str: String, view: LoginViewController, second: NSTimeInterval) {
-        let waveToast = SAWaveToast(text: str, font: .systemFontOfSize(16), fontColor: .darkGrayColor(), waveColor: .cyanColor(), duration: second)
-        view.presentViewController(waveToast, animated: false, completion: nil)
-    }
-}
+//            self.alertMsg("帐号或密码为空",view: self, second: 2)
+//
+//protocol MyAlertMsg{
+//    func alertMsg(str: String ,view: LoginViewController, second: NSTimeInterval)
+//}
+//
+//extension MyAlertMsg{
+//    func alertMsg(str: String, view: LoginViewController, second: NSTimeInterval) {
+//        let waveToast = SAWaveToast(text: str, font: .systemFontOfSize(16), fontColor: .darkGrayColor(), waveColor: .cyanColor(), duration: second)
+//        view.presentViewController(waveToast, animated: false, completion: nil)
+//    }
+//}
