@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import ActionButton
 import IBAnimatable
 
 import SwiftyJSON
 import Alamofire
 
-class LoginViewController: UIViewController{
+class LoginViewController: DesignableViewController,UITextFieldDelegate {
     
     @IBOutlet var username: AnimatableTextField!
     @IBOutlet var password: AnimatableTextField!
@@ -47,7 +46,24 @@ class LoginViewController: UIViewController{
         actionButton.setImage(UIImage(named: "new"), forState: .Normal)
         actionButton.backgroundColor = UIColor.lightGrayColor()
         
+        username.delegate = self
+        password.delegate = self
         
+        
+    }
+    
+    
+    override func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if (textField === username) {
+            password.becomeFirstResponder()
+        } else if (textField === password) {
+            password.resignFirstResponder()
+            self.login(self)
+        } else {
+            // etc
+        }
+        
+        return true
     }
     
     override func didReceiveMemoryWarning() {
@@ -103,14 +119,10 @@ class LoginViewController: UIViewController{
         super.viewDidAppear(animated)
         
         if !jwt.token.isEmpty {
-            self.performSegueWithIdentifier("login", sender: self)
+        //    self.performSegueWithIdentifier("login", sender: self)
         }
         
     }
     
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
     
 }

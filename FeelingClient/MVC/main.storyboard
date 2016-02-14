@@ -10,6 +10,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="main" automaticallyAdjustsScrollViewInsets="NO" id="0v0-XJ-eoM" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="9aY-X8-Klg">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

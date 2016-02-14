@@ -1,45 +1,283 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="njR-f0-QS0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HKh-6k-zrJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--发现-->
-        <scene sceneID="sho-cJ-6YT">
+        <scene sceneID="qlB-PA-rNM">
             <objects>
-                <viewController storyboardIdentifier="center" useStoryboardIdentifierAsRestorationIdentifier="YES" id="njR-f0-QS0" sceneMemberID="viewController">
+                <viewController id="csP-8S-KOZ" customClass="CenterViewController" customModule="FeelingClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="o1t-wy-KrK"/>
-                        <viewControllerLayoutGuide type="bottom" id="dUo-l5-V86"/>
+                        <viewControllerLayoutGuide type="top" id="okY-aj-9gY"/>
+                        <viewControllerLayoutGuide type="bottom" id="d2Y-zS-AZH"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1TA-FO-b4B">
+                    <view key="view" contentMode="scaleToFill" id="BbN-dX-1VZ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOy-6j-ixh">
-                                <rect key="frame" x="277" y="285" width="46" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6qD-Pr-J7O">
+                                <rect key="frame" x="20" y="74" width="560" height="240"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="期望阅读者" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wP6-SF-IZt" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="1zG-D9-Fc3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="trekking"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftImageRightPadding">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="0.40016826923076926" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="borderSide" value="Bottom"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="SlideInRight"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" white="1" alpha="0.5422475961538461" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="开启问题" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gWu-nQ-ihv" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                        <rect key="frame" x="0.0" y="40" width="560" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="question"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftImageRightPadding">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="0.40016826923076926" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="borderSide" value="Bottom"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="SlideInRight"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                <real key="value" value="0.29999999999999999"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" white="1" alpha="0.54224759619999996" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="芝麻开门" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uxe-NF-fvn" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                        <rect key="frame" x="0.0" y="80" width="560" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="answer"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftImageRightPadding">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="0.40016826923076926" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="borderSide" value="Bottom"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                <real key="value" value="0.29999999999999999"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="SlideInRight"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" white="1" alpha="0.54224759619999996" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="阅后即焚" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8pF-SK-FWj" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                        <rect key="frame" x="0.0" y="120" width="560" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="readfire"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftImageRightPadding">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="0.40016826923076926" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="borderSide" value="Bottom"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="SlideInRight"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                <real key="value" value="0.29999999999999999"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" white="1" alpha="0.54224759619999996" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="开启截止日期" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dna-7c-7hX" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                        <rect key="frame" x="0.0" y="160" width="560" height="40"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="calendar"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftImageRightPadding">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="0.40016826923076926" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="borderSide" value="Bottom"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                <real key="value" value="0.40000000000000002"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="SlideInRight"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" white="1" alpha="0.54224759619999996" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="藏匿地点" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZPK-ZU-kxb" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                        <rect key="frame" x="0.0" y="200" width="560" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="address"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftImageRightPadding">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="borderSide" value="Bottom"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="0.40016826923076926" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="SlideInRight"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                <real key="value" value="0.29999999999999999"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" white="1" alpha="0.54224759619999996" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="Gul-9z-TfT"/>
+                                    <constraint firstItem="ZPK-ZU-kxb" firstAttribute="height" secondItem="Dna-7c-7hX" secondAttribute="height" id="aLS-Ga-i86"/>
+                                    <constraint firstItem="wP6-SF-IZt" firstAttribute="height" secondItem="gWu-nQ-ihv" secondAttribute="height" id="da5-Op-xK3"/>
+                                    <constraint firstItem="gWu-nQ-ihv" firstAttribute="height" secondItem="Uxe-NF-fvn" secondAttribute="height" id="fEg-7S-x19"/>
+                                    <constraint firstItem="Uxe-NF-fvn" firstAttribute="height" secondItem="8pF-SK-FWj" secondAttribute="height" id="hEJ-8v-CTU"/>
+                                    <constraint firstItem="Dna-7c-7hX" firstAttribute="height" secondItem="wP6-SF-IZt" secondAttribute="height" id="mt4-Tr-AIX"/>
+                                    <constraint firstItem="8pF-SK-FWj" firstAttribute="height" secondItem="ZPK-ZU-kxb" secondAttribute="height" id="vRo-Iu-SJt"/>
                                 </constraints>
-                                <state key="normal" title="center"/>
-                            </button>
+                            </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="atp-pX-6SB">
+                                <rect key="frame" x="0.0" y="351" width="600" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Q4E-gO-rBn"/>
+                                </constraints>
+                            </mapView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="OOy-6j-ixh" firstAttribute="centerX" secondItem="1TA-FO-b4B" secondAttribute="centerX" id="Hmh-UP-6bH"/>
-                            <constraint firstItem="OOy-6j-ixh" firstAttribute="centerY" secondItem="1TA-FO-b4B" secondAttribute="centerY" id="Yyq-1L-VyA"/>
+                            <constraint firstItem="atp-pX-6SB" firstAttribute="leading" secondItem="BbN-dX-1VZ" secondAttribute="leadingMargin" constant="-20" id="18t-KZ-YN8"/>
+                            <constraint firstItem="6qD-Pr-J7O" firstAttribute="top" secondItem="okY-aj-9gY" secondAttribute="bottom" constant="10" id="CF5-gM-Rqg"/>
+                            <constraint firstItem="6qD-Pr-J7O" firstAttribute="leading" secondItem="BbN-dX-1VZ" secondAttribute="leading" id="ExT-87-TKw"/>
+                            <constraint firstItem="atp-pX-6SB" firstAttribute="top" secondItem="okY-aj-9gY" secondAttribute="bottom" id="F09-A1-tZ8"/>
+                            <constraint firstItem="d2Y-zS-AZH" firstAttribute="top" secondItem="atp-pX-6SB" secondAttribute="bottom" id="Jfd-Ap-AAS"/>
+                            <constraint firstItem="atp-pX-6SB" firstAttribute="top" secondItem="okY-aj-9gY" secondAttribute="bottom" id="Jke-ps-8U2"/>
+                            <constraint firstItem="d2Y-zS-AZH" firstAttribute="top" secondItem="6qD-Pr-J7O" secondAttribute="bottom" constant="8" symbolic="YES" id="PcS-q3-8Ef"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="atp-pX-6SB" secondAttribute="trailing" constant="-20" id="Pej-Zh-pof"/>
+                            <constraint firstItem="6qD-Pr-J7O" firstAttribute="top" secondItem="atp-pX-6SB" secondAttribute="bottom" id="XOd-sz-3cP"/>
+                            <constraint firstItem="d2Y-zS-AZH" firstAttribute="top" secondItem="6qD-Pr-J7O" secondAttribute="bottom" constant="30" id="chM-kH-0bu"/>
+                            <constraint firstItem="6qD-Pr-J7O" firstAttribute="top" secondItem="atp-pX-6SB" secondAttribute="bottom" id="hnY-Bf-edZ"/>
+                            <constraint firstItem="6qD-Pr-J7O" firstAttribute="leading" secondItem="BbN-dX-1VZ" secondAttribute="leadingMargin" id="qXU-l6-Tb9"/>
+                            <constraint firstItem="d2Y-zS-AZH" firstAttribute="top" secondItem="6qD-Pr-J7O" secondAttribute="bottom" id="uZJ-fG-oqh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6qD-Pr-J7O" secondAttribute="trailing" id="vvB-IP-1kL"/>
+                            <constraint firstAttribute="trailing" secondItem="atp-pX-6SB" secondAttribute="trailing" id="zGG-7e-JOG"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="F09-A1-tZ8"/>
+                                <exclude reference="Jke-ps-8U2"/>
+                                <exclude reference="ExT-87-TKw"/>
+                                <exclude reference="XOd-sz-3cP"/>
+                                <exclude reference="hnY-Bf-edZ"/>
+                                <exclude reference="PcS-q3-8Ef"/>
+                                <exclude reference="chM-kH-0bu"/>
+                                <exclude reference="uZJ-fG-oqh"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="发现" image="center" id="I09-U8-j42"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="center" id="1eN-Ng-k3V"/>
+                    <navigationItem key="navigationItem" id="YQt-NU-Ica">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="cmE-xj-5kz">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="hSs-kG-8O8">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="rootWindowBackgroundColor">
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="lightStatusBar" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="address" destination="ZPK-ZU-kxb" id="l4y-ik-73R"/>
+                        <outlet property="mapView" destination="atp-pX-6SB" id="1bI-vl-sIJ"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3Cg-dO-yKr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b9J-Yl-rp9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="376" y="382"/>
+            <point key="canvasLocation" x="1140" y="404"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6Xg-3V-yc9">
+            <objects>
+                <navigationController storyboardIdentifier="center" automaticallyAdjustsScrollViewInsets="NO" id="HKh-6k-zrJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IHl-4a-gPQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="csP-8S-KOZ" kind="relationship" relationship="rootViewController" id="U6j-yc-oRA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rDO-Dh-IOZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="328" y="404"/>
         </scene>
     </scenes>
     <resources>
+        <image name="address" width="22" height="22"/>
+        <image name="answer" width="22" height="22"/>
+        <image name="calendar" width="22" height="22"/>
         <image name="center" width="22" height="22"/>
+        <image name="question" width="22" height="22"/>
+        <image name="readfire" width="22" height="22"/>
+        <image name="trekking" width="22" height="22"/>
     </resources>
 </document>
