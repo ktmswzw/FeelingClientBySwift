@@ -26,7 +26,7 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
         //TODO
         //地址框放入地图, 图标颜色太黑，大小太大，缺少文本域
         
-        let image = UIImage(named: "horse")
+        let image = UIImage(named: "lonely-children")//lonely-children
         let blurredImage = image!.imageByApplyingBlurWithRadius(3)
         self.view.layer.contents = blurredImage.CGImage
         //地图初始化
@@ -38,7 +38,9 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
         self.locationManager.startUpdatingLocation()
         
         self.mapView.showsUserLocation = true
-        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
         
         // Do any additional setup after loading the view.
     }

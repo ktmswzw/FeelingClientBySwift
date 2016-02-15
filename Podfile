@@ -23,7 +23,8 @@ pod 'LTMorphingLabel', :git => 'https://github.com/lexrus/LTMorphingLabel.git'
 pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift.git'
 #吐司
 pod 'Whisper', :git => 'https://github.com/hyperoslo/Whisper'
-
+#表单
+#pod 'Former', :git => 'https://github.com/ra1028/Former'
 
 post_install do |installer|
     installer.pods_project.build_configuration_list.build_configurations.each do |configuration|
