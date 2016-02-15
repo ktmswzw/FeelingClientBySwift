@@ -14,7 +14,7 @@
 //
 
 #import "feeling-Bridging-Header.h"
-#define PASSWORD @"NOZUONODIE"
+#define PASSWORD @"NODONODIE"
 
 static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 const NSUInteger kAlgorithmKeySize = kCCKeySizeAES256;

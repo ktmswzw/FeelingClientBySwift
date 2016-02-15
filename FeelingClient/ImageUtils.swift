@@ -10,6 +10,7 @@ import Foundation
 import Photos
 import UIKit
 import ObjectMapper
+import Whisper
 
 
 func getAssetThumbnail(asset: PHAsset) -> UIImage {
@@ -41,25 +42,23 @@ extension UIViewController {
         self.view.endEditing(true)
     }
     
+    //导航栏提醒
+    func alertNvigationMsg(msg: String) {
+        guard let navigationController = navigationController else { return }
+        let message = Message(title: msg, backgroundColor: UIColor(red:1.0, green:0.0, blue:0.502, alpha:1.0))
+        Whisper(message, to: navigationController, action: .Present)
+        Silent(navigationController, after: 3)
+    }
     
+    
+    //状态栏提醒
+    func alertStatusBarMsg(msg: String) {
+        let murmur = Murmur(title: msg,
+            backgroundColor: UIColor(red: 1.0, green: 0.0, blue: 0.502, alpha: 1.0))
+        
+        Whistle(murmur)
+    }
     
     
 }
-//
-//
-//
-//class LoginViewController: UIViewController, MyAlertMsg {
-//    
 
-//            self.alertMsg("帐号或密码为空",view: self, second: 2)
-//
-//protocol MyAlertMsg{
-//    func alertMsg(str: String ,view: LoginViewController, second: NSTimeInterval)
-//}
-//
-//extension MyAlertMsg{
-//    func alertMsg(str: String, view: LoginViewController, second: NSTimeInterval) {
-//        let waveToast = SAWaveToast(text: str, font: .systemFontOfSize(16), fontColor: .darkGrayColor(), waveColor: .cyanColor(), duration: second)
-//        view.presentViewController(waveToast, animated: false, completion: nil)
-//    }
-//}

@@ -21,6 +21,9 @@ pod 'ImagePickerSheetController', :git => 'https://github.com/larcus94/ImagePick
 pod 'LTMorphingLabel', :git => 'https://github.com/lexrus/LTMorphingLabel.git'
 #sqlist数据库操作
 pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift.git'
+#吐司
+pod 'Whisper', :git => 'https://github.com/hyperoslo/Whisper'
+
 
 post_install do |installer|
     installer.pods_project.build_configuration_list.build_configurations.each do |configuration|

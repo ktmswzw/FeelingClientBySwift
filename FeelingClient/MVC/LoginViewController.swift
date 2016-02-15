@@ -8,7 +8,6 @@
 
 import UIKit
 import IBAnimatable
-
 import SwiftyJSON
 import Alamofire
 
@@ -98,6 +97,7 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
         }
         else
         {
+            //self.alertStatusBarMsg("帐号或密码为空");
             self.view.makeToast("帐号或密码为空", duration: 2, position: .Top)
         }
         
