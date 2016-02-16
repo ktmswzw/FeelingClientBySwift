@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="25T-P7-b6Q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rc3-oE-rRP">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--我-->
+        <!--Item-->
         <scene sceneID="9k6-vh-PLq">
             <objects>
-                <viewController id="25T-P7-b6Q" sceneMemberID="viewController">
+                <viewController id="25T-P7-b6Q" customClass="SelfViewController" customModule="FeelingClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aOU-Na-HYi"/>
                         <viewControllerLayoutGuide type="bottom" id="5e7-8b-qoX"/>
@@ -16,27 +16,36 @@
                     <view key="view" contentMode="scaleToFill" id="Dyp-Hb-jbD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t58-0H-uyP">
-                                <rect key="frame" x="277" y="285" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="ncA-Sz-Fmq"/>
-                                </constraints>
-                                <state key="normal" title="self"/>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="t58-0H-uyP" firstAttribute="centerX" secondItem="Dyp-Hb-jbD" secondAttribute="centerX" id="ZBP-IZ-hRM"/>
-                            <constraint firstItem="t58-0H-uyP" firstAttribute="centerY" secondItem="Dyp-Hb-jbD" secondAttribute="centerY" id="o3T-gU-2YL"/>
-                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="4" title="我" image="self" id="cYc-9s-2cb"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="self" id="Wia-m2-7ft"/>
+                    <navigationItem key="navigationItem" id="DaA-WB-wgS"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TAb-Vf-jNK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="480" y="266"/>
+            <point key="canvasLocation" x="1865" y="16"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Xic-87-zIs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rc3-oE-rRP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" image="self" id="YEy-Ca-TU2"/>
+                    <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vew-cD-9tC" customClass="DesignableNavigationBar" customModule="IBAnimatable">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.47843137383460999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="25T-P7-b6Q" kind="relationship" relationship="rootViewController" id="IId-2A-HfX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rTn-r9-fah" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1053" y="16"/>
         </scene>
     </scenes>
     <resources>

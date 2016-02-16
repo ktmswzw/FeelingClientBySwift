@@ -50,10 +50,6 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
         // Dispose of any resources that can be recreated.
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
-    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         let location = locations.last

@@ -126,10 +126,10 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="lightStatusBar" value="YES"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="rootWindowBackgroundColor">
                             <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="lightStatusBar" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="password" destination="yWq-dj-LsK" id="9Zu-iQ-376"/>

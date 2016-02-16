@@ -8,7 +8,7 @@
         <!--好友-->
         <scene sceneID="PSJ-JJ-rTV">
             <objects>
-                <viewController storyboardIdentifier="friends" id="fq9-vW-fW2" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="friends" id="fq9-vW-fW2" customClass="FriendsViewController" customModule="FeelingClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mIa-do-86w"/>
                         <viewControllerLayoutGuide type="bottom" id="u0j-aK-qDl"/>
@@ -31,6 +31,9 @@
                     <tabBarItem key="tabBarItem" tag="2" title="好友" image="friends" id="FF8-Yy-LFo"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="lightStatusBar" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Is9-H4-PFE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

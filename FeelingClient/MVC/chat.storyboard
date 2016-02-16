@@ -33,6 +33,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="消息" image="chat" id="Vge-vN-mcQ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="lightStatusBar" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K6z-Sg-yrJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

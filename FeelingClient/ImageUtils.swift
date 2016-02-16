@@ -62,3 +62,23 @@ extension UIViewController {
     
 }
 
+
+extension UITabBarController {
+    override public func preferredStatusBarStyle() -> UIStatusBarStyle {
+        guard selectedViewController != nil else { return .Default }
+        return selectedViewController!.preferredStatusBarStyle()
+    }
+}
+
+extension UINavigationController {
+    override public func preferredStatusBarStyle() -> UIStatusBarStyle {
+        if self.presentingViewController != nil {
+            // NavigationController的presentingViewController不会为nil时，通常意味着Modal
+            return self.presentingViewController!.preferredStatusBarStyle()
+        }
+        else {
+            guard self.topViewController != nil else { return .Default }
+            return (self.topViewController!.preferredStatusBarStyle());
+        }
+    }
+}

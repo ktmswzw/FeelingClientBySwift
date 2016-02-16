@@ -1,8 +1,8 @@
 //
-//  ChatViewController.swift
+//  SelfViewController.swift
 //  FeelingClient
 //
-//  Created by vincent on 13/2/16.
+//  Created by vincent on 16/2/16.
 //  Copyright © 2016 xecoder. All rights reserved.
 //
 
@@ -10,12 +10,11 @@ import UIKit
 
 import IBAnimatable
 
-class ChatViewController: DesignableViewController {
+class SelfViewController: DesignableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sleep(1)
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -24,7 +23,10 @@ class ChatViewController: DesignableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
     /*
     // MARK: - Navigation
 
