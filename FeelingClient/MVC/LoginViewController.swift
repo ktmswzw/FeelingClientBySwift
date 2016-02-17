@@ -73,8 +73,9 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
     @IBAction func login(sender: AnyObject) {
         if username.text != "" && password.text != ""
         {
-            if (password.text!).characters.count < 6 {
-                self.view.makeToast("密码必选大于6位数", duration: 2, position: .Top)
+            if !self.password.validatePassword() {
+                self.view.makeToast("密码必选大于6位数小于18的数字或字符", duration: 2, position: .Top)
+                return
             }
             else{
                 //123456789001

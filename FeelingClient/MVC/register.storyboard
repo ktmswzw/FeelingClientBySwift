@@ -90,20 +90,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcU-gu-Bdf">
                                         <rect key="frame" x="0.0" y="61" width="560" height="60"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlY-jj-26h" customClass="AnimatableButton" customModule="IBAnimatable">
-                                                <rect key="frame" x="440" y="0.0" width="120" height="60"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="120" id="BrT-AF-1GK"/>
-                                                    <constraint firstAttribute="height" constant="60" id="M9H-X9-5Jv"/>
-                                                </constraints>
-                                                <state key="normal" title="验证">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="verify:" destination="Sa7-TK-OBg" eventType="touchUpInside" id="zxb-ae-eZ4"/>
-                                                </connections>
-                                            </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机获取的验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xm6-Hl-4VM" customClass="AnimatableTextField" customModule="IBAnimatable">
                                                 <rect key="frame" x="0.0" y="0.0" width="432" height="60"/>
                                                 <constraints>
@@ -127,6 +113,20 @@
                                                     <action selector="editingVerifyChanged:" destination="Sa7-TK-OBg" eventType="editingChanged" id="vTp-wS-6Td"/>
                                                 </connections>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlY-jj-26h" customClass="AnimatableButton" customModule="IBAnimatable">
+                                                <rect key="frame" x="440" y="0.0" width="120" height="60"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="BrT-AF-1GK"/>
+                                                    <constraint firstAttribute="height" constant="60" id="M9H-X9-5Jv"/>
+                                                </constraints>
+                                                <state key="normal" title="验证">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="verify:" destination="Sa7-TK-OBg" eventType="touchUpInside" id="zxb-ae-eZ4"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -153,7 +153,7 @@
                                             <constraint firstAttribute="height" constant="1" id="xx2-55-blI"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ivD-UR-c6E" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ivD-UR-c6E" customClass="AnimatableTextField" customModule="IBAnimatable">
                                         <rect key="frame" x="0.0" y="122" width="560" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="XYn-db-sk1"/>

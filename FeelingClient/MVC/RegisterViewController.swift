@@ -31,8 +31,8 @@ class RegisterViewController: DesignableViewController,UITextFieldDelegate {
         let blurredImage = image!.imageByApplyingBlurWithRadius(3)
         self.view.layer.contents = blurredImage.CGImage
         
-        //self.getCodesButton.disable()
-        //self.verifyCodesButton.disable()
+        self.getCodesButton.disable()
+        self.verifyCodesButton.disable()
         self.registerButton.disable()
         
         // Do any additional setup after loading the view.
@@ -82,12 +82,10 @@ class RegisterViewController: DesignableViewController,UITextFieldDelegate {
                 self.view.makeToast("手机号已更换，请修改", duration: 2, position: .Top)
                 return
             }
-            if self.password.validatePassword() {
+            if !self.password.validatePassword() {
                 self.view.makeToast("密码必选大于6位数小于18的数字或字符", duration: 2, position: .Top)
             }
             else {
-                //123456789001
-                //123456
                 let userNameText = self.realPhone
                 let passwordText = password.text!.md5()
                 NetApi().getResult(Alamofire.Method.POST,section: "/user/register",params: ["username": userNameText,"password":passwordText,"device":"APP"]) {
