@@ -18,6 +18,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhS-Y0-UN8">
+                                <rect key="frame" x="20" y="80" width="560" height="120"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="JiC-6c-bRf">
+                                        <rect key="frame" x="230" y="10" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="C2l-fb-2Dn"/>
+                                            <constraint firstAttribute="height" constant="100" id="uJN-qT-SiW"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="JiC-6c-bRf" firstAttribute="centerX" secondItem="hhS-Y0-UN8" secondAttribute="centerX" id="054-gI-4Fi"/>
+                                    <constraint firstAttribute="bottom" secondItem="JiC-6c-bRf" secondAttribute="bottom" constant="20" symbolic="YES" id="25x-jI-ndn"/>
+                                    <constraint firstItem="JiC-6c-bRf" firstAttribute="centerY" secondItem="hhS-Y0-UN8" secondAttribute="centerY" id="HFI-eE-erO"/>
+                                    <constraint firstAttribute="bottom" secondItem="JiC-6c-bRf" secondAttribute="bottom" constant="20" symbolic="YES" id="W7G-ch-Bzn"/>
+                                    <constraint firstAttribute="height" constant="120" id="sUG-d6-x8M"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="25x-jI-ndn"/>
+                                        <exclude reference="W7G-ch-Bzn"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bJg-yT-rx4" customClass="AnimatableStackView" customModule="IBAnimatable">
                                 <rect key="frame" x="20" y="260" width="560" height="181"/>
                                 <subviews>
@@ -86,32 +112,6 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="Shake"/>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhS-Y0-UN8">
-                                <rect key="frame" x="20" y="80" width="560" height="120"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="JiC-6c-bRf">
-                                        <rect key="frame" x="230" y="10" width="100" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="C2l-fb-2Dn"/>
-                                            <constraint firstAttribute="height" constant="100" id="uJN-qT-SiW"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="JiC-6c-bRf" firstAttribute="centerX" secondItem="hhS-Y0-UN8" secondAttribute="centerX" id="054-gI-4Fi"/>
-                                    <constraint firstAttribute="bottom" secondItem="JiC-6c-bRf" secondAttribute="bottom" constant="20" symbolic="YES" id="25x-jI-ndn"/>
-                                    <constraint firstItem="JiC-6c-bRf" firstAttribute="centerY" secondItem="hhS-Y0-UN8" secondAttribute="centerY" id="HFI-eE-erO"/>
-                                    <constraint firstAttribute="bottom" secondItem="JiC-6c-bRf" secondAttribute="bottom" constant="20" symbolic="YES" id="W7G-ch-Bzn"/>
-                                    <constraint firstAttribute="height" constant="120" id="sUG-d6-x8M"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="25x-jI-ndn"/>
-                                        <exclude reference="W7G-ch-Bzn"/>
-                                    </mask>
-                                </variation>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -135,6 +135,7 @@
                         <outlet property="password" destination="yWq-dj-LsK" id="9Zu-iQ-376"/>
                         <outlet property="username" destination="Okb-KY-gBB" id="Yca-i0-Fdq"/>
                         <segue destination="pjJ-Nw-vue" kind="show" identifier="login" id="gEt-GL-UXG"/>
+                        <segue destination="wgj-fT-Mgx" kind="show" identifier="register" id="Nma-HI-CwT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzT-Pf-eZ1" sceneMemberID="firstResponder"/>
@@ -147,7 +148,15 @@
                 <viewControllerPlaceholder storyboardName="main" id="pjJ-Nw-vue" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Avf-u5-ZMr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="448" y="290"/>
+            <point key="canvasLocation" x="336" y="295"/>
+        </scene>
+        <!--register-->
+        <scene sceneID="BEB-ay-Wcb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="register" id="wgj-fT-Mgx" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OBS-nd-SXA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="580.5" y="295"/>
         </scene>
     </scenes>
     <resources>

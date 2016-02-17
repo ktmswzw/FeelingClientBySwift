@@ -24,6 +24,27 @@ func getAssetThumbnail(asset: PHAsset) -> UIImage {
     return thumbnail
 }
 
+extension UITextField {
+    var notEmpty: Bool{
+        get {
+            return self.text != ""
+        }
+    }
+    func validate(RegEx: String) -> Bool {
+        let predicate = NSPredicate(format: "SELF MATCHES %@", RegEx)
+        return predicate.evaluateWithObject(self.text)
+    }
+    func validateEmail() -> Bool {
+        return self.validate("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}")
+    }
+    func validatePhoneNumber() -> Bool {
+        return self.validate("^\\d{11}$")
+    }
+    func validatePassword() -> Bool {
+        return self.validate("^[A-Z0-9a-z]{6,18}")
+    }
+}
+
 extension UIViewController {
     
     /**
@@ -80,5 +101,22 @@ extension UINavigationController {
             guard self.topViewController != nil else { return .Default }
             return (self.topViewController!.preferredStatusBarStyle());
         }
+    }
+}
+
+extension UIButton {
+    func disable() {
+        self.enabled = false
+        self.alpha = 0.5
+    }
+    func enable() {
+        self.enabled = true
+        self.alpha = 1
+    }
+}
+
+extension String {
+    var length: Int {
+        return (self as NSString).length
     }
 }

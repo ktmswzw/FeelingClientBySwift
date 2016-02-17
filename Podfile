@@ -26,6 +26,11 @@ pod 'Whisper', :git => 'https://github.com/hyperoslo/Whisper'
 #表单
 #pod 'Former', :git => 'https://github.com/ra1028/Former'
 
+#Mob产品公共库
+pod 'MOBFoundation_IDFA'
+#SMSSDK必须
+pod 'SMSSDK'
+
 post_install do |installer|
     installer.pods_project.build_configuration_list.build_configurations.each do |configuration|
         configuration.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'

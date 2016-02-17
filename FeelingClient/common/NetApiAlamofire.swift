@@ -16,8 +16,8 @@ public class NetApi{
     
     
     
-    func getResult(method: Alamofire.Method,params: [String: AnyObject]?, completionHandler: (NSDictionary?, NSError?) -> ()) {
-        makeCall(method, section: "login",params: params, completionHandler: completionHandler)
+    func getResult(method: Alamofire.Method,section: String, params: [String: AnyObject]?, completionHandler: (NSDictionary?, NSError?) -> ()) {
+        makeCall(method, section: section,params: params, completionHandler: completionHandler)
     }
     
     func makeCall(method: Alamofire.Method, section: String, params: [String: AnyObject]?, completionHandler: (NSDictionary?, NSError?) -> ()) {

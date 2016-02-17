@@ -27,7 +27,9 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
         self.view.layer.contents = blurredImage.CGImage
         
         let register = ActionButtonItem(title: "注册帐号", image: UIImage(named: "new")!)
-        register.action = { item in  }
+        register.action = { item in
+            self.performSegueWithIdentifier("register", sender: self)
+        }
         let forget = ActionButtonItem(title: "忘记密码", image: UIImage(named: "new")!)
         forget.action = { item in }
         let wechatLogin = ActionButtonItem(title: "微信登录", image: UIImage(named: "wechat")!)
@@ -38,7 +40,6 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
         weiboLogin.action = { item in  }
         let taobaoLogin = ActionButtonItem(title: "淘宝登录", image: UIImage(named: "taobao")!)
         taobaoLogin.action = { item in
-            //            self.showWalkthrough()
         }
         actionButton = ActionButton(attachedToView: self.view, items: [register, forget, wechatLogin, qqLogin, weiboLogin, taobaoLogin])
         actionButton.action = { button in button.toggleMenu() }
@@ -70,26 +71,30 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     @IBAction func login(sender: AnyObject) {
-        
         if username.text != "" && password.text != ""
         {
-            //123456789001
-            //123456
-            let userNameText = username.text
-            let passwordText = password.text!.md5()
-            NetApi().getResult(Alamofire.Method.POST,params: ["username": userNameText!,"password":passwordText,"device":"APP"]) {
-                responseObject, error in
-                //print("responseObject = \(responseObject); error = \(error)")
-                if let json = responseObject {
-                    let myJosn = JSON(json)
-                    let code:Int = Int(myJosn["status"].stringValue)!
-                    if code != 200 {
-                        self.view.makeToast(myJosn.dictionary!["detail"]!.stringValue, duration: 2, position: .Top)                        
-                    }
-                    else{
-                        self.jwt.token = myJosn.dictionary!["token"]!.stringValue
-                        self.view.makeToast("登陆成功", duration: 1, position: .Top)
-                        self.performSegueWithIdentifier("login", sender: self)
+            if (password.text!).characters.count < 6 {
+                self.view.makeToast("密码必选大于6位数", duration: 2, position: .Top)
+            }
+            else{
+                //123456789001
+                //123456
+                let userNameText = username.text
+                let passwordText = password.text!.md5()
+                NetApi().getResult(Alamofire.Method.POST,section: "login",params: ["username": userNameText!,"password":passwordText,"device":"APP"]) {
+                    responseObject, error in
+                    //print("responseObject = \(responseObject); error = \(error)")
+                    if let json = responseObject {
+                        let myJosn = JSON(json)
+                        let code:Int = Int(myJosn["status"].stringValue)!
+                        if code != 200 {
+                            self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 2, position: .Top)
+                        }
+                        else{
+                            self.jwt.token = myJosn.dictionary!["message"]!.stringValue
+                            self.view.makeToast("登陆成功", duration: 1, position: .Top)
+                            self.performSegueWithIdentifier("login", sender: self)
+                        }
                     }
                 }
             }
@@ -119,7 +124,7 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
         super.viewDidAppear(animated)
         
         if !jwt.token.isEmpty {
-        //    self.performSegueWithIdentifier("login", sender: self)
+            //    self.performSegueWithIdentifier("login", sender: self)
         }
         
     }
