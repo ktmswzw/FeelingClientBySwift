@@ -20,6 +20,12 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var address: AnimatableTextField!
     @IBOutlet var textView: UITextView!
+    @IBOutlet var limitDate: UITextField!
+    var lockDate:String = ""
+    @IBOutlet var openUser: UITextField!
+    @IBOutlet var question: UITextField!
+    @IBOutlet var answer: UITextField!
+    @IBOutlet var readFire: UISwitch!
     
     @IBOutlet var photoCollectionView: UICollectionView!
     
@@ -86,7 +92,22 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
         
     }
     
+    @IBAction func pickDate(sender: AnyObject) {
+        DatePickerDialog().show("DatePickerDialog", doneButtonTitle: "完成", cancelButtonTitle: "关闭", datePickerMode: .Date) {
+            (date) -> Void in
+            
+            let dateFormatter2 = NSDateFormatter()
+            dateFormatter2.dateFormat = "yyyy-MM-dd"
+            // Date 转 String
+            self.limitDate.text = dateFormatter2.stringFromDate(date)
+            self.lockDate = self.limitDate.text!
+        }
+
+    }
     
+    @IBAction func chagedValue(sender: UITextField) {
+        self.limitDate.text = self.lockDate
+    }
     
     func displayLocationInfo(placemark: CLPlacemark) {
         //stop updating location to save battery life
