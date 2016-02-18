@@ -20,13 +20,13 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var address: AnimatableTextField!
     @IBOutlet var textView: UITextView!
-    @IBOutlet var limitDate: UITextField!
     var lockDate:String = ""
     @IBOutlet var openUser: UITextField!
     @IBOutlet var question: UITextField!
     @IBOutlet var answer: UITextField!
     @IBOutlet var readFire: UISwitch!
     
+    @IBOutlet var limitDate: UIDatePicker!
     @IBOutlet var stackView: UIStackView!
     @IBOutlet var photoCollectionView: UICollectionView!
     @IBOutlet var switchHidden: UISwitch!
@@ -106,50 +106,8 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
         
         self.mapView.setRegion(region, animated: true)
         
-        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {
-            (placemarks, error) -> Void in
-            if (error != nil) {
-                print("Reverse geocoder failed with error" + error!.localizedDescription)
-                return
-            }
-            
-            if placemarks!.count > 0 {
-                let pm = placemarks![0] as CLPlacemark
-                self.displayLocationInfo(pm)
-            } else {
-                print("Problem with the data received from geocoder")
-            }
-        })
-        
     }
     
-    @IBAction func pickDate(sender: AnyObject) {
-        DatePickerDialog().show("DatePickerDialog", doneButtonTitle: "完成", cancelButtonTitle: "关闭", datePickerMode: .Date) {
-            (date) -> Void in
-            
-            let dateFormatter2 = NSDateFormatter()
-            dateFormatter2.dateFormat = "yyyy-MM-dd"
-            // Date 转 String
-            self.limitDate.text = dateFormatter2.stringFromDate(date)
-            self.lockDate = self.limitDate.text!
-        }
-        
-    }
-    
-    @IBAction func chagedValue(sender: UITextField) {
-        self.limitDate.text = self.lockDate
-    }
-    
-    func displayLocationInfo(placemark: CLPlacemark) {
-        //stop updating location to save battery life
-        locationManager.stopUpdatingLocation()
-        //        print(placemark.locality)
-        //        print(placemark.administrativeArea)
-        //        print(placemark.country)
-        if let locationName = placemark.addressDictionary!["Name"] as? NSString {
-            address.text = locationName as String
-        }
-    }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
     {

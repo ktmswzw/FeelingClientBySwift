@@ -100,7 +100,35 @@
                     <view key="view" contentMode="scaleToFill" id="4Ww-V4-InW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="r0H-TB-Zrz">
+                                <rect key="frame" x="0.0" y="8" width="600" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="9Dy-SD-tpK"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="477412449.75152802">
+                                    <!--2016-02-17 14:34:09 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="473338800">
+                                    <!--2016-01-01 11:00:00 +0000-->
+                                </date>
+                                <date key="maximumDate" timeIntervalSinceReferenceDate="946638000">
+                                    <!--2030-12-31 11:00:00 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NQ0-u2-oNn" firstAttribute="top" secondItem="r0H-TB-Zrz" secondAttribute="bottom" constant="446" id="9dN-82-hOe"/>
+                            <constraint firstItem="r0H-TB-Zrz" firstAttribute="leading" secondItem="4Ww-V4-InW" secondAttribute="leading" id="LY1-Mn-BLs"/>
+                            <constraint firstItem="r0H-TB-Zrz" firstAttribute="top" secondItem="UKY-Sx-iSc" secondAttribute="bottom" constant="8" symbolic="YES" id="a4U-dt-E2j"/>
+                            <constraint firstAttribute="trailing" secondItem="r0H-TB-Zrz" secondAttribute="trailing" id="vhI-nc-hDy"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="9dN-82-hOe"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="EeO-Ob-no2"/>
                 </viewController>

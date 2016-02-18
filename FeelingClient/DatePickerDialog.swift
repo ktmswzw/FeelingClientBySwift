@@ -49,7 +49,6 @@ class DatePickerDialog: UIView {
         self.dialogView!.layer.transform = CATransform3DMakeScale(1.3, 1.3, 1)
     
         self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-    
         self.addSubview(self.dialogView!)
     }
     
@@ -214,7 +213,6 @@ class DatePickerDialog: UIView {
         if sender.tag == kDatePickerDialogDoneButtonTag {
             self.callback?(date: self.datePicker.date)
         }
-        
         close()
     }
     
