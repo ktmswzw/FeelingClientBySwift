@@ -78,7 +78,7 @@ class RegisterViewController: DesignableViewController,UITextFieldDelegate {
         
         if username.text != "" && password.text != ""
         {
-            if self.realPhone != self.password.text! {
+            if self.realPhone != self.username.text! {
                 self.view.makeToast("手机号已更换，请修改", duration: 2, position: .Top)
                 return
             }

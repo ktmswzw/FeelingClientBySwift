@@ -12,7 +12,7 @@ import Alamofire
 public class NetApi{
     
     //    var apiUrl = "http://192.168.137.1:80/"
-    var apiUrl = "http://192.168.1.105/"
+    var apiUrl = "http://192.168.1.141/"
     
     
     

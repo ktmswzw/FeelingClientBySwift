@@ -30,18 +30,19 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
         register.action = { item in
             self.performSegueWithIdentifier("register", sender: self)
         }
-        let forget = ActionButtonItem(title: "忘记密码", image: UIImage(named: "new")!)
-        forget.action = { item in }
-        let wechatLogin = ActionButtonItem(title: "微信登录", image: UIImage(named: "wechat")!)
-        wechatLogin.action = { item in   }
-        let qqLogin = ActionButtonItem(title: "QQ登录", image: UIImage(named: "qq")!)
-        qqLogin.action = { item in }
-        let weiboLogin = ActionButtonItem(title: "微博登录", image: UIImage(named: "weibo")!)
-        weiboLogin.action = { item in  }
-        let taobaoLogin = ActionButtonItem(title: "淘宝登录", image: UIImage(named: "taobao")!)
-        taobaoLogin.action = { item in
-        }
-        actionButton = ActionButton(attachedToView: self.view, items: [register, forget, wechatLogin, qqLogin, weiboLogin, taobaoLogin])
+//        let forget = ActionButtonItem(title: "忘记密码", image: UIImage(named: "new")!)
+//        forget.action = { item in }
+//        let wechatLogin = ActionButtonItem(title: "微信登录", image: UIImage(named: "wechat")!)
+//        wechatLogin.action = { item in   }
+//        let qqLogin = ActionButtonItem(title: "QQ登录", image: UIImage(named: "qq")!)
+//        qqLogin.action = { item in }
+//        let weiboLogin = ActionButtonItem(title: "微博登录", image: UIImage(named: "weibo")!)
+//        weiboLogin.action = { item in  }
+//        let taobaoLogin = ActionButtonItem(title: "淘宝登录", image: UIImage(named: "taobao")!)
+//        taobaoLogin.action = { item in
+//        }
+//        actionButton = ActionButton(attachedToView: self.view, items: [register, forget, wechatLogin, qqLogin, weiboLogin, taobaoLogin])
+        actionButton = ActionButton(attachedToView: self.view, items: [register])
         actionButton.action = { button in button.toggleMenu() }
         actionButton.setImage(UIImage(named: "new"), forState: .Normal)
         actionButton.backgroundColor = UIColor.lightGrayColor()

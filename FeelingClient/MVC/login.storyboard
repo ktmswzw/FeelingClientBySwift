@@ -18,32 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhS-Y0-UN8">
-                                <rect key="frame" x="20" y="80" width="560" height="120"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="JiC-6c-bRf">
-                                        <rect key="frame" x="230" y="10" width="100" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="C2l-fb-2Dn"/>
-                                            <constraint firstAttribute="height" constant="100" id="uJN-qT-SiW"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="JiC-6c-bRf" firstAttribute="centerX" secondItem="hhS-Y0-UN8" secondAttribute="centerX" id="054-gI-4Fi"/>
-                                    <constraint firstAttribute="bottom" secondItem="JiC-6c-bRf" secondAttribute="bottom" constant="20" symbolic="YES" id="25x-jI-ndn"/>
-                                    <constraint firstItem="JiC-6c-bRf" firstAttribute="centerY" secondItem="hhS-Y0-UN8" secondAttribute="centerY" id="HFI-eE-erO"/>
-                                    <constraint firstAttribute="bottom" secondItem="JiC-6c-bRf" secondAttribute="bottom" constant="20" symbolic="YES" id="W7G-ch-Bzn"/>
-                                    <constraint firstAttribute="height" constant="120" id="sUG-d6-x8M"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="25x-jI-ndn"/>
-                                        <exclude reference="W7G-ch-Bzn"/>
-                                    </mask>
-                                </variation>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bJg-yT-rx4" customClass="AnimatableStackView" customModule="IBAnimatable">
                                 <rect key="frame" x="20" y="260" width="560" height="181"/>
                                 <subviews>
@@ -112,6 +86,30 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="Shake"/>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhS-Y0-UN8">
+                                <rect key="frame" x="20" y="80" width="560" height="120"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIND U MEMORISE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ynr-Cz-286">
+                                        <rect key="frame" x="0.0" y="39" width="560" height="41"/>
+                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="40"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Ynr-Cz-286" secondAttribute="trailing" id="EIR-ah-Ugy"/>
+                                    <constraint firstItem="Ynr-Cz-286" firstAttribute="centerY" secondItem="hhS-Y0-UN8" secondAttribute="centerY" id="Ira-2w-xrA"/>
+                                    <constraint firstItem="Ynr-Cz-286" firstAttribute="top" secondItem="hhS-Y0-UN8" secondAttribute="top" constant="39" id="NAp-7R-der"/>
+                                    <constraint firstItem="Ynr-Cz-286" firstAttribute="leading" secondItem="hhS-Y0-UN8" secondAttribute="leading" id="fd5-GQ-ANJ"/>
+                                    <constraint firstAttribute="height" constant="120" id="sUG-d6-x8M"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -161,7 +159,6 @@
     </scenes>
     <resources>
         <image name="lock" width="22" height="22"/>
-        <image name="logo" width="300" height="300"/>
         <image name="self" width="22" height="22"/>
     </resources>
 </document>
