@@ -27,8 +27,26 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
     @IBOutlet var answer: UITextField!
     @IBOutlet var readFire: UISwitch!
     
+    @IBOutlet var stackView: UIStackView!
     @IBOutlet var photoCollectionView: UICollectionView!
+    @IBOutlet var switchHidden: UISwitch!
+    @IBOutlet var hidden0: UIView!
+    @IBOutlet var hidden1: UIView!
+    @IBOutlet var hidden2: UIView!
+    @IBOutlet var hidden3: UIView!
+    @IBOutlet var hidden4: UIView!
+    @IBOutlet var hidden5: UIView!
+    @IBOutlet var hidden6: UIView!
     
+    @IBAction func chagenSwitch(sender: AnyObject) {
+        if switchHidden.on {
+            hiddenView(false)
+        }
+        else
+        {
+            hiddenView(true)
+        }
+    }
     var picker = UIImagePickerController()
     var imageData = [UIImage]()
     
@@ -36,10 +54,10 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
         super.viewDidLoad()
         //TODO
         //地址框放入地图, 图标颜色太黑，大小太大，缺少文本域
-//        
-//        let image = UIImage(named: "lonely-children")//lonely-children
-//        let blurredImage = image!.imageByApplyingBlurWithRadius(3)
-//        self.view.layer.contents = blurredImage.CGImage
+        //        
+        //        let image = UIImage(named: "lonely-children")//lonely-children
+        //        let blurredImage = image!.imageByApplyingBlurWithRadius(3)
+        //        self.view.layer.contents = blurredImage.CGImage
         //地图初始化
         self.locationManager.delegate = self
         self.locationManager.distanceFilter = 1;
@@ -55,8 +73,21 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
         
         self.photoCollectionView.delegate = self
         self.photoCollectionView.dataSource = self
-        
-       
+    }
+    
+    //这样将避免约束错误
+    override func viewDidAppear(animated: Bool) {
+        hiddenView(true)
+    }
+    
+    func hiddenView(flag:Bool){
+        hidden0.hidden = flag
+        hidden1.hidden = flag
+        hidden2.hidden = flag
+        hidden3.hidden = flag
+        hidden4.hidden = flag
+        hidden5.hidden = flag
+        hidden6.hidden = flag
     }
     
     override func didReceiveMemoryWarning() {
@@ -102,7 +133,7 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
             self.limitDate.text = dateFormatter2.stringFromDate(date)
             self.lockDate = self.limitDate.text!
         }
-
+        
     }
     
     @IBAction func chagedValue(sender: UITextField) {
