@@ -17,8 +17,6 @@ pod 'JSONWebToken', :git => 'https://github.com/kylef/JSONWebToken.swift'
 pod 'IBAnimatable', :git => 'https://github.com/JakeLin/IBAnimatable'
 #照片提起
 pod 'ImagePickerSheetController', :git => 'https://github.com/larcus94/ImagePickerSheetController.git'
-#字体特效
-pod 'LTMorphingLabel', :git => 'https://github.com/lexrus/LTMorphingLabel.git'
 #sqlist数据库操作
 pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift.git'
 #吐司

@@ -10,14 +10,13 @@ import IBAnimatable
 import SwiftyJSON
 import Alamofire
 
-class RegisterViewController: DesignableViewController,UITextFieldDelegate {
+class RegisterViewController: DesignableViewController,UITextFieldDelegate{
     @IBOutlet var username: AnimatableTextField!
     @IBOutlet var getCodesButton: AnimatableButton!
     
     @IBOutlet var codes: AnimatableTextField!
     @IBOutlet var verifyCodesButton: AnimatableButton!
-    
-    @IBOutlet var password: AnimatableTextField!
+        @IBOutlet var password: AnimatableTextField!
     @IBOutlet var registerButton: AnimatableButton!
     
     let jwt = JWTTools()
@@ -28,13 +27,12 @@ class RegisterViewController: DesignableViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         let image = UIImage(named: "lonely-children")
-        let blurredImage = image!.imageByApplyingBlurWithRadius(3)
+        let blurredImage = image!.imageByApplyingBlurWithRadius(10)
         self.view.layer.contents = blurredImage.CGImage
         
         self.getCodesButton.disable()
         self.verifyCodesButton.disable()
         self.registerButton.disable()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -88,7 +86,7 @@ class RegisterViewController: DesignableViewController,UITextFieldDelegate {
             else {
                 let userNameText = self.realPhone
                 let passwordText = password.text!.md5()
-                NetApi().getResult(Alamofire.Method.POST,section: "/user/register",params: ["username": userNameText,"password":passwordText,"device":"APP"]) {
+                NetApi().getResult(Alamofire.Method.POST,section: "/user/register",headers: [:], params: ["username": userNameText,"password":passwordText,"device":"APP"]) {
                     responseObject, error in
                     //print("responseObject = \(responseObject); error = \(error)")
                     if let json = responseObject {

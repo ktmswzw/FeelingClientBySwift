@@ -6,7 +6,6 @@ PODS:
   - ImagePickerSheetController (0.9.1)
   - JSONWebToken (1.4.2):
     - CryptoSwift (= 0.2.2)
-  - LTMorphingLabel (0.1.1)
   - MOBFoundation_IDFA (1.3.1)
   - ObjectMapper (1.1.2)
   - SMSSDK (2.0.2)
@@ -21,7 +20,6 @@ DEPENDENCIES:
   - IBAnimatable (from `https://github.com/JakeLin/IBAnimatable`)
   - ImagePickerSheetController (from `https://github.com/larcus94/ImagePickerSheetController.git`)
   - JSONWebToken (from `https://github.com/kylef/JSONWebToken.swift`)
-  - LTMorphingLabel (from `https://github.com/lexrus/LTMorphingLabel.git`)
   - MOBFoundation_IDFA
   - ObjectMapper (from `https://github.com/Hearst-DD/ObjectMapper`)
   - SMSSDK
@@ -42,8 +40,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/larcus94/ImagePickerSheetController.git
   JSONWebToken:
     :git: https://github.com/kylef/JSONWebToken.swift
-  LTMorphingLabel:
-    :git: https://github.com/lexrus/LTMorphingLabel.git
   ObjectMapper:
     :git: https://github.com/Hearst-DD/ObjectMapper
   SQLite.swift:
@@ -72,9 +68,6 @@ CHECKOUT OPTIONS:
   JSONWebToken:
     :commit: 6df50e23abe6c25caebcfaba8aa42c85f72d7ee4
     :git: https://github.com/kylef/JSONWebToken.swift
-  LTMorphingLabel:
-    :commit: 06c315da25467dad6804f299d0de6db07642019a
-    :git: https://github.com/lexrus/LTMorphingLabel.git
   ObjectMapper:
     :commit: 6f5d1aab530eb93809a2a3620f9ce54e5d36023d
     :git: https://github.com/Hearst-DD/ObjectMapper
@@ -95,7 +88,6 @@ SPEC CHECKSUMS:
   IBAnimatable: 4bb0f4099ed89f8e94ae0a2d9a615ff01a9ab9e5
   ImagePickerSheetController: 3c58c9fee6dcf36485222358a021f6b734f997ba
   JSONWebToken: 273e93a6239407b4911091c1aaa4e3ce77206c52
-  LTMorphingLabel: 254c44f9ef5afa79d3464f8b89d7b00567e5aebc
   MOBFoundation_IDFA: 0b4f8248e12384fc32b861a9b75a83825e8fb444
   ObjectMapper: 148765647481443b1a18983b4ac8ec3189cbce35
   SMSSDK: 4c369e5df6d6998b5341f53bf98a0c18a5b90719

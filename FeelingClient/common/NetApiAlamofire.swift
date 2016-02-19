@@ -16,12 +16,12 @@ public class NetApi{
     
     
     
-    func getResult(method: Alamofire.Method,section: String, params: [String: AnyObject]?, completionHandler: (NSDictionary?, NSError?) -> ()) {
-        makeCall(method, section: section,params: params, completionHandler: completionHandler)
+    func getResult(method: Alamofire.Method,section: String, headers: [String: String]?, params: [String: AnyObject]?, completionHandler: (NSDictionary?, NSError?) -> ()) {
+        makeCall(method, section: section,headers: headers, params: params, completionHandler: completionHandler)
     }
     
-    func makeCall(method: Alamofire.Method, section: String, params: [String: AnyObject]?, completionHandler: (NSDictionary?, NSError?) -> ()) {
-        Alamofire.request(method, "\(apiUrl)/\(section)", parameters: params)
+    func makeCall(method: Alamofire.Method, section: String, headers: [String: String]?, params: [String: AnyObject]?, completionHandler: (NSDictionary?, NSError?) -> ()) {
+        Alamofire.request(method, "\(apiUrl)/\(section)",headers: headers, parameters: params)
             .responseJSON { response in
                 switch response.result {
                 case .Success(let value):

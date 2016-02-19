@@ -41,7 +41,13 @@
                                             <constraint firstAttribute="height" constant="80" id="oG4-SQ-9ld"/>
                                         </constraints>
                                     </mapView>
-                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.84999999999999998" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="开启地点" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZPK-ZU-kxb" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="这一刻的想法..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="j5D-WJ-8mT">
+                                        <rect key="frame" x="0.0" y="80" width="600" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.84999999999999998" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="~~~~开启地点~~~~" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZPK-ZU-kxb" customClass="AnimatableTextField" customModule="IBAnimatable">
                                         <rect key="frame" x="0.0" y="60" width="600" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Bdk-ct-C9Y"/>
@@ -71,12 +77,6 @@
                                             </mask>
                                         </variation>
                                     </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="这一刻的想法..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="j5D-WJ-8mT">
-                                        <rect key="frame" x="0.0" y="80" width="600" height="60"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="EIL-JO-t4x" firstAttribute="centerY" secondItem="atp-pX-6SB" secondAttribute="centerY" id="7TM-9Z-MzM"/>
@@ -465,6 +465,9 @@
                         <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" title="发送" id="hSs-kG-8O8">
                             <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="sendMsg:" destination="csP-8S-KOZ" id="vat-yC-sQK"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -490,6 +493,7 @@
                         <outlet property="photoCollectionView" destination="5Tl-8y-AaO" id="mbw-Md-T5g"/>
                         <outlet property="question" destination="YaR-YM-H0C" id="xAW-Xz-VUz"/>
                         <outlet property="readFire" destination="GgC-Rc-kJ9" id="bfh-sN-fH4"/>
+                        <outlet property="sendButton" destination="hSs-kG-8O8" id="Han-vi-Fok"/>
                         <outlet property="stackView" destination="cam-CB-ydY" id="wWZ-3M-cBf"/>
                         <outlet property="switchHidden" destination="OaM-1f-xF1" id="sDd-hP-TMF"/>
                         <outlet property="textView" destination="j5D-WJ-8mT" id="m53-H6-XQR"/>

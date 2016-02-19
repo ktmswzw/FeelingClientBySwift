@@ -21,7 +21,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fEc-dv-46j" customClass="AnimatableStackView" customModule="IBAnimatable">
                                 <rect key="frame" x="20" y="179" width="560" height="242"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMq-TH-M8O">
+                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMq-TH-M8O">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ROx-9W-6qk" customClass="AnimatableButton" customModule="IBAnimatable">
@@ -38,8 +38,9 @@
                                                     <action selector="getCodes:" destination="Sa7-TK-OBg" eventType="touchUpInside" id="ZQA-bL-P7R"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9cF-Jj-UUl" customClass="AnimatableTextField" customModule="IBAnimatable">
-                                                <rect key="frame" x="0.0" y="0.0" width="432" height="60"/>
+                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9cF-Jj-UUl" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                                <rect key="frame" x="0.0" y="0.0" width="440" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="PdK-fe-B5J"/>
                                                 </constraints>
@@ -66,7 +67,7 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ROx-9W-6qk" secondAttribute="trailing" id="3d8-kh-YiG"/>
                                             <constraint firstAttribute="height" constant="60" id="7Fy-iZ-TcB"/>
-                                            <constraint firstItem="ROx-9W-6qk" firstAttribute="leading" secondItem="9cF-Jj-UUl" secondAttribute="trailing" constant="8" symbolic="YES" id="AMw-FQ-vEG"/>
+                                            <constraint firstItem="ROx-9W-6qk" firstAttribute="leading" secondItem="9cF-Jj-UUl" secondAttribute="trailing" id="AMw-FQ-vEG"/>
                                             <constraint firstItem="9cF-Jj-UUl" firstAttribute="leading" secondItem="GMq-TH-M8O" secondAttribute="leading" id="Frs-VR-7Mo"/>
                                             <constraint firstItem="ROx-9W-6qk" firstAttribute="centerX" secondItem="GMq-TH-M8O" secondAttribute="centerX" id="Ja7-7M-q5X"/>
                                             <constraint firstItem="ROx-9W-6qk" firstAttribute="centerY" secondItem="GMq-TH-M8O" secondAttribute="centerY" id="MFw-8N-VLx"/>
@@ -87,7 +88,7 @@
                                             <constraint firstAttribute="height" constant="1" id="Lxt-ro-5vg"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcU-gu-Bdf">
+                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcU-gu-Bdf">
                                         <rect key="frame" x="0.0" y="61" width="560" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlY-jj-26h" customClass="AnimatableButton" customModule="IBAnimatable">
@@ -104,8 +105,9 @@
                                                     <action selector="verify:" destination="Sa7-TK-OBg" eventType="touchUpInside" id="zxb-ae-eZ4"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机获取的验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xm6-Hl-4VM" customClass="AnimatableTextField" customModule="IBAnimatable">
-                                                <rect key="frame" x="0.0" y="0.0" width="432" height="60"/>
+                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机获取的验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xm6-Hl-4VM" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                                <rect key="frame" x="0.0" y="0.0" width="440" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="tFI-p2-G3C"/>
                                                 </constraints>
@@ -134,7 +136,7 @@
                                             <constraint firstItem="xlY-jj-26h" firstAttribute="centerX" secondItem="bcU-gu-Bdf" secondAttribute="centerX" id="KgJ-Rk-bmw"/>
                                             <constraint firstItem="Xm6-Hl-4VM" firstAttribute="leading" secondItem="bcU-gu-Bdf" secondAttribute="leading" id="LEh-gX-vMt"/>
                                             <constraint firstAttribute="trailing" secondItem="xlY-jj-26h" secondAttribute="trailing" id="O1E-IC-vyR"/>
-                                            <constraint firstItem="xlY-jj-26h" firstAttribute="leading" secondItem="Xm6-Hl-4VM" secondAttribute="trailing" constant="8" symbolic="YES" id="WfG-3j-md2"/>
+                                            <constraint firstItem="xlY-jj-26h" firstAttribute="leading" secondItem="Xm6-Hl-4VM" secondAttribute="trailing" id="WfG-3j-md2"/>
                                             <constraint firstItem="xlY-jj-26h" firstAttribute="height" secondItem="Xm6-Hl-4VM" secondAttribute="height" id="aVg-HV-3FV"/>
                                             <constraint firstAttribute="height" constant="60" id="cIC-sq-etR"/>
                                             <constraint firstItem="xlY-jj-26h" firstAttribute="centerY" secondItem="Xm6-Hl-4VM" secondAttribute="centerY" id="pGQ-19-2ew"/>
@@ -146,15 +148,16 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bki-xE-f06">
+                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bki-xE-f06">
                                         <rect key="frame" x="0.0" y="121" width="560" height="1"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="xx2-55-blI"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ivD-UR-c6E" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ivD-UR-c6E" customClass="AnimatableTextField" customModule="IBAnimatable">
                                         <rect key="frame" x="0.0" y="122" width="560" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="XYn-db-sk1"/>
                                         </constraints>
@@ -194,15 +197,6 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="Shake"/>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find You Memorise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MIA-yb-fkj">
-                                <rect key="frame" x="20" y="84" width="560" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="xVo-gY-7qx"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="34"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsM-Tt-Ykp" customClass="AnimatableButton" customModule="IBAnimatable">
                                 <rect key="frame" x="20" y="28" width="46" height="30"/>
                                 <constraints>
@@ -213,6 +207,22 @@
                                     <action selector="closeBack:" destination="Sa7-TK-OBg" eventType="touchUpInside" id="B5Q-Va-1bU"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find You Memorise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIA-yb-fkj" customClass="AnimatableLabel" customModule="IBAnimatable">
+                                <rect key="frame" x="20" y="84" width="560" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="xVo-gY-7qx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="37"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="3"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="SqueezeFadeInRight"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>

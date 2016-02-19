@@ -13,6 +13,9 @@ import IBAnimatable
 import MediaPlayer
 import MobileCoreServices
 
+import SwiftyJSON
+import Alamofire
+
 import ImagePickerSheetController
 
 class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLocationManagerDelegate {
@@ -37,6 +40,12 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
     @IBOutlet var hidden4: UIView!
     @IBOutlet var hidden5: UIView!
     @IBOutlet var hidden6: UIView!
+    @IBOutlet var sendButton: UIBarButtonItem!
+    
+    let jwt = JWTTools()
+    
+    var latitude:Double = 0.0
+    var longitude:Double = 0.0
     
     @IBAction func chagenSwitch(sender: AnyObject) {
         if switchHidden.on {
@@ -52,12 +61,10 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TODO
-        //地址框放入地图, 图标颜色太黑，大小太大，缺少文本域
-        //        
-        //        let image = UIImage(named: "lonely-children")//lonely-children
-        //        let blurredImage = image!.imageByApplyingBlurWithRadius(3)
-        //        self.view.layer.contents = blurredImage.CGImage
+        
+        let image = UIImage(named: "lonely-children")//lonely-children
+        let blurredImage = image!.imageByApplyingBlurWithRadius(15)
+        self.view.layer.contents = blurredImage.CGImage
         //地图初始化
         self.locationManager.delegate = self
         self.locationManager.distanceFilter = 1;
@@ -78,6 +85,56 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
     //这样将避免约束错误
     override func viewDidAppear(animated: Bool) {
         hiddenView(true)
+        //self.sendButton.enabled = false
+        
+    }
+    @IBAction func sendMsg(sender: AnyObject) {
+        if self.address.notEmpty {
+            self.view.makeToast("定位中，请开启GPS，或在空旷地带，以精确定位", duration: 2, position: .Top)
+            return
+        }
+        
+        if self.openUser.notEmpty {
+            self.view.makeToast("开启人必须填写", duration: 2, position: .Top)
+            return
+        }
+        
+        if self.textView.text.length > 0 {
+            self.view.makeToast("必须填写内容", duration: 2, position: .Top)
+            return
+        }
+        //照片上传
+        
+        //            * @param to
+        //            * @param limitDate
+        //            * @param content
+        //            * @param photos
+        //            * @param video
+        //            * @param sound
+        //            * @param burnAfterReading
+        //            * @param x
+        //            * @param y
+        
+        let newDict = Dictionary<String,String>()
+        let headers = jwt.getHeader(jwt.token, myDictionary: newDict)
+        
+        let params = ["to": self.openUser.text!,"limitDate":self.limitDate.date,"content":textView.text!,"burnAfterReading":readFire.on,"x": latitude,"y":longitude]
+        NetApi().getResult(Alamofire.Method.POST,section: "/messages/send", headers: headers, params: params) {
+            responseObject, error in
+            //print("responseObject = \(responseObject); error = \(error)")
+            if let json = responseObject {
+                let myJosn = JSON(json)
+                let code:Int = Int(myJosn["status"].stringValue)!
+                if code != 200 {
+                    self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 3, position: .Top)
+                }
+                else{
+                    self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 3, position: .Top)
+                    // self.performSegueWithIdentifier("main", sender: self)
+                }
+            }
+        }
+        
     }
     
     func hiddenView(flag:Bool){
@@ -99,12 +156,24 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
     {
         let location = locations.last
         
-        //latitudeLabel.text =  NSString(format: "%f" , location!.coordinate.latitude) as String
-        //longitudeLabel.text = NSString(format: "%f" , location!.coordinate.longitude) as String
+        self.latitude =  location!.coordinate.latitude
+        self.longitude = location!.coordinate.longitude
         let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-        
         self.mapView.setRegion(region, animated: true)
+        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {
+            (placemarks, error) -> Void in
+            if (error != nil) {
+                print("Reverse geocoder failed with error" + error!.localizedDescription)
+                return
+            }
+            if placemarks!.count > 0 {
+                let pm = placemarks![0] as CLPlacemark
+                self.displayLocationInfo(pm)
+            } else {
+                print("Problem with the data received from geocoder")
+            }
+        })
         
     }
     
@@ -113,6 +182,18 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
     {
         print("Error: " + error.localizedDescription)
     }
+    
+    func displayLocationInfo(placemark: CLPlacemark) {
+        //stop updating location to save battery life
+        locationManager.stopUpdatingLocation()
+        //        print(placemark.locality)
+        //        print(placemark.administrativeArea)
+        //        print(placemark.country)
+        if let locationName = placemark.addressDictionary!["Name"] as? NSString {
+            address.text = locationName as String
+        }
+    }
+    
     
     func pickerImage() {
         let alertController = UIAlertController(title: "选择照片", message: "从相机或者照片中选择", preferredStyle:UIAlertControllerStyle.ActionSheet)
