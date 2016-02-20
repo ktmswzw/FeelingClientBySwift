@@ -89,22 +89,31 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
         
     }
     @IBAction func sendMsg(sender: AnyObject) {
-        if self.address.notEmpty {
+        if !self.address.notEmpty {
             self.view.makeToast("定位中，请开启GPS，或在空旷地带，以精确定位", duration: 2, position: .Top)
             return
         }
         
-        if self.openUser.notEmpty {
+        if !self.openUser.notEmpty {
             self.view.makeToast("开启人必须填写", duration: 2, position: .Top)
             return
         }
         
-        if self.textView.text.length > 0 {
+        if self.textView.text.length == 0 {
             self.view.makeToast("必须填写内容", duration: 2, position: .Top)
             return
         }
         //照片上传
         
+        //        public static final String M_SECRET_ID = "AKIDSWWEVHp02vgtpFtSa4oFalHKm4V4P5Ia";
+        //        public static final String M_SECRET_KEY = "tAj32v6ZQC385aP1oUeFCqljjUpJD4iC";
+        //        
+        //        public static final int APP_ID = 10005997;
+        //        public static final String U_SECRET_ID= "AKIDnLdXqvdAkshrcjNYqYlMXIl8pK9uAai4";
+        //        public static final String U_SECRET_KEY = "a91NDllhlVtSnIM5QAxn66olpEFflUcM";
+        //        public static final String BUCKET = "habit";        //空间名
+        //        public static final String YUN = ".image.myqcloud.com";
+        //        public static final String DOMAIN = BUCKET+"-"+APP_ID+YUN;        //空间名
         //            * @param to
         //            * @param limitDate
         //            * @param content
@@ -117,9 +126,17 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
         
         let newDict = Dictionary<String,String>()
         let headers = jwt.getHeader(jwt.token, myDictionary: newDict)
+        let loader = PhotoUpLoader.init()
         
-        let params = ["to": self.openUser.text!,"limitDate":self.limitDate.date,"content":textView.text!,"burnAfterReading":readFire.on,"x": latitude,"y":longitude]
-        NetApi().getResult(Alamofire.Method.POST,section: "/messages/send", headers: headers, params: params) {
+        var path:String = ""
+        for element in imageData {
+            let temp = loader.uploadToTXY(element, name: element.accessibilityIdentifier!)
+            path = path + "," + temp
+        }
+        
+        
+        let params = ["to": self.openUser.text!,"limitDate":self.limitDate.date,"content":textView.text!, "photos":path,  "burnAfterReading":readFire.on,"x": latitude,"y":longitude]
+        NetApi().makeCall(Alamofire.Method.POST,section: "/messages/send", headers: headers, params: params) {
             responseObject, error in
             //print("responseObject = \(responseObject); error = \(error)")
             if let json = responseObject {

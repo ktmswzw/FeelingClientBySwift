@@ -355,6 +355,32 @@ public class _PasswordRow: FieldRow<String, PasswordCell> {
     }
 }
 
+public class DecimalFormatter : NSNumberFormatter, FormatterProtocol {
+    
+    public override init() {
+        super.init()
+        locale = .currentLocale()
+        numberStyle = .DecimalStyle
+        minimumFractionDigits = 2
+        maximumFractionDigits = 2
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override public func getObjectValue(obj: AutoreleasingUnsafeMutablePointer<AnyObject?>, forString string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>) -> Bool {
+        guard obj != nil else { return false }
+        let str = string.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).joinWithSeparator("")
+        obj.memory = NSNumber(double: (Double(str) ?? 0.0)/Double(pow(10.0, Double(minimumFractionDigits))))
+        return true
+    }
+    
+    public func getNewPosition(forPosition position: UITextPosition, inTextInput textInput: UITextInput, oldValue: String?, newValue: String?) -> UITextPosition {
+        return textInput.positionFromPosition(position, offset:((newValue?.characters.count ?? 0) - (oldValue?.characters.count ?? 0))) ?? position
+    }
+}
+
 public class _DecimalRow: FieldRow<Double, DecimalCell> {
     public required init(tag: String?) {
         super.init(tag: tag)
@@ -670,10 +696,17 @@ public struct ImageRowSourceTypes : OptionSetType {
 
 public class _ImageRow : SelectorRow<UIImage, ImagePickerController> {
 
-    public var sourceTypes: ImageRowSourceTypes
-    public internal(set) var  imageURL: NSURL?
+    public enum ImageClearAction {
+        case No
+        case Yes(style: UIAlertActionStyle)
+    }
     
-    private var _sourceType: UIImagePickerControllerSourceType = .Camera
+    
+    public var sourceTypes: ImageRowSourceTypes
+    public internal(set) var imageURL: NSURL?
+	public var clearAction = ImageClearAction.Yes(style: .Destructive)
+    
+	private var _sourceType: UIImagePickerControllerSourceType = .Camera
     
     public required init(tag: String?) {
         sourceTypes = .All
@@ -738,24 +771,37 @@ public class _ImageRow : SelectorRow<UIImage, ImagePickerController> {
 			popView.sourceView = tableView
 			popView.sourceRect = tableView.convertRect(cell.accessoryView?.frame ?? cell.contentView.frame, fromView: cell)
 		}
-
-        if sourceTypes.contains(.Camera) {
-            let cameraOption = UIAlertAction(title: "Take Photo", style: .Default, handler: { [weak self] (alert: UIAlertAction) -> Void in
+        
+		if sourceTypes.contains(.Camera) {
+            let cameraOption = UIAlertAction(title: NSLocalizedString("Take Photo", comment: ""), style: .Default, handler: { [weak self] _ in
                 self?.displayImagePickerController(.Camera)
             })
             sourceActionSheet.addAction(cameraOption)
         }
         if sourceTypes.contains(.PhotoLibrary) {
-            let photoLibraryOption = UIAlertAction(title: "Photo Library", style: .Default, handler: { [weak self] (alert: UIAlertAction) -> Void in
+            let photoLibraryOption = UIAlertAction(title: NSLocalizedString("Photo Library", comment: ""), style: .Default, handler: { [weak self] _ in
                 self?.displayImagePickerController(.PhotoLibrary)
             })
             sourceActionSheet.addAction(photoLibraryOption)
         }
         if sourceTypes.contains(.SavedPhotosAlbum) {
-            let savedPhotosOption = UIAlertAction(title: "Saved Photos", style: .Default, handler: { [weak self] (alert: UIAlertAction) -> Void in
+            let savedPhotosOption = UIAlertAction(title: NSLocalizedString("Saved Photos", comment: ""), style: .Default, handler: { [weak self] _ in
                 self?.displayImagePickerController(.SavedPhotosAlbum)
             })
             sourceActionSheet.addAction(savedPhotosOption)
+        }
+        
+        switch clearAction {
+        case .Yes(let style):
+            if let _ = value {
+                let clearPhotoOption = UIAlertAction(title: NSLocalizedString("Clear Photo", comment: ""), style: style, handler: { [weak self] _ in
+                    self?.value = nil
+                    self?.updateCell()
+                    })
+                sourceActionSheet.addAction(clearPhotoOption)
+            }
+        case .No:
+            break
         }
         
         // check if we have only one source type given
@@ -764,7 +810,7 @@ public class _ImageRow : SelectorRow<UIImage, ImagePickerController> {
                 displayImagePickerController(imagePickerSourceType)
             }
         } else {
-            let cancelOption = UIAlertAction(title: "Cancel", style: .Cancel, handler:nil)
+            let cancelOption = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler:nil)
             sourceActionSheet.addAction(cancelOption)
             
             if let presentingViewController = cell.formViewController() {
@@ -1367,7 +1413,7 @@ public final class PickerRow<T where T: Equatable>: _PickerRow<T>, RowType {
 }
 
 /// A PostalAddress valued row where the user can enter a postal address.
-public final class PostalAddressRow<T: PostalAddress>: _PostalAddressRow<T, DefaultPostalAddressCell<T>>, RowType {
+public final class PostalAddressRow: _PostalAddressRow<PostalAddress, DefaultPostalAddressCell<PostalAddress>>, RowType {
 	public required init(tag: String? = nil) {
 		super.init(tag: tag)
 		onCellHighlight { cell, row  in

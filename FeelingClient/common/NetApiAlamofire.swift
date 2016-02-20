@@ -14,12 +14,6 @@ public class NetApi{
     var apiUrl = "http://192.168.137.1:80/"
     //    var apiUrl = "http://192.168.1.141/"
     
-    
-    
-    func getResult(method: Alamofire.Method,section: String, headers: [String: String]?, params: [String: AnyObject]?, completionHandler: (NSDictionary?, NSError?) -> ()) {
-        makeCall(method, section: section,headers: headers, params: params, completionHandler: completionHandler)
-    }
-    
     func makeCall(method: Alamofire.Method, section: String, headers: [String: String]?, params: [String: AnyObject]?, completionHandler: (NSDictionary?, NSError?) -> ()) {
         Alamofire.request(method, "\(apiUrl)/\(section)",headers: headers, parameters: params)
             .responseJSON { response in

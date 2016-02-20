@@ -10,5 +10,9 @@
 #define SMSSDK_Bridging_Header_h
 
 #import <SMS_SDK/SMSSDK.h>
+#import "TXYUploadManager.h"
+//#import <MBProgressHUD/MBProgressHUD.h>
+#import <CommonCrypto/CommonDigest.h>
+
 
 #endif /* SMSSDK_Bridging_Header_h */

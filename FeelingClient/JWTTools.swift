@@ -10,42 +10,57 @@ import Foundation
 
 import JWT
 
-public class JWTTools {
-    
+class JWTTools {
     
     let SECERT: String = "FEELING_ME007";
+    let JWTDEMOTOKEN: String = "JWTDEMOTOKEN";
+    let JWTDEMOTEMP: String = "JWTDEMOTEMP";
+    let JWTSIGN: String = "JWTSIGN";
     let AUTHORIZATION_STR: String = "Authorization";
     
-    public var token: String {
+    var token: String {
         get {
-            if let returnValue = NSUserDefaults.standardUserDefaults().objectForKey("JWTDEMOTOKEN") as? String {
+            if let returnValue = NSUserDefaults.standardUserDefaults().objectForKey(JWTDEMOTOKEN) as? String {
                 return returnValue
             } else {
                 return "" //Default value
             }
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "JWTDEMOTOKEN")
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: JWTDEMOTOKEN)
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
-    
-    public var jwtTemp: String {
+    var sign: String {
         get {
-            if let returnValue = NSUserDefaults.standardUserDefaults().objectForKey("JWTDEMOTEMP") as? String {
+            if let returnValue = NSUserDefaults.standardUserDefaults().objectForKey(JWTSIGN) as? String {
                 return returnValue
             } else {
                 return "" //Default value
             }
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "JWTDEMOTEMP")
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: JWTSIGN)
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    var jwtTemp: String {
+        get {
+            if let returnValue = NSUserDefaults.standardUserDefaults().objectForKey(JWTDEMOTEMP) as? String {
+                NSLog("\(returnValue)")
+                
+                return returnValue
+            } else {
+                return "" //Default value
+            }
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: JWTDEMOTEMP)
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
     
     func getHeader(tokenNew: String, myDictionary: Dictionary<String, String> ) -> [String : String] {
-        
         if jwtTemp.isEmpty || !myDictionary.isEmpty {//重复使用上次计算结果
             let jwt = JWT.encode(.HS256(SECERT)) { builder in
                 for (key, value) in myDictionary {
@@ -63,8 +78,5 @@ public class JWTTools {
             NSLog("\(jwtTemp)")
             return [ AUTHORIZATION_STR : jwtTemp ]
         }
-        
-        
-        
     }
 }

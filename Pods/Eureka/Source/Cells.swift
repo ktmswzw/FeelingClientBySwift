@@ -173,7 +173,7 @@ public class _FieldCell<T where T: Equatable, T: InputTypeInitiable> : Cell<T>, 
         return !row.isDisabled && textField.canBecomeFirstResponder()
     }
     
-    public override func cellBecomeFirstResponder() -> Bool {
+    public override func cellBecomeFirstResponder(direction: Direction) -> Bool {
         return textField.becomeFirstResponder()
     }
     
@@ -736,7 +736,7 @@ public class _TextAreaCell<T where T: Equatable, T: InputTypeInitiable> : Cell<T
         return !row.isDisabled && textView.canBecomeFirstResponder()
     }
     
-    public override func cellBecomeFirstResponder() -> Bool {
+    public override func cellBecomeFirstResponder(fromDiretion: Direction) -> Bool {
         return textView.becomeFirstResponder()
     }
     
@@ -1097,7 +1097,8 @@ public class PushSelectorCell<T: Equatable> : Cell<T>, CellType {
     }
 }
 
-public class DefaultPostalAddressCell<T: PostalAddressType>: Cell<T>, CellType, UITextFieldDelegate, PostalAddressCell{
+public class DefaultPostalAddressCell<T: PostalAddressType>: Cell<T>, CellType, UITextFieldDelegate, PostalAddressCell {
+    
 	lazy public var streetTextField : UITextField = {
 		let textField = UITextField()
 		textField.translatesAutoresizingMaskIntoConstraints = false
@@ -1107,7 +1108,7 @@ public class DefaultPostalAddressCell<T: PostalAddressType>: Cell<T>, CellType, 
 	lazy public var streetSeparatorView : UIView = {
 		let separatorView = UIView()
 		separatorView.translatesAutoresizingMaskIntoConstraints = false
-		separatorView.backgroundColor = UIColor.lightGrayColor()
+		separatorView.backgroundColor = .lightGrayColor()
 		return separatorView
 	}()
 	
@@ -1120,7 +1121,7 @@ public class DefaultPostalAddressCell<T: PostalAddressType>: Cell<T>, CellType, 
 	lazy public var stateSeparatorView : UIView = {
 		let separatorView = UIView()
 		separatorView.translatesAutoresizingMaskIntoConstraints = false
-		separatorView.backgroundColor = UIColor.lightGrayColor()
+		separatorView.backgroundColor = .lightGrayColor()
 		return separatorView
 	}()
 	
@@ -1133,7 +1134,7 @@ public class DefaultPostalAddressCell<T: PostalAddressType>: Cell<T>, CellType, 
 	lazy public var postalCodeSeparatorView : UIView = {
 		let separatorView = UIView()
 		separatorView.translatesAutoresizingMaskIntoConstraints = false
-		separatorView.backgroundColor = UIColor.lightGrayColor()
+		separatorView.backgroundColor = .lightGrayColor()
 		return separatorView
 	}()
 	
@@ -1146,7 +1147,7 @@ public class DefaultPostalAddressCell<T: PostalAddressType>: Cell<T>, CellType, 
 	lazy public var citySeparatorView : UIView = {
 		let separatorView = UIView()
 		separatorView.translatesAutoresizingMaskIntoConstraints = false
-		separatorView.backgroundColor = UIColor.lightGrayColor()
+		separatorView.backgroundColor = .lightGrayColor()
 		return separatorView
 	}()
 	
@@ -1343,8 +1344,8 @@ public class DefaultPostalAddressCell<T: PostalAddressType>: Cell<T>, CellType, 
 		)
 	}
 	
-	public override func cellBecomeFirstResponder() -> Bool {
-		return streetTextField.becomeFirstResponder()
+    public override func cellBecomeFirstResponder(direction: Direction) -> Bool {
+        return direction == .Down ? streetTextField.becomeFirstResponder() : countryTextField.becomeFirstResponder()
 	}
 	
 	public override func cellResignFirstResponder() -> Bool {
@@ -1355,6 +1356,68 @@ public class DefaultPostalAddressCell<T: PostalAddressType>: Cell<T>, CellType, 
 			&& cityTextField.resignFirstResponder()
 			&& countryTextField.resignFirstResponder()
 	}
+    
+    override public var inputAccessoryView: UIView? {
+        
+        if let v = formViewController()?.inputAccessoryViewForRow(row) as? NavigationAccessoryView {
+            if streetTextField.isFirstResponder() {
+                v.nextButton.enabled = true
+                v.nextButton.target = self
+                v.nextButton.action = "internalNavigationAction:"
+            }
+            else if stateTextField.isFirstResponder() {
+                v.previousButton.target = self
+                v.previousButton.action = "internalNavigationAction:"
+                v.nextButton.target = self
+                v.nextButton.action = "internalNavigationAction:"
+                v.previousButton.enabled = true
+                v.nextButton.enabled = true
+            }
+            else if postalCodeTextField.isFirstResponder() {
+                v.previousButton.target = self
+                v.previousButton.action = "internalNavigationAction:"
+                v.nextButton.target = self
+                v.nextButton.action = "internalNavigationAction:"
+                v.previousButton.enabled = true
+                v.nextButton.enabled = true
+            } else if cityTextField.isFirstResponder() {
+                v.previousButton.target = self
+                v.previousButton.action = "internalNavigationAction:"
+                v.nextButton.target = self
+                v.nextButton.action = "internalNavigationAction:"
+                v.previousButton.enabled = true
+                v.nextButton.enabled = true
+            }
+            else if countryTextField.isFirstResponder() {
+                v.previousButton.target = self
+                v.previousButton.action = "internalNavigationAction:"
+                v.previousButton.enabled = true
+            }
+            return v
+        }
+        return super.inputAccessoryView
+    }
+    
+    func internalNavigationAction(sender: UIBarButtonItem) {
+        guard let inputAccesoryView  = inputAccessoryView as? NavigationAccessoryView else { return }
+        
+        if streetTextField.isFirstResponder() {
+            stateTextField.becomeFirstResponder()
+        }
+        else if stateTextField.isFirstResponder()  {
+            sender == inputAccesoryView.previousButton ? streetTextField.becomeFirstResponder() : postalCodeTextField.becomeFirstResponder()
+        }
+        else if postalCodeTextField.isFirstResponder() {
+            sender == inputAccesoryView.previousButton ? stateTextField.becomeFirstResponder() : cityTextField.becomeFirstResponder()
+        }
+        else if cityTextField.isFirstResponder() {
+            sender == inputAccesoryView.previousButton ? postalCodeTextField.becomeFirstResponder() : countryTextField.becomeFirstResponder()
+        }
+        else if countryTextField.isFirstResponder() {
+            cityTextField.becomeFirstResponder()
+        }
+    }
+
 	
 	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
 		if let obj = object, let keyPathValue = keyPath, let changeType = change?[NSKeyValueChangeKindKey] where ((obj === titleLabel && keyPathValue == "text") || (obj === imageView && keyPathValue == "image")) && changeType.unsignedLongValue == NSKeyValueChange.Setting.rawValue {
@@ -1513,18 +1576,14 @@ public class DefaultPostalAddressCell<T: PostalAddressType>: Cell<T>, CellType, 
 					switch(textField){
 					case streetTextField:
 						row.value?.street = value.memory as? String
-						
 					case stateTextField:
 						row.value?.state = value.memory as? String
-						
 					case postalCodeTextField:
 						row.value?.postalCode = value.memory as? String
 					case cityTextField:
 						row.value?.city = value.memory as? String
-						
 					case countryTextField:
 						row.value?.country = value.memory as? String
-						
 					default:
 						break
 					}
@@ -1546,23 +1605,34 @@ public class DefaultPostalAddressCell<T: PostalAddressType>: Cell<T>, CellType, 
 			switch(textField){
 			case streetTextField:
 				row.value?.street = nil
-				
 			case stateTextField:
 				row.value?.state = nil
-				
 			case postalCodeTextField:
 				row.value?.postalCode = nil
 			case cityTextField:
 				row.value?.city = nil
-				
 			case countryTextField:
 				row.value?.country = nil
-				
 			default:
 				break
 			}
 			return
 		}
+        
+        switch(textField){
+        case streetTextField:
+            row.value?.street = textValue
+        case stateTextField:
+            row.value?.state = textValue
+        case postalCodeTextField:
+            row.value?.postalCode = textValue
+        case cityTextField:
+            row.value?.city = textValue
+        case countryTextField:
+            row.value?.country = textValue
+        default:
+            break
+        }
 	}
 	
 	//MARK: TextFieldDelegate

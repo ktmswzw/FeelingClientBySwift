@@ -72,43 +72,44 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     @IBAction func login(sender: AnyObject) {
-        self.performSegueWithIdentifier("login", sender: self)
+//        self.performSegueWithIdentifier("login", sender: self)
         
-        //        if username.text != "" && password.text != ""
-        //        {
-        //            if !self.password.validatePassword() {
-        //                self.view.makeToast("密码必选大于6位数小于18的数字或字符", duration: 2, position: .Top)
-        //                return
-        //            }
-        //            else{
-        //                //123456789001
-        //                //123456
-        //                let userNameText = username.text
-        //                let passwordText = password.text!.md5()
-        //                NetApi().getResult(Alamofire.Method.POST,section: "login",headers: [:],params: ["username": userNameText!,"password":passwordText,"device":"APP"]) {
-        //                    responseObject, error in
-        //                    //print("responseObject = \(responseObject); error = \(error)")
-        //                    if let json = responseObject {
-        //                        let myJosn = JSON(json)
-        //                        let code:Int = Int(myJosn["status"].stringValue)!
-        //                        if code != 200 {
-        //                            self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 2, position: .Top)
-        //                        }
-        //                        else{
-        //                            self.jwt.token = myJosn.dictionary!["message"]!.stringValue
-        //                            self.view.makeToast("登陆成功", duration: 1, position: .Top)
-        //                            self.performSegueWithIdentifier("login", sender: self)
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //            
-        //        }
-        //        else
-        //        {
-        //            //self.alertStatusBarMsg("帐号或密码为空");
-        //            self.view.makeToast("帐号或密码为空", duration: 2, position: .Top)
-        //        }
+                if username.text != "" && password.text != ""
+                {
+                    if !self.password.validatePassword() {
+                        self.view.makeToast("密码必选大于6位数小于18的数字或字符", duration: 2, position: .Top)
+                        return
+                    }
+                    else{
+                        //123456789001
+                        //123456
+                        let userNameText = username.text
+                        let passwordText = password.text!.md5()
+                        NetApi().makeCall(Alamofire.Method.POST,section: "login",headers: [:],params: ["username": userNameText!,"password":passwordText!,"device":"APP"]) {
+                            responseObject, error in
+                            //print("responseObject = \(responseObject); error = \(error)")
+                            if let json = responseObject {
+                                let myJosn = JSON(json)
+                                let code:Int = Int(myJosn["status"].stringValue)!
+                                if code != 200 {
+                                    self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 2, position: .Top)
+                                }
+                                else{
+                                    self.jwt.token = myJosn.dictionary!["message"]!.stringValue
+                                    NSLog("\(self.jwt.getHeader(self.jwt.token, myDictionary: [:]))")
+                                    self.view.makeToast("登陆成功", duration: 1, position: .Top)
+                                    self.performSegueWithIdentifier("login", sender: self)
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    //self.alertStatusBarMsg("帐号或密码为空");
+                    self.view.makeToast("帐号或密码为空", duration: 2, position: .Top)
+                }
         
     }
     

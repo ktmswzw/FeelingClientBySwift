@@ -11,7 +11,7 @@ Design and prototype UI, interaction, navigation, transition and animation for A
 
 **The app was made in Interface Builder with `IBAnimatable` without a single line of code**. Due to the size of [the GIF file on Dribbble](https://dribbble.com/shots/2453933-IBAnimatable-Design-App-Store-ready-Apps-in-Interface-Builder), it only demonstrates a subset of features. We can also find the full HD version on [YouTube](https://www.youtube.com/watch?v=dvD8X6J1YLM) or [MP4 on Github](https://github.com/JakeLin/IBAnimatable-Misc/blob/master/Videos/IBAnimatable.mp4?raw=true)
 
-![](https://github.com/JakeLin/IBAnimatable/blob/master/Screenshots/Storyboard.png)
+![](https://raw.githubusercontent.com/JakeLin/IBAnimatable-Misc/master/IBAnimatable/Storyboard.png)
 
 Here is the design in Interface Builder (Storyboard).
 
@@ -57,7 +57,7 @@ $ open IBAnimatableApp.xcodeproj
 3) Compile and run the app in your simulator or iOS device
 
 ## How to design in Interface Builder
-![](https://raw.githubusercontent.com/JakeLin/IBAnimatable/master/Screenshots/DesignInInterfaceBuilder.png)
+![](https://raw.githubusercontent.com/JakeLin/IBAnimatable-Misc/master/IBAnimatable/DesignInInterfaceBuilder.png)
 
 To use `IBAnimatable` to design the UI and animations in Interface Builder, just follow few steps as below:
 
@@ -68,9 +68,13 @@ To use `IBAnimatable` to design the UI and animations in Interface Builder, just
 
 
 ## How to animate in Swift playground
-![](https://github.com/JakeLin/IBAnimatable/blob/master/Screenshots/AnimateInSwiftPlayground.gif)
+![](https://raw.githubusercontent.com/JakeLin/IBAnimatable-Misc/master/IBAnimatable/AnimateInSwiftPlayground.gif)
 
-We can configure the animation settings in Attribute Inspector. However, Interface Builder doesn't support previewing Animations, but we can still prototype animations in Swift playground. There are three sample pages to demonstrate how to design animation in Swift playground. You can find them in [IBAnimatable.playground](https://github.com/JakeLin/IBAnimatable/tree/master/IBAnimatable.playground). Firstly, select one page in Swift playground, then click on "Assistant editor" button to split the playground. After that, select "Timeline" on the top of right-hand side to preview the animation. We can use Xcode menu "Editor" -> "Execute" to re-run the playground.
+We can configure the animation settings in Attribute Inspector. However, Interface Builder doesn't support previewing Animations, but we can still prototype animations in Swift playground. There are three sample pages to demonstrate how to design animation in Swift playground. You can find them in [IBAnimatable.playground](https://github.com/JakeLin/IBAnimatable/tree/master/IBAnimatable.playground). 
+
+1. Open IBAnimatableApp.xcodeproj
+2. Select IBAnimatable Framework scheme and build it with `Command + b`
+3. Select IBAnimatable.playground, select one page in Swift playground, then click on "Assistant editor" button to split the playground. After that, select "Timeline" on the top of right-hand side to preview the animation. We can use Xcode menu "Editor" -> "Execute" to re-run the playground.
 
 ## How to animate programmatically
 As you saw above, we can prototype an App fully in Interface Builder without single line of code, but `IBAnimatable` also provides APIs to let us fully control the UI and animations. `IBAnimatable` provides simple APIs like `pop()`. We can simply call them in one line.
@@ -118,29 +122,16 @@ Copy and paste `IBAnimatable` folder in your Xcode project.
 TBD, more details on [Issue #22 - Swift package manager support](https://github.com/JakeLin/IBAnimatable/issues/22)
 
 ### Swift package manager
-TBD, more details on [Issue #5 - Swift package manager support](https://github.com/JakeLin/IBAnimatable/issues/5)
 
-### CocoaPods
-Add `pod 'IBAnimatable'` to your Podfile.
+Add `.Package(url: "https://github.com/JakeLin/IBanimatable.git", majorVersion: 1)` to your `Package.swift`
 
-### Carthage 
+### [CocoaPods](https://cocoapods.org)
 
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+Add `pod 'IBAnimatable', '~> 1.2'` to your Podfile.
 
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+### [Carthage](https://github.com/Carthage/Carthage)
 
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate IBAnimatable into your Xcode project using Carthage, specify it in your `Cartfile`:
-
-```ogdl
-github "JakeLin/IBAnimatable" ~> 1.0
-```
-
-Run `carthage update` to build the framework and drag the built `IBAnimatable.framework` (in Carthage/Build/iOS folder) into your Xcode project (Linked Frameworks and Libraries in Target).
+Add `github "JakeLin/IBAnimatable" ~> 1.2` to your Cartfile.
 
 ## APIs
 
@@ -160,7 +151,6 @@ The easiest way to use `IBAnimatable` is to drag and drop UIKit elements and con
 | UITableViewCell | AnimatableTableViewCell | |
 | UITextField | AnimatableTextField | |
 | UITextView | AnimatableTextView | |
-| UIView | DesignableGradientView | |
 | UINavigationBar | DesignableNavigationBar | |
 | UIViewController | DesignableViewController | |
 
@@ -176,7 +166,7 @@ The easiest way to use `IBAnimatable` is to drag and drop UIKit elements and con
 #### `BlurDesignable`
 | Property name | Data type | Remark |
 | ------------- |:-------------:| ----- |
-| blurEffectStyle | Optional&lt;String> | Support three different blur effects: `ExtraLight`, `Light` and `Dark`. They are defined in `BlurEffectStyle` enum. The look of blur effect in Interface Builder is different from Simulator or device. |
+| blurEffectStyle | Optional&lt;String> | Support three different blur effects: `ExtraLight`, `Light` and `Dark`, also can be found in emum [`BlurEffectStyle `](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/BlurEffectStyle). The look of blur effect in Interface Builder is different from Simulator or device. |
 | blurOpacity | CGFloat | Opacity of the blur effect specified above. Default value is `CGFloat.NaN`, the value is from 0.0 to 1.0. |
 
 
@@ -185,7 +175,7 @@ The easiest way to use `IBAnimatable` is to drag and drop UIKit elements and con
 | ------------- |:-------------:| ----- |
 | borderColor | Optional&lt;UIColor> | border color |
 | borderWidth | CGFloat | border width. Default value is `CGFloat.NaN`, the value is greater than 0. |
-| borderSide | Optional&lt;String> | border side, `Top`, `Right`, `Bottom` or `Left`. If not specify, then display four sides. |
+| borderSide | Optional&lt;String> | border side: `Top`, `Right`, `Bottom` or `Left`, also can be found in emum [`BorderSide`](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/BorderSide.swift). If not specified, then display four sides. |
 
 
 #### `CheckBoxDesignable`
@@ -205,14 +195,16 @@ The easiest way to use `IBAnimatable` is to drag and drop UIKit elements and con
 | ------------- |:-------------:| ----- |
 | fillColor | Optional&lt;UIColor> | fill color of the UI Element |
 | opacity | CGFloat | opacity, alpha of the UI Element, Default value is `CGFloat.NaN`, the value is from 0.0 to 1.0. |
+| predefinedColor | Optional&lt;String> | Predefined color. All predefined colors are in enum [`ColorType`](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/ColorType.swift). To find the predefined flat colors, you can use [flatuicolors.com](https://flatuicolors.com), all flat color start with `Flat`, e.g. `PETER RIVER` on the website maps to `FlatPeterRiver` in the enum. |
+
 
 #### `GradientDesignable`
 | Property name | Data type | Remark |
 | ------------- |:-------------:| ----- |
 | startColor | Optional&lt;UIColor> | start gradient color |
 | endColor | Optional&lt;UIColor> | end gradient color |
-| predefinedColor | Optional&lt;String> | Predefined gradients. All supported predefined gradients are in enum [`GradientType`](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/GradientType.swift)  |
-| startPoint | Optional&lt;String> | start direction point, can find in `GradientStartPoint`. |
+| predefinedGradient | Optional&lt;String> | Predefined gradients. All predefined gradients are in enum [`GradientType`](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/GradientType.swift), To find the predefined gradients, you can use [uigradients.com](http://uigradients.com), e.g. `Juicy Orange` on the website maps to `JuicyOrange` in the enum. |
+| startPoint | Optional&lt;String> | start direction point, can find in enum [`GradientStartPoint `](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/GradientStartPoint.swift). |
 
 #### `NavigationBarDesignable`
 | Property name | Data type | Remark |
@@ -222,7 +214,16 @@ The easiest way to use `IBAnimatable` is to drag and drop UIKit elements and con
 #### `MaskDesignable`
 | Property name | Data type | Remark |
 | ------------- |:-------------:| ----- |
-| maskType | Optional&lt;String> | maks type, eg. `Circle`, `Polygon`, `Star`, `Star10`, `Triangle`, `Wave`.
+| maskType | Optional&lt;String> | Supported maks type: All predefined animations are in enum [`MaskType`](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/MaskType.swift) |
+
+**Supported MaskType:**
+
+* `Circle`
+* `Polygon`
+* `Triangle`
+* `Star`: Can alse specify the points of the Star, e.g. use `Star(6)` to have a star with 6 points. If not specified, default is 5 points. 
+* `Wave`: Can use pramaters to cumstomize the `Wave` shape like `maskWave(waveUp: Bool, waveWidth: CGFloat, waveOffset: CGFloat)`. `Wave(down, 20, 5)` means the Wave faces down, width is 20 and offset is 5. If not specified, default value is `Wave(up, 40, 0)`. 
+ 
 
 #### `PaddingDesignable`
 It is used in `AnimatableTextField` to add padding on either or both sides.
@@ -301,14 +302,16 @@ Easily add color layer on top of the UI element especially `AnimatableImageView`
 #### Properties
 | Property name | Data type | Remark |
 | ------------- |:-------------:| ----- |
-| animationType | Optional&lt;String> | Supported animations. All supported predefined animations are in enum [`AnimationType`](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/AnimationType.swift) |
+| animationType | Optional&lt;String> | Supported animations. All predefined animations are in enum [`AnimationType`](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/AnimationType.swift) |
 | autoRun | Bool | Whether to automatically start the animation. Default value is `true`. if it is true, the animation will automatically run when the view is loaded. If want to manually start the animation should set it to `false`. |
 | duration | CGFloat | Animation duration in seconds. Default value is 0.7. |
 | delay | Double | Delay to start the animation in seconds. Default value is 0. |
 | damping | CGFloat | Used in UIView Spring animation (0 ~ 1 seconds). To smoothly decelerate the animation without oscillation, use a value of 1. Employ a damping ratio closer to zero to increase oscillation. Default value is 0.7. Notice: FadeOutIn, FadeInOut, Shake, Pop, Morph, Squeeze, Flash, Wobble and Swing animations do not use damping. |
 | velocity | CGFloat | used in UIView Spring animation. A value of 1 corresponds to the total animation distance traversed in one second. For example, if the total animation distance is 200 points and you want the start of the animation to match a view velocity of 100 pt/s, use a value of 0.5. Default is 0.7. Notice: FadeOutIn, FadeInOut, Shake, Pop, Morph, Squeeze, Flash, Wobble and Swing animations do not use damping. |
 | force | CGFloat | used to apply force to the animation. The number is higher, the animation property has more changes. e.g.. for Pop animation, higher force causes the view popping bigger. Default value is 1. |
-| repeatCount | Float | Used to specify the count to repeat the animation. Can only used in Shake, Pop, Morph, Squeeze, Flash, Wobble, Swing, Rotate and RotateCCW (rotate counterclockwise) animations. Default value is 1.  |
+| repeatCount | Float | Used to specify the count to repeat the animation. Can only be used in Shake, Pop, Morph, Squeeze, Flash, Wobble, Swing, Rotate and RotateCCW (roate counterclockwise) animations. Default value is 1.  |
+| x | CGFloat | Used to specify the absolute x to move in `MoveTo` animation and x offset in `MoveBy`. When used in `MoveBy`, negative means moving left and positive means moving right. Default values is `CGFloat.NaN` |
+| y | CGFloat | Used to specify the absolute y to move in `MoveTo` animation and y offset in `MoveBy`. When used in `MoveBy`, negative means moving up and positive means moving down. Default values is `CGFloat.NaN`|
 
 ### Extension
 #### UIViewController
@@ -331,6 +334,8 @@ All of us can contribute to this project. Fewer overheads mean less time to buil
 
 * If you like the project, please share it with the other designers and developers, and star 🌟 the project. 🤗
 
+Many thanks to [all contributors](https://github.com/JakeLin/IBAnimatable/graphs/contributors) 🤗
+
 
 ## Inspirations
 * `IBDesignable` and `IBInspectable` - The entire project is based on that.
@@ -338,6 +343,9 @@ All of us can contribute to this project. Fewer overheads mean less time to buil
 * Framer Studio - Design and preview animations in one place.
 * [Spring by Meng To](https://github.com/MengTo/Spring) - steal a lot of animation parameters from this project.
 * [Invision ToDo App UI Kit](http://www.invisionapp.com/do), The demo App's original design is from this UI Kit and redone in Interface Builder. We also added interaction, navigation and animations.
+
+## Change Log
+Please see [CHANGELOG.md](https://github.com/JakeLin/IBAnimatable/blob/master/CHANGELOG.md)
 
 ## License
 `IBAnimatable` is released under the MIT license. See [LICENSE](https://github.com/JakeLin/IBAnimatable/blob/master/LICENSE) for details.

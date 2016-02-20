@@ -20,6 +20,12 @@ import UIKit
       configFillColor()
     }
   }
+  
+  @IBInspectable public var predefinedColor: String? {
+    didSet {
+      configFillColor()
+    }
+  }
 
   @IBInspectable public var opacity: CGFloat = CGFloat.NaN {
     didSet {
@@ -28,9 +34,23 @@ import UIKit
   }
   
   // MARK: - BorderDesignable
-  @IBInspectable public var borderColor: UIColor?
-  @IBInspectable public var borderWidth: CGFloat = CGFloat.NaN
-  @IBInspectable public var borderSide: String?
+  @IBInspectable public var borderColor: UIColor? {
+    didSet {
+      configBorder()
+    }
+  }
+  
+  @IBInspectable public var borderWidth: CGFloat = CGFloat.NaN {
+    didSet {
+      configBorder()
+    }
+  }
+  
+  @IBInspectable public var borderSide: String? {
+    didSet {
+      configBorder()
+    }
+  }
   
   // MARK: - RotationDesignable
   @IBInspectable public var rotate: CGFloat = CGFloat.NaN {
@@ -84,6 +104,7 @@ import UIKit
   @IBInspectable public var maskType: String? {
     didSet {
       configMask()
+      configBorder()      
     }
   }
   
@@ -96,6 +117,8 @@ import UIKit
   @IBInspectable public var velocity: CGFloat = CGFloat.NaN
   @IBInspectable public var force: CGFloat = CGFloat.NaN
   @IBInspectable public var repeatCount: Float = Float.NaN
+  @IBInspectable public var x: CGFloat = CGFloat.NaN
+  @IBInspectable public var y: CGFloat = CGFloat.NaN
   
   // MARK: - Lifecycle
   public override func prepareForInterfaceBuilder() {
@@ -110,16 +133,19 @@ import UIKit
   
   public override func layoutSubviews() {
     super.layoutSubviews()
-    
+    configAfterLayoutSubviews()
     autoRunAnimation()
   }
   
   // MARK: - Private
   private func configInspectableProperties() {
     configAnimatableProperties()
-    configBorder()
     configTintedColor()
     configBlurEffectStyle()
     configGradient()
+  }
+  
+  private func configAfterLayoutSubviews() {
+    configBorder()
   }
 }

@@ -86,7 +86,7 @@ class RegisterViewController: DesignableViewController,UITextFieldDelegate{
             else {
                 let userNameText = self.realPhone
                 let passwordText = password.text!.md5()
-                NetApi().getResult(Alamofire.Method.POST,section: "/user/register",headers: [:], params: ["username": userNameText,"password":passwordText,"device":"APP"]) {
+                NetApi().makeCall(Alamofire.Method.POST,section: "/user/register",headers: [:], params: ["username": userNameText,"password":passwordText!,"device":"APP"]) {
                     responseObject, error in
                     //print("responseObject = \(responseObject); error = \(error)")
                     if let json = responseObject {

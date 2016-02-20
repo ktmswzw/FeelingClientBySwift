@@ -115,8 +115,3 @@ extension UIButton {
     }
 }
 
-extension String {
-    var length: Int {
-        return (self as NSString).length
-    }
-}

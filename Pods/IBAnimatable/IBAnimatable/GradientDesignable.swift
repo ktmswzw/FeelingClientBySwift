@@ -17,31 +17,58 @@ public extension GradientDesignable where Self: UIView {
   public func configGradient() {
     let predefinedGradient = configPredefinedGradient()
     if let unwrappedStartColor = startColor, unwrappedEndColor = endColor {
-        configGradientWithStartColor(unwrappedStartColor, endColor: unwrappedEndColor)
+      configGradientWithStartColor(unwrappedStartColor, endColor: unwrappedEndColor)
     } else if let unwrappedStartColor = predefinedGradient?.0, unwrappedEndColor = predefinedGradient?.1 {
-        configGradientWithStartColor(unwrappedStartColor, endColor: unwrappedEndColor)
+      configGradientWithStartColor(unwrappedStartColor, endColor: unwrappedEndColor)
     }
   }
-  
+
   private func configGradientWithStartColor(startColor: UIColor, endColor: UIColor) {
     // Default value is `.Top`
-    var startPointString = "Top"
-    if let unwrappedStartPoint = startPoint, _ = GradientStartPoint(rawValue: unwrappedStartPoint) {
-      startPointString = unwrappedStartPoint
+    var gradientStartPoint: GradientStartPoint = .Top
+    if let unwrappedStartPoint = startPoint, resolvedGradientStartPoint = GradientStartPoint(rawValue: unwrappedStartPoint) {
+      gradientStartPoint = resolvedGradientStartPoint
     }
     
-    let gradientView = DesignableGradientView(frame: self.bounds)
-    gradientView.startColor = startColor
-    gradientView.endColor = endColor
-    gradientView.startPoint = startPointString
-    
-    if layer.cornerRadius > 0 {
-      gradientView.cornerRadius = layer.cornerRadius
+    let gradientLayer = createGradientLayer()
+    gradientLayer.colors = [startColor.CGColor, endColor.CGColor]    
+    switch gradientStartPoint {
+    case .Top:
+      gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+      gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+    case .TopRight:
+      gradientLayer.startPoint = CGPoint(x: 1, y: 0)
+      gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+    case .Right:
+      gradientLayer.startPoint = CGPoint(x: 1, y: 0.5)
+      gradientLayer.endPoint = CGPoint(x: 0, y: 0.5)
+    case .BottomRight:
+      gradientLayer.startPoint = CGPoint(x: 1, y: 1)
+      gradientLayer.endPoint = CGPoint(x: 0, y: 0)
+    case .Bottom:
+      gradientLayer.startPoint = CGPoint(x: 0.5, y: 1)
+      gradientLayer.endPoint = CGPoint(x: 0.5, y: 0)
+    case .BottomLeft:
+      gradientLayer.startPoint = CGPoint(x: 0, y: 1)
+      gradientLayer.endPoint = CGPoint(x: 1, y: 0)
+    case .Left:
+      gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
+      gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
+    case .TopLeft:
+      gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+      gradientLayer.endPoint = CGPoint(x: 1, y: 1)
     }
     
-    gradientView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+    let gradientView = GradientView(frame: self.bounds, layer: gradientLayer)
+    let oldGradientView = viewWithTag(gradientView.tag)
+    oldGradientView?.removeFromSuperview()
     self.insertSubview(gradientView, atIndex: 0)
-    gradientView.configGradient()
+  }
+  
+  private func createGradientLayer() -> CAGradientLayer {
+    let gradientLayer: CAGradientLayer = CAGradientLayer()
+    gradientLayer.frame = self.bounds
+    return gradientLayer
   }
   
   private func configPredefinedGradient() -> (UIColor, UIColor)? {
@@ -330,4 +357,27 @@ public extension GradientDesignable where Self: UIView {
       return (UIColor(hexString: "#4B79A1"), UIColor(hexString: "#283E51"))
     }
   }
+}
+
+private class GradientView: UIView {
+
+  let viewTag = 999
+  
+  // MARK: - Life cycle
+  
+  init(frame: CGRect, layer: CAGradientLayer) {
+    super.init(frame: frame)
+    tag = viewTag
+    layer.insertSublayer(layer, atIndex: 0)
+    autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  override class func layerClass() -> AnyClass {
+    return CAGradientLayer.self
+  }
+  
 }
