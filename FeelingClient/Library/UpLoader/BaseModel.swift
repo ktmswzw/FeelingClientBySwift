@@ -10,9 +10,9 @@ import UIKit
 
 import ObjectMapper
 /**
-
-    继承自NSObject缘由:此类可能被oc调用 y0 2015.9.10
-*/
+ 
+ 继承自NSObject缘由:此类可能被oc调用 y0 2015.9.10
+ */
 class BaseModel: NSObject,Mappable {
     
     var code: Int?
@@ -24,10 +24,7 @@ class BaseModel: NSObject,Mappable {
         mapping(map)
     }
     
-    class func newInstance() -> Mappable {
-        return BaseModel()
-    }
-   
+    
     func mapping(map: Map) {
         code         <- map["code"]
         msg         <- map["msg"]
@@ -37,5 +34,24 @@ class BaseModel: NSObject,Mappable {
         
         return Mapper().toJSON(self)
     }
+    
+    class func newInstance() -> Mappable {
+        return BaseModel()
+    }
+}
+
+class BaseApi:NSObject {
+    
+    typealias CompletionHandlerType = (Result) -> Void
+    
+    enum Result {
+        case Success(AnyObject?)
+        case Failure(AnyObject?)
+    }
+    
+    enum Error: ErrorType {
+        case AuthenticationFailure
+    }
+    
 }
 

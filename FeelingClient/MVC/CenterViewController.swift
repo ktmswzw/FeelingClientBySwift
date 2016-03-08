@@ -88,10 +88,10 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
         
     }
     @IBAction func sendMsg(sender: AnyObject) {
-        if !self.address.notEmpty {
-            self.view.makeToast("定位中，请开启GPS，或在空旷地带，以精确定位", duration: 2, position: .Top)
-            return
-        }
+        //        if !self.address.notEmpty {
+        //            self.view.makeToast("定位中，请开启GPS，或在空旷地带，以精确定位", duration: 2, position: .Top)
+        //            return
+        //        }
         
         if !self.openUser.notEmpty {
             self.view.makeToast("开启人必须填写", duration: 2, position: .Top)
@@ -117,31 +117,43 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
         let headers = jwt.getHeader(jwt.token, myDictionary: newDict)
         
         
-        var path:String = ""
-        for element in imageData {
-            loader.uploadToTXY(element, name: "000",completionHandler: { (temp:String? ) -> () in
+        
+        loader.completionAll(imageData) { (r:PhotoUpLoader.Result) -> Void in
+            
+            switch (r) {
+            case .Success(let pathIn):
                 
-                path = path + "," + temp!
-            })
-        }
-        
-        
-        let params = ["to": self.openUser.text!,"limitDate":self.limitDate.date,"content":textView.text!, "photos":path,  "burnAfterReading":readFire.on,"x": latitude,"y":longitude]
-        NetApi().makeCall(Alamofire.Method.POST,section: "/messages/send", headers: headers, params: params) {
-            responseObject, error in
-            //print("responseObject = \(responseObject); error = \(error)")
-            if let json = responseObject {
-                let myJosn = JSON(json)
-                let code:Int = Int(myJosn["status"].stringValue)!
-                if code != 200 {
-                    self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 3, position: .Top)
-                }
-                else{
-                    self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 3, position: .Top)
-                    // self.performSegueWithIdentifier("main", sender: self)
-                }
+                let params = ["to": self.openUser.text!,"limitDate":self.limitDate.date.formatted,"content":self.textView.text!, "photos":pathIn as!String,  "burnAfterReading":self.readFire.on,"x": self.latitude,"y":self.longitude]
+                NetApi().makeCall(Alamofire.Method.POST,section: "messages/send", headers: headers, params: params as? [String : AnyObject], completionHandler: { (result:BaseApi.Result) -> Void in
+                    switch (result) {
+                    case .Success(let r):
+                        if let json = r {
+                            let myJosn = JSON(json)
+                            let code:Int = Int(myJosn["status"].stringValue)!
+                            if code != 200 {
+                                self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 3, position: .Top)
+                            }
+                            else{
+                                self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 3, position: .Top)
+                                // self.performSegueWithIdentifier("main", sender: self)
+                            }
+                        }
+                        break;
+                    case .Failure(let error):
+                        print("\(error)")
+                        break;
+                    }
+                    
+                    
+                })
+                
+                break;
+            case .Failure(let error):
+                print("\(error)")
+                break;
             }
         }
+        
         
     }
     

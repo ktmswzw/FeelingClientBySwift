@@ -15,24 +15,44 @@ class PhotoUpLoader {
     
     static let sharedInstance = PhotoUpLoader()
     
+    
     init()
     {
         sign = initSign()
     }
     
+    
+    typealias CompletionHandlerType = (Result) -> Void
+    
+    enum Result {
+        case Success(AnyObject?)
+        case Failure(String?)
+    }
+    
+    enum Error: ErrorType {
+        case AuthenticationFailure
+    }
+    
     func initSign() -> String {
         if sign.length == 0 {
             let headers = jwt.getHeader(jwt.token, myDictionary: Dictionary<String,String>())            
-            NetApi().makeCall(Alamofire.Method.GET,section: "user/imageSign",headers: headers, params: [:]) {
-                responseObject, error in
+            NetApi().makeCall(Alamofire.Method.GET, section: "user/imageSign", headers: headers, params: [:], completionHandler: { (result:BaseApi.Result) -> Void in
                 
-                print("responseObject = \(responseObject); error = \(error)")
-                
-                if let json = responseObject {
-                    let myJosn = JSON(json)
-                    self.jwt.sign = myJosn.dictionary!["message"]!.stringValue
+                switch (result) {
+                case .Success(let r):
+                    if let temp = r {
+                        let myJosn = JSON(temp)
+                        self.jwt.sign = myJosn.dictionary!["message"]!.stringValue
+                    }
+                    break;
+                case .Failure(let error):
+                    print("\(error)")
+                    break;
                 }
-            }
+                
+                
+            })
+            
         }
         return self.jwt.sign
     }
@@ -44,21 +64,53 @@ class PhotoUpLoader {
     
     
     
+    func completionAll(imageData:[UIImage], finishDo: CompletionHandlerType){
+        var path:String = ""
+        var count = 0;
+        for element in imageData {
+            self.uploadToTXY(element, name: "000", completionHandler: { (result:Result) -> Void in
+                switch (result) {
+                case .Success(let pathIn):
+                    if let temp = pathIn {
+                        if count == 0 {
+                            path = temp as! String
+                        }else{
+                            path = path + "," + (temp as! String)
+                        }
+                    }
+                    
+                    if count == imageData.count {
+                        finishDo(Result.Success(path))
+                    }
+                    
+                    break;
+                case .Failure(let error):
+                    print("\(error)")
+                    break;
+                }
+            })
+            count++
+        }
+    }
+    
+    
+    
+    
     /// 上传至万象优图
-    func uploadToTXY(image: UIImage,name: String,completionHandler: String? -> ()) {
+    func uploadToTXY(image: UIImage,name: String,completionHandler: CompletionHandlerType ) {
         let data = getPath(image)
         if data.length == 0 {
             NSLog("没有data");
-            completionHandler("")
+            completionHandler(Result.Failure(""))
+            return;
         }
         
         
         if self.sign.length == 0 {
             NSLog("没有sign");
-            completionHandler("")
+            completionHandler(Result.Failure(""))
+            return;
         }
-        var path = ""
-        
         uploadMgr = TXYUploadManager(cloudType: TXYCloudType.ForImage, persistenceId: "", appId: self.appId);
         if uploadMgr == nil {
             semaphore = dispatch_semaphore_create(0);
@@ -73,6 +125,7 @@ class PhotoUpLoader {
             }
             if self?.uploadMgr == nil {
                 NSLog("不能开始上传, 万象优图上传管理器没有创建...");
+                completionHandler(Result.Failure(""));
                 return;
             }
             //let uploadNode = TXYPhotoUploadTask(imageData: path, sign: self!.sign, bucket: self!.bucket, expiredDate: 0, msgContext: "msg", fileId: nil);
@@ -82,7 +135,8 @@ class PhotoUpLoader {
                 if let photoResp = rsp as? TXYPhotoUploadTaskRsp {
                     NSLog(photoResp.photoFileId);
                     NSLog(photoResp.photoURL);
-                    path = photoResp.photoURL
+                    
+                    completionHandler(Result.Success(photoResp.photoURL))
                 }
                 }, progress: {(total: Int64, complete: Int64, context: [NSObject : AnyObject]!) -> Void in
                     NSLog("progress total:\(total) complete:\(complete)");
@@ -90,6 +144,5 @@ class PhotoUpLoader {
                     NSLog("stateChange:\(state)");
             })
         };
-        completionHandler(path)
     }
 }
