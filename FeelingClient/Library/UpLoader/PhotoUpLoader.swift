@@ -5,6 +5,7 @@ import SwiftyJSON
 
 class PhotoUpLoader {
     
+    let jwt = JWTTools()
     private var uploadMgr: TXYUploadManager!;
     private var sign = "";
     private var bucket = "habit";
@@ -19,20 +20,20 @@ class PhotoUpLoader {
         sign = initSign()
     }
     
-    let jwt = JWTTools()
-    
     func initSign() -> String {
         if sign.length == 0 {
             let headers = jwt.getHeader(jwt.token, myDictionary: Dictionary<String,String>())            
-            NetApi().makeCall(Alamofire.Method.POST,section: "user/imageSign",headers: headers, params: [:]) {
+            NetApi().makeCall(Alamofire.Method.GET,section: "user/imageSign",headers: headers, params: [:]) {
                 responseObject, error in
+                
+                print("responseObject = \(responseObject); error = \(error)")
+                
                 if let json = responseObject {
                     let myJosn = JSON(json)
                     self.jwt.sign = myJosn.dictionary!["message"]!.stringValue
                 }
             }
         }
-        sleep(1)
         return self.jwt.sign
     }
     
@@ -44,17 +45,17 @@ class PhotoUpLoader {
     
     
     /// 上传至万象优图
-    func uploadToTXY(image: UIImage,name: String) -> String {
+    func uploadToTXY(image: UIImage,name: String,completionHandler: String? -> ()) {
         let data = getPath(image)
         if data.length == 0 {
             NSLog("没有data");
-            return ""
+            completionHandler("")
         }
         
         
         if self.sign.length == 0 {
             NSLog("没有sign");
-            return ""
+            completionHandler("")
         }
         var path = ""
         
@@ -89,6 +90,6 @@ class PhotoUpLoader {
                     NSLog("stateChange:\(state)");
             })
         };
-        return path
+        completionHandler(path)
     }
 }

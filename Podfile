@@ -9,6 +9,7 @@ pod 'Alamofire’#, :git => 'https://github.com/Alamofire/Alamofire'
 pod 'Eureka’#, :git => 'https://github.com/xmartlabs/Eureka'
 #json对象映射
 pod 'ObjectMapper’#, :git => 'https://github.com/Hearst-DD/ObjectMapper'
+pod 'AlamofireObjectMapper', '~> 2.1'
 #加密类
 pod 'CryptoSwift’#, :git => 'https://github.com/krzyzanowskim/CryptoSwift'
 #jwt加密传输

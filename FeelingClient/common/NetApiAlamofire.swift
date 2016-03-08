@@ -11,8 +11,9 @@ import Alamofire
 
 public class NetApi{
     
-    var apiUrl = "http://192.168.137.1:80/"
+    //    var apiUrl = "http://192.168.137.1:80/"
     //    var apiUrl = "http://192.168.1.141/"
+    var apiUrl = "http://192.168.1.109/"
     
     func makeCall(method: Alamofire.Method, section: String, headers: [String: String]?, params: [String: AnyObject]?, completionHandler: (NSDictionary?, NSError?) -> ()) {
         Alamofire.request(method, "\(apiUrl)/\(section)",headers: headers, parameters: params)
