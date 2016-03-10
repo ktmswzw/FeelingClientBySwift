@@ -57,9 +57,7 @@ class UserInfo : BaseModel, NSCopying {
     override func mapping(map: Map) {
         
         super.mapping(map)
-        em_value <- map["em_value"]
         face_image <- map["face_image"]
-        level_name <- map["level_name"]
         mobile <- map["mobile"]
         nickname <- map["nickname"]
         region <- map["region"]
@@ -69,12 +67,8 @@ class UserInfo : BaseModel, NSCopying {
 
     }
     
-    /// 威望值
-    var em_value = ""
     /// 头像图片地址
     var face_image = ""
-    /// 等级名
-    var level_name = ""
     /// 手机号
     var mobile : String = ""
     /// 昵称
@@ -108,9 +102,7 @@ class UserInfo : BaseModel, NSCopying {
             NSLog("用户id不一致 : user_id \(user_id) newUser.user_id \(newUser!.user_id)")
         }
         
-        em_value = newUser!.em_value
         face_image = newUser!.face_image
-        level_name = newUser!.level_name
         mobile = newUser!.mobile
         nickname = newUser!.nickname
         region = newUser!.region
@@ -139,9 +131,7 @@ class UserInfo : BaseModel, NSCopying {
         
         let newUser = UserInfo()
         
-        newUser.em_value = em_value
         newUser.face_image = face_image
-        newUser.level_name = level_name
         newUser.mobile = mobile
         newUser.nickname = nickname
         newUser.region = region

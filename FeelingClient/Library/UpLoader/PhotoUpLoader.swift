@@ -1,9 +1,9 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Toucan
 
-
-class PhotoUpLoader {
+class PhotoUpLoader:BaseApi {
     
     let jwt = JWTTools()
     private var uploadMgr: TXYUploadManager!;
@@ -16,22 +16,12 @@ class PhotoUpLoader {
     static let sharedInstance = PhotoUpLoader()
     
     
-    init()
+    override init()
     {
+        super.init()
         sign = initSign()
     }
     
-    
-    typealias CompletionHandlerType = (Result) -> Void
-    
-    enum Result {
-        case Success(AnyObject?)
-        case Failure(String?)
-    }
-    
-    enum Error: ErrorType {
-        case AuthenticationFailure
-    }
     
     func initSign() -> String {
         if sign.length == 0 {
@@ -59,7 +49,12 @@ class PhotoUpLoader {
     
     
     func getPath(image: UIImage) -> NSData{
-        return UIImagePNGRepresentation(image)!
+        //压缩
+        let resizedAndMaskedImage = Toucan(image: image).resize(CGSize(width: 500, height: 500), fitMode: Toucan.Resize.FitMode.Scale).image
+        guard let data = UIImagePNGRepresentation(resizedAndMaskedImage) else {//png
+            return UIImageJPEGRepresentation(resizedAndMaskedImage,1.0)! //jpg
+        }
+        return data
     }
     
     

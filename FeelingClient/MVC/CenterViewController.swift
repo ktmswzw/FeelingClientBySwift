@@ -18,7 +18,7 @@ import Alamofire
 
 import ImagePickerSheetController
 
-class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLocationManagerDelegate {
+class CenterViewController: DesignableViewController,MessageViewModelDelegate , MKMapViewDelegate, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var address: AnimatableTextField!
@@ -42,11 +42,6 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
     @IBOutlet var hidden6: UIView!
     @IBOutlet var sendButton: UIBarButtonItem!
     
-    var jwt = JWTTools()
-    var loader = PhotoUpLoader.init()
-    var latitude:Double = 0.0
-    var longitude:Double = 0.0
-    
     @IBAction func chagenSwitch(sender: AnyObject) {
         if switchHidden.on {
             hiddenView(false)
@@ -57,10 +52,14 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
         }
     }
     var picker = UIImagePickerController()
-    var imageData = [UIImage]()
+    var viewModel: MessageViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel = MessageViewModel(delegate: self)
+        self.openUser.text = viewModel.to 
+        
         let image = UIImage(named: "lonely-children")//lonely-children
         let blurredImage = image!.imageByApplyingBlurWithRadius(15)
         self.view.layer.contents = blurredImage.CGImage
@@ -102,59 +101,19 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
             self.view.makeToast("必须填写内容", duration: 2, position: .Top)
             return
         }
-        //照片上传
-        //            * @param to
-        //            * @param limitDate
-        //            * @param content
-        //            * @param photos
-        //            * @param video
-        //            * @param sound
-        //            * @param burnAfterReading
-        //            * @param x
-        //            * @param y
-        
-        let newDict = Dictionary<String,String>()
-        let headers = jwt.getHeader(jwt.token, myDictionary: newDict)
+        viewModel.to = self.openUser.text!
+        viewModel.limitDate = self.limitDate.date.formatted
+        viewModel.content = self.textView.text!
+        viewModel.burnAfterReading = readFire.on
         
         
+        sendMessage()
         
-        loader.completionAll(imageData) { (r:PhotoUpLoader.Result) -> Void in
-            
-            switch (r) {
-            case .Success(let pathIn):
-                
-                let params = ["to": self.openUser.text!,"limitDate":self.limitDate.date.formatted,"content":self.textView.text!, "photos":pathIn as!String,  "burnAfterReading":self.readFire.on,"x": self.latitude,"y":self.longitude]
-                NetApi().makeCall(Alamofire.Method.POST,section: "messages/send", headers: headers, params: params as? [String : AnyObject], completionHandler: { (result:BaseApi.Result) -> Void in
-                    switch (result) {
-                    case .Success(let r):
-                        if let json = r {
-                            let myJosn = JSON(json)
-                            let code:Int = Int(myJosn["status"].stringValue)!
-                            if code != 200 {
-                                self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 3, position: .Top)
-                            }
-                            else{
-                                self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 3, position: .Top)
-                                // self.performSegueWithIdentifier("main", sender: self)
-                            }
-                        }
-                        break;
-                    case .Failure(let error):
-                        print("\(error)")
-                        break;
-                    }
-                    
-                    
-                })
-                
-                break;
-            case .Failure(let error):
-                print("\(error)")
-                break;
-            }
-        }
-        
-        
+    }
+    
+    func sendMessage()
+    {
+        viewModel.sendMessage()
     }
     
     func hiddenView(flag:Bool){
@@ -176,8 +135,8 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
     {
         let location = locations.last
         
-        self.latitude =  location!.coordinate.latitude
-        self.longitude = location!.coordinate.longitude
+        viewModel.latitude =  location!.coordinate.latitude
+        viewModel.longitude = location!.coordinate.longitude
         let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
         self.mapView.setRegion(region, animated: true)
@@ -270,7 +229,7 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
                 for ass in controller.selectedImageAssets
                 {
                     let image = getAssetThumbnail(ass)
-                    self.imageData.append(image)
+                    self.viewModel.imageData.append(image)
                 }
                 self.photoCollectionView.reloadData()
         }))
@@ -281,7 +240,7 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
                 for ass in controller.selectedImageAssets
                 {
                     let image = getAssetThumbnail(ass)
-                    self.imageData.append(image)
+                    self.viewModel.imageData.append(image)
                 }
                 self.photoCollectionView.reloadData()
                 
@@ -307,7 +266,7 @@ class CenterViewController: DesignableViewController , MKMapViewDelegate, CLLoca
 
 extension CenterViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageData.count + 1
+        return self.viewModel.imageData.count + 1
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -321,11 +280,11 @@ extension CenterViewController: UICollectionViewDataSource, UICollectionViewDele
         
         switch indexPath.row {
             
-        case imageData.count:
+        case self.viewModel.imageData.count:
             cell = collectionView.dequeueReusableCellWithReuseIdentifier("newCell", forIndexPath: indexPath)
         default:
             cell = collectionView.dequeueReusableCellWithReuseIdentifier("photo", forIndexPath: indexPath)
-            let imgV = UIImageView(image: imageData[indexPath.row])
+            let imgV = UIImageView(image: self.viewModel.imageData[indexPath.row])
             imgV.frame = cell.frame
             cell.backgroundView = imgV
             cell.layer.cornerRadius = 5
@@ -339,7 +298,7 @@ extension CenterViewController: UICollectionViewDataSource, UICollectionViewDele
 extension CenterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        imageData.append(image)
+        self.viewModel.imageData.append(image)
         photoCollectionView.reloadData()
         dismissViewControllerAnimated(true, completion: nil)
     }
