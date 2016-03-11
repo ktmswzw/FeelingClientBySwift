@@ -1,11 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NBt-aD-ICx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L6B-tv-y8z">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--发现-->
+        <scene sceneID="JUn-i8-O5t">
+            <objects>
+                <tableViewController id="vid-ba-03m" customClass="MessagesTableViewController" customModule="FeelingClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="k4E-V5-cKN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="message" id="ws2-Be-cXw">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ws2-Be-cXw" id="ci4-MM-lU4">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cy-dY-iJV">
+                                            <rect key="frame" x="279" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1cy-dY-iJV" firstAttribute="centerY" secondItem="ci4-MM-lU4" secondAttribute="centerY" id="W96-tj-1Rw"/>
+                                        <constraint firstItem="1cy-dY-iJV" firstAttribute="centerX" secondItem="ci4-MM-lU4" secondAttribute="centerX" id="loq-VN-w4N"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vid-ba-03m" id="Lkx-Sx-dP9"/>
+                            <outlet property="delegate" destination="vid-ba-03m" id="oR8-W0-vMB"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="发现" id="Lb8-wi-FB9">
+                        <barButtonItem key="rightBarButtonItem" title="发起" id="wvK-Qc-11O">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="csP-8S-KOZ" kind="show" id="c0G-ar-HqR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rLL-3A-Kaq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationBar contentMode="scaleToFill" id="6aU-Pi-y4L">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Title" id="715-xE-chB"/>
+                    </items>
+                </navigationBar>
+            </objects>
+            <point key="canvasLocation" x="2641" y="404"/>
+        </scene>
         <!--Center View Controller-->
         <scene sceneID="qlB-PA-rNM">
             <objects>
@@ -501,30 +556,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b9J-Yl-rp9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1867" y="404"/>
+            <point key="canvasLocation" x="3483" y="404"/>
         </scene>
-        <!--发现-->
-        <scene sceneID="iOA-NM-UfM">
+        <!--Navigation Controller-->
+        <scene sceneID="amo-ho-hkS">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NBt-aD-ICx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="发现" image="center" id="1eN-Ng-k3V"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L6B-tv-y8z" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" alpha="0.5" contentMode="scaleToFill" id="zFT-nX-Lkm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pdq-fG-HE8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.4784313738" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="csP-8S-KOZ" kind="relationship" relationship="rootViewController" id="oSN-bK-ZYu"/>
+                        <segue destination="vid-ba-03m" kind="relationship" relationship="rootViewController" id="RcS-NI-RDl"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i6i-gK-rWq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pal-4h-4ks" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1111" y="404"/>
+            <point key="canvasLocation" x="1829" y="404"/>
         </scene>
     </scenes>
     <resources>

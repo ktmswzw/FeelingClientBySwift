@@ -72,8 +72,8 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     @IBAction func login(sender: AnyObject) {
-        //        self.performSegueWithIdentifier("login", sender: self)
-        
+        //                self.performSegueWithIdentifier("login", sender: self)
+        //        return
         if username.text != "" && password.text != ""
         {
             if !self.password.validatePassword() {
