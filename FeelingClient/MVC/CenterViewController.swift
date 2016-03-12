@@ -72,10 +72,11 @@ class CenterViewController: DesignableViewController,MessageViewModelDelegate , 
         self.locationManager.startUpdatingLocation()
         
         self.mapView.showsUserLocation = true
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
         
+        //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        //        self.navigationController?.navigationBar.shadowImage = UIImage()
+        //        self.navigationController?.navigationBar.translucent = true
+//        self.navigationController?.hidesBottomBarWhenPushed = true
         self.photoCollectionView.delegate = self
         self.photoCollectionView.dataSource = self
     }
@@ -257,9 +258,6 @@ class CenterViewController: DesignableViewController,MessageViewModelDelegate , 
         
         presentViewController(controller, animated: true, completion: nil)
     }
-    
-    
-    
 }
 
 
