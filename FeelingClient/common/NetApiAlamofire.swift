@@ -8,12 +8,14 @@
 
 import Foundation
 import Alamofire
+import AlamofireObjectMapper
+import ObjectMapper
 
 class NetApi:BaseApi {
     
-    var apiUrl = "http://192.168.137.1/"
+    //    var apiUrl = "http://192.168.137.1/"
     //    var apiUrl = "http://192.168.1.141/"
-    //    var apiUrl = "http://192.168.1.105/"
+    var apiUrl = "http://192.168.1.105/"
     
     
     
@@ -28,6 +30,22 @@ class NetApi:BaseApi {
                 }
         }
     }
+    
+    
+    func makeCallArray(method: Alamofire.Method, section: String, headers: [String: String]?, params: [String: AnyObject]?,
+        completionHandler: CompletionHandlerType) {
+            Alamofire.request(method, "\(apiUrl)/\(section)",headers: headers, parameters: params)
+                .responseArray { (response: Response<[MessageBean], NSError>) in
+                    switch response.result {
+                    case .Success(let value):
+                        completionHandler(Result.Success(value as Array<MessageBean>))
+                    case .Failure(let error):
+                        completionHandler(Result.Failure(error))
+                    }
+            }
+    }
+    
+    
 }
 
 

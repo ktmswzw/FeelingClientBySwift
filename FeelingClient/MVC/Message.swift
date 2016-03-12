@@ -70,6 +70,47 @@ public class Messages:BaseApi {
         }
         
     }
+    
+//    * @param to   接受人
+//    * @param x    经度
+//    * @param y    维度
+//    * @param page
+//    * @param size
+    
+    func searchMsg(to: String,x: Double,y:Double,page:Int,size:Int,completeHander: CompletionHandlerType)
+    {
+        
+        let newDict = Dictionary<String,String>()
+        let headers = jwt.getHeader(jwt.token, myDictionary: newDict)
+        
+        let params = ["to": to,"x": x, "y":y, "page": page,"size":size]
+        
+        NetApi().makeCall(Alamofire.Method.POST,section: "messages/search",headers: [:], params: params as? [String : AnyObject] , completionHandler: { (result:BaseApi.Result) -> Void in
+                    switch (result) {
+                    case .Success(let r):
+                        if let json = r {
+                            let myJosn = JSON(json)
+                            let code:Int = Int(myJosn["status"].stringValue)!
+                            let result = myJosn.dictionary!["message"]!.stringValue
+                            if code != 200 {
+                                completeHander(Result.Failure(result))
+                            }
+                            else{
+                                msg.id = result
+                                completeHander(Result.Success(result))
+                            }
+                        }
+                        self.msgs.append(msg)
+                        break;
+                    case .Failure(let error):
+                        print("\(error)")
+                        break;
+                    }
+                    
+                    
+                })
+        
+        }
 }
 
 class MessageBean: BaseModel {

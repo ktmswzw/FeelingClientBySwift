@@ -15,10 +15,11 @@ import MobileCoreServices
 
 import IBAnimatable
 
-class CenterMain: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class CenterMain: UIViewController, MessageViewModelDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var latitude = 0.0
     var longitude = 0.0
+    var viewModel: MessageViewModel!
     @IBOutlet var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +33,15 @@ class CenterMain: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
         
         self.mapView.showsUserLocation = true
         
+        viewModel = MessageViewModel(delegate: self)
         
         // Do any additional setup after loading the view.
     }
+    
+    func sendMessage(){}
+    
+    
+    func searchMessage(){}
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -87,7 +94,7 @@ class CenterMain: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
         //        print(placemark.locality)
         //        print(placemark.administrativeArea)
         //        print(placemark.country)
-        if let locationName = placemark.addressDictionary!["Name"] as? NSString {
+        if let _ = placemark.addressDictionary!["Name"] as? NSString {
             //address.text = locationName as String
         }
     }

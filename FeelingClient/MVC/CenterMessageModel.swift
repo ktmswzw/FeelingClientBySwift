@@ -70,8 +70,29 @@ public class MessageViewModel {
         }
     }
     
+    func searchMessage() {
+        let msg = MessageBean()
+        msg.burnAfterReading = burnAfterReading
+        msg.to = to
+        msg.limitDate = limitDate
+        msg.video = video
+        msg.sound = sound
+        msg.content = content
+        msgs.saveMsg(msg, imags: imageData) { (r:BaseApi.Result) -> Void in
+            switch (r) {
+            case .Success(let r):
+                self.id = r as! String
+                break;
+            case .Failure(_):
+                
+                break;
+            }
+        }
+    }
+    
 }
 
 public protocol MessageViewModelDelegate: class {
     func sendMessage()
+    func searchMessage()
 }

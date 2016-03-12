@@ -116,6 +116,7 @@ class CenterViewController: DesignableViewController,MessageViewModelDelegate , 
     {
         viewModel.sendMessage()
     }
+    func searchMessage(){}
     
     func hiddenView(flag:Bool){
         hidden0.hidden = flag
