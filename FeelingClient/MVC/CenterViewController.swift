@@ -76,7 +76,7 @@ class CenterViewController: DesignableViewController,MessageViewModelDelegate , 
         //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         //        self.navigationController?.navigationBar.shadowImage = UIImage()
         //        self.navigationController?.navigationBar.translucent = true
-//        self.navigationController?.hidesBottomBarWhenPushed = true
+        //        self.navigationController?.hidesBottomBarWhenPushed = true
         self.photoCollectionView.delegate = self
         self.photoCollectionView.dataSource = self
     }
@@ -94,12 +94,12 @@ class CenterViewController: DesignableViewController,MessageViewModelDelegate , 
         //        }
         
         if !self.openUser.notEmpty {
-            self.view.makeToast("开启人必须填写", duration: 2, position: .Top)
+            self.view.makeToast("开启人必须填写", duration: 2, position: .Center)
             return
         }
         
         if self.textView.text.length == 0 {
-            self.view.makeToast("必须填写内容", duration: 2, position: .Top)
+            self.view.makeToast("必须填写内容", duration: 2, position: .Center)
             return
         }
         viewModel.to = self.openUser.text!

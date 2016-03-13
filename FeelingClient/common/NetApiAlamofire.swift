@@ -20,7 +20,7 @@ class NetApi:BaseApi {
     
     
     func makeCall(method: Alamofire.Method, section: String, headers: [String: String]?, params: [String: AnyObject]?, completionHandler: CompletionHandlerType) {
-        Alamofire.request(method, "\(apiUrl)/\(section)",headers: headers, parameters: params)
+        Alamofire.request(method, apiUrl+section,headers: headers, parameters: params)
             .responseJSON { response in
                 switch response.result {
                 case .Success(let value):
@@ -34,7 +34,8 @@ class NetApi:BaseApi {
     
     func makeCallArray<T: Mappable>(method: Alamofire.Method, section: String, headers: [String: String]?, params: [String: AnyObject]?,
         completionHandler: Response<[T], NSError> -> Void ) {
-            Alamofire.request(method, "\(apiUrl)/\(section)",headers: headers, parameters: params)
+            NSLog("\(apiUrl)/\(section)")
+            Alamofire.request(method, apiUrl+section,headers: headers, parameters: params)
                 .responseArray { (response: Response<[T], NSError>) in
                     completionHandler(response)
             }

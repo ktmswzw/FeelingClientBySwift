@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--MAp-->
+        <!--MAP-->
         <scene sceneID="FWN-tl-V6x">
             <objects>
                 <viewController id="k7f-3U-IcX" customClass="CenterMain" customModule="FeelingClient" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,17 +21,46 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8CY-GM-Klr">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffM-kZ-dCC" customClass="AnimatableButton" customModule="IBAnimatable">
+                                <rect key="frame" x="273" y="513" width="55" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="uWt-oJ-loT"/>
+                                </constraints>
+                                <state key="normal" title="Search"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="searchMsg:" destination="k7f-3U-IcX" eventType="touchUpInside" id="CmO-s5-n0K"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="naD-eG-rnO" firstAttribute="top" secondItem="ffM-kZ-dCC" secondAttribute="bottom" constant="8" symbolic="YES" id="6RR-Kf-fGj"/>
                             <constraint firstItem="8CY-GM-Klr" firstAttribute="bottom" secondItem="naD-eG-rnO" secondAttribute="top" id="Del-nq-gf2"/>
+                            <constraint firstItem="ffM-kZ-dCC" firstAttribute="centerX" secondItem="8CY-GM-Klr" secondAttribute="centerX" id="Rjm-Ue-ii7"/>
                             <constraint firstItem="8CY-GM-Klr" firstAttribute="top" secondItem="uHW-gC-ibA" secondAttribute="bottom" id="Vsa-Q8-ZVO"/>
                             <constraint firstItem="8CY-GM-Klr" firstAttribute="leading" secondItem="Y0K-0B-yDm" secondAttribute="leading" id="ZSp-iC-y7d"/>
+                            <constraint firstItem="ffM-kZ-dCC" firstAttribute="leading" secondItem="Y0K-0B-yDm" secondAttribute="leading" constant="268" id="dNE-Ve-II1"/>
                             <constraint firstAttribute="trailing" secondItem="8CY-GM-Klr" secondAttribute="trailing" id="mKf-PF-7mi"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dNE-Ve-II1"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="send" image="send" id="m87-yF-hbL"/>
-                    <navigationItem key="navigationItem" title="MAp" id="lTY-dc-LDc">
+                    <navigationItem key="navigationItem" title="MAP" id="lTY-dc-LDc">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="WeX-lt-rtW">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -491,10 +520,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="YQt-NU-Ica">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="hSs-kG-8O8">
+                        <barButtonItem key="rightBarButtonItem" image="send" id="hSs-kG-8O8">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="sendMsg:" destination="csP-8S-KOZ" id="vat-yC-sQK"/>
+                                <action selector="sendMsg:" destination="csP-8S-KOZ" id="Y2U-jU-IXe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -521,7 +550,6 @@
                         <outlet property="photoCollectionView" destination="5Tl-8y-AaO" id="mbw-Md-T5g"/>
                         <outlet property="question" destination="YaR-YM-H0C" id="xAW-Xz-VUz"/>
                         <outlet property="readFire" destination="GgC-Rc-kJ9" id="bfh-sN-fH4"/>
-                        <outlet property="sendButton" destination="hSs-kG-8O8" id="Han-vi-Fok"/>
                         <outlet property="stackView" destination="cam-CB-ydY" id="wWZ-3M-cBf"/>
                         <outlet property="switchHidden" destination="OaM-1f-xF1" id="sDd-hP-TMF"/>
                         <outlet property="textView" destination="j5D-WJ-8mT" id="m53-H6-XQR"/>
@@ -541,6 +569,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.47843137383460999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -58,6 +58,8 @@ public class MessageViewModel {
         msg.video = video
         msg.sound = sound
         msg.content = content
+        msg.x = latitude
+        msg.y = longitude
         msgs.saveMsg(msg, imags: imageData) { (r:BaseApi.Result) -> Void in
             switch (r) {
             case .Success(let r):
@@ -71,7 +73,7 @@ public class MessageViewModel {
     }
     
     func searchMessage() {
-        msgs.searchMsg("", x: latitude, y: longitude, page: 0, size: 100)
+        msgs.searchMsg("", x: "\(latitude)", y: "\(longitude)", page: 0, size: 100)
         print(msgs.msgs.count)
     }
     

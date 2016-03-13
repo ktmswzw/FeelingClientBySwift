@@ -40,8 +40,14 @@ class CenterMain: UIViewController, MessageViewModelDelegate, MKMapViewDelegate,
     
     func sendMessage(){}
     
+    @IBAction func searchMsg(sender: AnyObject) {
+        
+        searchMessage()
+    }
     
     func searchMessage(){
+        viewModel.longitude = self.longitude
+        viewModel.latitude = self.latitude
         viewModel.searchMessage()
     }
     
@@ -68,19 +74,6 @@ class CenterMain: UIViewController, MessageViewModelDelegate, MKMapViewDelegate,
         let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
         self.mapView.setRegion(region, animated: true)
-        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {
-            (placemarks, error) -> Void in
-            if (error != nil) {
-                print("Reverse geocoder failed with error" + error!.localizedDescription)
-                return
-            }
-            if placemarks!.count > 0 {
-                let pm = placemarks![0] as CLPlacemark
-                self.displayLocationInfo(pm)
-            } else {
-                print("Problem with the data received from geocoder")
-            }
-        })
         
     }
     
@@ -90,18 +83,5 @@ class CenterMain: UIViewController, MessageViewModelDelegate, MKMapViewDelegate,
         print("Error: " + error.localizedDescription)
     }
     
-    func displayLocationInfo(placemark: CLPlacemark) {
-        //stop updating location to save battery life
-        
-        locationManager.stopUpdatingLocation()
-        //        print(placemark.locality)
-        //        print(placemark.administrativeArea)
-        //        print(placemark.country)
-        if let locationName = placemark.addressDictionary!["Name"] as? NSString {
-            //address.text = locationName as String
-            NSLog(locationName as String)
-            searchMessage()
-        }
-    }
     
 }

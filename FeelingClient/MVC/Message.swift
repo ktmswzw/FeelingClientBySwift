@@ -36,7 +36,7 @@ public class Messages:BaseApi {
             
             switch (r) {
             case .Success(let pathIn):
-                let params = ["to": msg.to,"limitDate":msg.limitDate,"content":msg.content, "photos":pathIn as!String,  "burnAfterReading":msg.burnAfterReading, "x": msg.x, "y":msg.y]
+                let params = ["to": msg.to,"limitDate":msg.limitDate,"content":msg.content, "photos":pathIn as!String,  "burnAfterReading":msg.burnAfterReading, "x": "\(msg.y)", "y":"\(msg.x)"]
                 NetApi().makeCall(Alamofire.Method.POST,section: "messages/send", headers: headers, params: params as? [String : AnyObject] , completionHandler: { (result:BaseApi.Result) -> Void in
                     switch (result) {
                     case .Success(let r):
@@ -77,18 +77,46 @@ public class Messages:BaseApi {
     //    * @param page
     //    * @param size
     //    
-    func searchMsg(to: String,x: Double,y:Double,page:Int,size:Int)
+    func searchMsg(to: String,x: String,y:String,page:Int,size:Int)
     {
-        let params = ["to": to,"x": x, "y":y, "page": page,"size":size]
-        
-        NetApi().makeCallArray(Alamofire.Method.POST, section: "message/search", headers: [:], params: params as? [String:AnyObject]) { (response: Response<[MessageBean], NSError>) -> Void in
+        let params = ["to": to,"x": y, "y":x, "page": page,"size":size]
+        //        NetApi().makeCall(Alamofire.Method.POST, section: "messages/search", headers: [:], params: params as? [String:AnyObject], completionHandler: { (result:BaseApi.Result) -> Void in
+        //            switch (result) {
+        //            case .Success(let r):
+        //                if let json = r {
+        //                    
+        //                    
+        //                    let myJosn = JSON(json)
+        //                    
+        //                    let array = myJosn.arrayObject as? [MessageBean]
+        //                    
+        //                    for msg in array!{
+        //                        
+        //                        let bean = MessageBean()
+        //                        bean.to = msg.to
+        //                        bean.x = msg.x
+        //                        bean.y = msg.y
+        //                        self.msgs.append(bean)
+        //                    }
+        //                    
+        //                }
+        //                
+        //                break;
+        //            case .Failure(let error):
+        //                print("\(error)")
+        //                break;
+        //            }
+        //            
+        //            
+        //        })
+        NetApi().makeCallArray(Alamofire.Method.POST, section: "messages/search", headers: [:], params: params as? [String:AnyObject]) { (response: Response<[MessageBean], NSError>) -> Void in
             switch (response.result) {
             case .Success(let value):
                 for msg in value {
                     let bean = MessageBean()
                     bean.to = msg.to
-                    bean.x = msg.x
-                    bean.y = msg.y
+                    bean.x = msg.y
+                    bean.y = msg.x
                     self.msgs.append(bean)
                 }
                 break;
