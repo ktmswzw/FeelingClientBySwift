@@ -32,20 +32,13 @@ class NetApi:BaseApi {
     }
     
     
-    func makeCallArray(method: Alamofire.Method, section: String, headers: [String: String]?, params: [String: AnyObject]?,
-        completionHandler: CompletionHandlerType) {
+    func makeCallArray<T: Mappable>(method: Alamofire.Method, section: String, headers: [String: String]?, params: [String: AnyObject]?,
+        completionHandler: Response<[T], NSError> -> Void ) {
             Alamofire.request(method, "\(apiUrl)/\(section)",headers: headers, parameters: params)
-                .responseArray { (response: Response<[MessageBean], NSError>) in
-                    switch response.result {
-                    case .Success(let value):
-                        completionHandler(Result.Success(value as Array<MessageBean>))
-                    case .Failure(let error):
-                        completionHandler(Result.Failure(error))
-                    }
+                .responseArray { (response: Response<[T], NSError>) in
+                    completionHandler(response)
             }
     }
-    
-    
 }
 
 

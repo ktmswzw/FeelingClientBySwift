@@ -71,47 +71,49 @@ public class Messages:BaseApi {
         
     }
     
-//    * @param to   接受人
-//    * @param x    经度
-//    * @param y    维度
-//    * @param page
-//    * @param size
-    
-    func searchMsg(to: String,x: Double,y:Double,page:Int,size:Int,completeHander: CompletionHandlerType)
+    //    * @param to   接受人
+    //    * @param x    经度
+    //    * @param y    维度
+    //    * @param page
+    //    * @param size
+    //    
+    func searchMsg(to: String,x: Double,y:Double,page:Int,size:Int)
     {
-        
-        let newDict = Dictionary<String,String>()
-        let headers = jwt.getHeader(jwt.token, myDictionary: newDict)
-        
         let params = ["to": to,"x": x, "y":y, "page": page,"size":size]
         
-        NetApi().makeCall(Alamofire.Method.POST,section: "messages/search",headers: [:], params: params as? [String : AnyObject] , completionHandler: { (result:BaseApi.Result) -> Void in
-                    switch (result) {
-                    case .Success(let r):
-                        if let json = r {
-                            let myJosn = JSON(json)
-                            let code:Int = Int(myJosn["status"].stringValue)!
-                            let result = myJosn.dictionary!["message"]!.stringValue
-                            if code != 200 {
-                                completeHander(Result.Failure(result))
-                            }
-                            else{
-                                msg.id = result
-                                completeHander(Result.Success(result))
-                            }
-                        }
-                        self.msgs.append(msg)
-                        break;
-                    case .Failure(let error):
-                        print("\(error)")
-                        break;
-                    }
-                    
-                    
-                })
-        
+        NetApi().makeCallArray(Alamofire.Method.POST, section: "message/search", headers: [:], params: params as? [String:AnyObject]) { (response: Response<[MessageBean], NSError>) -> Void in
+            switch (response.result) {
+            case .Success(let value):
+                for msg in value {
+                    let bean = MessageBean()
+                    bean.to = msg.to
+                    bean.x = msg.x
+                    bean.y = msg.y
+                    self.msgs.append(bean)
+                }
+                break;
+            case .Failure(let error):
+                print("\(error)")
+                break;
+            }
         }
+    }
+    
 }
+
+//    
+//    let mappedObject = response.result.value
+//    
+//    XCTAssertNotNil(mappedObject, "Response should not be nil")
+//    XCTAssertNotNil(mappedObject?.location, "Location should not be nil")
+//    XCTAssertNotNil(mappedObject?.threeDayForecast, "ThreeDayForcast should not be nil")
+//    
+//    for forecast in mappedObject!.threeDayForecast! {
+//    XCTAssertNotNil(forecast.day, "day should not be nil")
+//    XCTAssertNotNil(forecast.conditions, "conditions should not be nil")
+//    XCTAssertNotNil(forecast.temperature, "temperature should not be nil")
+//    }
+
 
 class MessageBean: BaseModel {
     
@@ -124,20 +126,24 @@ class MessageBean: BaseModel {
         super.mapping(map)
         id <- map["id"]
         to <- map["to"]
+        from <- map["from"]
         limitDate <- map["limit_date"]
         content <- map["content"]
-        photos <- map["photos"]
-        video <- map["video"]
-        sound <- map["sound"]
+        //photos <- map["photos"]
+        video <- map["videoPath"]
+        sound <- map["soundPath"]
         burnAfterReading <- map["burn_after_reading"]
         x <- map["x"]
         y <- map["y"]
+        distance <- map["distance"]
         
     }
     
     var id: String = ""
     //发送对象
     var to: String = ""
+    //
+    var from: String = ""
     //期限
     var limitDate: String = ""
     //内容
@@ -154,5 +160,38 @@ class MessageBean: BaseModel {
     var x: Double = 0.0
     //坐标
     var y: Double = 0.0
+    //距离
+    var distance: Double = 0.0
     
 }
+
+
+
+//"errorCode": "0",
+//"id": "56bae476841701c82215ff6b",
+//"from": "小红",
+//"to": "小明",
+//"content": "我在这里，你在哪里？",
+//"photos":[
+//{
+//"name": "1",
+//"source": "222",
+//"thumbnails": "111"
+//}
+//],
+//"soundPath": null,
+//"videoPath": null,
+//"point":{"x": 112.99206, "y": 22.740501, "type": "Point", "coordinates":[112.99206,…},
+//    "city": "宁波",
+//    "district": "鄞州",
+//    "address": "学士路655号",
+//    "question": "who is me",
+//    "answer": "me is who",
+//    "burnAfterReading": true,
+//    "state": 1,
+//    "fromId": null,
+//    "toId": null,
+//    "distance": 394.4369926352266,
+//    "limit_date": "2016-02-20 15:19:18",
+//    "create_date": "2016-02-10 15:19:18",
+//    "update_date": null

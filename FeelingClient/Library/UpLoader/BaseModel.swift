@@ -5,6 +5,7 @@ import ObjectMapper
 
 public class BaseModel: NSObject,Mappable {
     
+    var errorCode:String = "0"
     override init() {}
     required public init?(_ map: Map) {
         super.init()
@@ -16,6 +17,7 @@ public class BaseModel: NSObject,Mappable {
     }
     
     public func mapping(map: Map) {
+        errorCode <- map["errorCode"]
     }
     
     func toParams() -> [String: AnyObject] {
@@ -37,5 +39,4 @@ public class BaseApi:NSObject {
     enum Error: ErrorType {
         case AuthenticationFailure
     }
-    
 }
