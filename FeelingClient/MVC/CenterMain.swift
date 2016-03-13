@@ -41,7 +41,9 @@ class CenterMain: UIViewController, MessageViewModelDelegate, MKMapViewDelegate,
     func sendMessage(){}
     
     
-    func searchMessage(){}
+    func searchMessage(){
+        viewModel.searchMessage()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -90,12 +92,15 @@ class CenterMain: UIViewController, MessageViewModelDelegate, MKMapViewDelegate,
     
     func displayLocationInfo(placemark: CLPlacemark) {
         //stop updating location to save battery life
+        
         locationManager.stopUpdatingLocation()
         //        print(placemark.locality)
         //        print(placemark.administrativeArea)
         //        print(placemark.country)
-        if let _ = placemark.addressDictionary!["Name"] as? NSString {
+        if let locationName = placemark.addressDictionary!["Name"] as? NSString {
             //address.text = locationName as String
+            NSLog(locationName as String)
+            searchMessage()
         }
     }
     
