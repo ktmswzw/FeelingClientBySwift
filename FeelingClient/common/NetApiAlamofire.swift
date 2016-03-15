@@ -13,12 +13,12 @@ import ObjectMapper
 
 class NetApi:BaseApi {
     
-    //    var apiUrl = "http://192.168.137.1/"
-    //    var apiUrl = "http://192.168.1.141/"
-    var apiUrl = "http://192.168.1.105/"
+    //    var apiUrl = "http://192.168.1.117"
+    //    var apiUrl = "http://192.168.1.141"
+    var apiUrl = "http://192.168.1.105"
     
     
-    
+    //简单数据bean
     func makeCall(method: Alamofire.Method, section: String, headers: [String: String]?, params: [String: AnyObject]?, completionHandler: CompletionHandlerType) {
         Alamofire.request(method, apiUrl+section,headers: headers, parameters: params)
             .responseJSON { response in
@@ -32,6 +32,7 @@ class NetApi:BaseApi {
     }
     
     
+    //array数据列表
     func makeCallArray<T: Mappable>(method: Alamofire.Method, section: String, headers: [String: String]?, params: [String: AnyObject]?,
         completionHandler: Response<[T], NSError> -> Void ) {
             NSLog("\(apiUrl)/\(section)")

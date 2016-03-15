@@ -8,31 +8,32 @@
 
 import UIKit
 
-import IBAnimatable
+import MapKit
 
-
-class FriendsViewController: DesignableViewController  {
-
+class FriendsViewController: UIViewController, MKMapViewDelegate   {
+    
+    @IBOutlet var mapView: MKMapView!
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        moveToSeoul()
+    }
+    
+    func moveToSeoul() {
+        let center = CLLocationCoordinate2DMake(37.551403, 126.988045)
+        let span = MKCoordinateSpanMake(0.2, 0.2)
+        let region = MKCoordinateRegionMake(center, span)
+        mapView.setRegion(region, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.mapView.delegate = self
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

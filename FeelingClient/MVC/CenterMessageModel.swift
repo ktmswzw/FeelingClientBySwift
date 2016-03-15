@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import MapKit
 
 public class MessageViewModel {
     
@@ -72,9 +72,32 @@ public class MessageViewModel {
         }
     }
     
-    func searchMessage() {
-        msgs.searchMsg("", x: "\(latitude)", y: "\(longitude)", page: 0, size: 100)
-        print(msgs.msgs.count)
+    func searchMessage(map: MKMapView) {
+        msgs.searchMsg("", x: "\(latitude)", y: "\(longitude)", page: 0, size: 100) { (r:BaseApi.Result) -> Void in
+            switch (r) {
+            case .Success(let r):
+                self.msgs.msgs = r as! [MessageBean]
+                
+                
+                
+                
+                let museum1 = MuseumInfo()
+                museum1.coordinate = CLLocationCoordinate2DMake(29.8539157631154, 121.425866184497)
+                //设置点击大头针之后显示的标题
+                museum1.title = "南京夫子庙"
+                //设置点击大头针之后显示的描述
+                museum1.subtitle = "南京市秦淮区秦淮河北岸中华路"
+                museum1.url = "https://google.com"
+                
+                map.addAnnotation(museum1)
+                
+                
+                break;
+            case .Failure(_):
+                
+                break;
+            }
+        }
     }
     
 }

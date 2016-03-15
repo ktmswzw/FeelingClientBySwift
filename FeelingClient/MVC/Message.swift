@@ -77,38 +77,9 @@ public class Messages:BaseApi {
     //    * @param page
     //    * @param size
     //    
-    func searchMsg(to: String,x: String,y:String,page:Int,size:Int)
+    func searchMsg(to: String,x: String,y:String,page:Int,size:Int,completeHander: CompletionHandlerType)
     {
         let params = ["to": to,"x": y, "y":x, "page": page,"size":size]
-        //        NetApi().makeCall(Alamofire.Method.POST, section: "messages/search", headers: [:], params: params as? [String:AnyObject], completionHandler: { (result:BaseApi.Result) -> Void in
-        //            switch (result) {
-        //            case .Success(let r):
-        //                if let json = r {
-        //                    
-        //                    
-        //                    let myJosn = JSON(json)
-        //                    
-        //                    let array = myJosn.arrayObject as? [MessageBean]
-        //                    
-        //                    for msg in array!{
-        //                        
-        //                        let bean = MessageBean()
-        //                        bean.to = msg.to
-        //                        bean.x = msg.x
-        //                        bean.y = msg.y
-        //                        self.msgs.append(bean)
-        //                    }
-        //                    
-        //                }
-        //                
-        //                break;
-        //            case .Failure(let error):
-        //                print("\(error)")
-        //                break;
-        //            }
-        //            
-        //            
-        //        })
         NetApi().makeCallArray(Alamofire.Method.POST, section: "messages/search", headers: [:], params: params as? [String:AnyObject]) { (response: Response<[MessageBean], NSError>) -> Void in
             switch (response.result) {
             case .Success(let value):
@@ -119,6 +90,7 @@ public class Messages:BaseApi {
                     bean.y = msg.x
                     self.msgs.append(bean)
                 }
+                completeHander(Result.Success(self.msgs))
                 break;
             case .Failure(let error):
                 print("\(error)")
