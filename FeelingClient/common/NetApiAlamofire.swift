@@ -13,9 +13,9 @@ import ObjectMapper
 
 class NetApi:BaseApi {
     
-    //    var apiUrl = "http://192.168.1.117"
-    //    var apiUrl = "http://192.168.1.141"
-    var apiUrl = "http://192.168.1.105"
+    //    var apiUrl = "http://192.168.1.117/"
+    //    var apiUrl = "http://192.168.1.141/"
+    var apiUrl = "http://192.168.1.105/"
     
     
     //简单数据bean
@@ -41,6 +41,5 @@ class NetApi:BaseApi {
                     completionHandler(response)
             }
     }
-}
 
 
