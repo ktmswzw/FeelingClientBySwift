@@ -20,8 +20,6 @@ pod 'IBAnimatable’#, :git => 'https://github.com/JakeLin/IBAnimatable'
 pod 'ImagePickerSheetController’, :git => 'https://github.com/larcus94/ImagePickerSheetController.git'
 #sqlist数据库操作
 pod 'SQLite.swift’, :git => 'https://github.com/stephencelis/SQLite.swift.git'
-#吐司
-pod 'Whisper’#, :git => 'https://github.com/hyperoslo/Whisper'
 #表单
 #pod 'Former’, :git => 'https://github.com/ra1028/Former'
 

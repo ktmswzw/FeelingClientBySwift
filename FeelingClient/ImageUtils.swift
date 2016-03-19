@@ -45,7 +45,7 @@ extension UITextField {
     }
 }
 
-extension UIViewController {
+extension UIViewController:MBProgressHUDDelegate {
     
     /**
      * Called when 'return' key pressed. return NO to ignore.
@@ -62,24 +62,13 @@ extension UIViewController {
     override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
+
     
-    //导航栏提醒
-    func alertNvigationMsg(msg: String) {
-        guard let navigationController = navigationController else { return }
-        let message = Message(title: msg, backgroundColor: UIColor(red:1.0, green:0.0, blue:0.502, alpha:1.0))
-        Whisper(message, to: navigationController, action: .Present)
-        Silent(navigationController, after: 3)
+    // MARK: - MBProgressHUDDelegate
+    func hudWasHidden(hud: MBProgressHUD) {
+        HUD!.removeFromSuperview()
+        HUD = nil
     }
-    
-    
-    //状态栏提醒
-    func alertStatusBarMsg(msg: String) {
-        let murmur = Murmur(title: msg,
-            backgroundColor: UIColor(red: 1.0, green: 0.0, blue: 0.502, alpha: 1.0))
-        
-        Whistle(murmur)
-    }
-    
     
 }
 

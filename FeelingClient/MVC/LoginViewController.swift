@@ -13,6 +13,7 @@ import Alamofire
 
 class LoginViewController: DesignableViewController,UITextFieldDelegate {
     
+    
     @IBOutlet var username: AnimatableTextField!
     @IBOutlet var password: AnimatableTextField!
     
@@ -50,6 +51,8 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
         username.delegate = self
         password.delegate = self
         
+        HUD = MBProgressHUD(view: self.view)
+        self.view.addSubview(HUD!)
         
     }
     
@@ -85,32 +88,31 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
                 //123456
                 let userNameText = username.text
                 let passwordText = password.text!.md5()
-                
-                NetApi().makeCall(Alamofire.Method.POST, section: "login", headers: [:], params: ["username": userNameText!,"password":passwordText!,"device":"APP"], completionHandler: { (result:BaseApi.Result) -> Void in
-                    switch (result) {
-                    case .Success(let r):
-                        if let json = r {
-                            let myJosn = JSON(json)
-                            let code:Int = Int(myJosn["status"].stringValue)!
-                            if code != 200 {
-                                self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 2, position: .Top)
+                HUD!.showAnimated(true, whileExecutingBlock: { () -> Void in
+                    NetApi().makeCall(Alamofire.Method.POST, section: "login", headers: [:], params: ["username": userNameText!,"password":passwordText!,"device":"APP"], completionHandler: { (result:BaseApi.Result) -> Void in
+                        switch (result) {
+                        case .Success(let r):
+                            if let json = r {
+                                let myJosn = JSON(json)
+                                let code:Int = Int(myJosn["status"].stringValue)!
+                                if code != 200 {
+                                    self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 2, position: .Top)
+                                }
+                                else{
+                                    self.jwt.token = myJosn.dictionary!["message"]!.stringValue
+                                    self.view.makeToast("登陆成功", duration: 1, position: .Top)
+                                    self.performSegueWithIdentifier("login", sender: self)
+                                }
                             }
-                            else{
-                                self.jwt.token = myJosn.dictionary!["message"]!.stringValue
-                                NSLog("\(self.jwt.getHeader(self.jwt.token, myDictionary: [:]))")
-                                self.view.makeToast("登陆成功", duration: 1, position: .Top)
-                                self.performSegueWithIdentifier("login", sender: self)
-                            }
+                            break;
+                        case .Failure(let error):
+                            print("\(error)")
+                            break;
                         }
-                        break;
-                    case .Failure(let error):
-                        print("\(error)")
-                        break;
-                    }
-                    
-                    
-                })
-                
+                    })
+                    }) { () -> Void in
+                        HUD!.removeFromSuperview()
+                }
             }
             
         }
@@ -123,25 +125,13 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
     }
     
     
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         if !jwt.token.isEmpty {
-            //    self.performSegueWithIdentifier("login", sender: self)
+            self.performSegueWithIdentifier("login", sender: self)
         }
         
     }
-    
     
 }
