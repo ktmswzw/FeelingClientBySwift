@@ -16,7 +16,8 @@ import Alamofire
 public class Messages:BaseApi {
     static let defaultMessages = Messages()
     var msgs = [MessageBean]()
-    
+    var msgscrent = MessagesSecret()// 内容
+    var msgscrentId = "";//解密后的id
     var loader = PhotoUpLoader.init()
     
     var jwt = JWTTools()
@@ -31,9 +32,7 @@ public class Messages:BaseApi {
         
         let newDict = Dictionary<String,String>()
         let headers = jwt.getHeader(jwt.token, myDictionary: newDict)
-        
         loader.completionAll(imags) { (r:PhotoUpLoader.Result) -> Void in
-            
             switch (r) {
             case .Success(let pathIn):
                 let params = ["to": msg.to,"limitDate":msg.limitDate,"content":msg.content, "photos":pathIn as!String,  "burnAfterReading":msg.burnAfterReading, "x": "\(msg.y)", "y":"\(msg.x)"]
@@ -58,8 +57,6 @@ public class Messages:BaseApi {
                         print("\(error)")
                         break;
                     }
-                    
-                    
                 })
                 
                 break;
@@ -68,7 +65,6 @@ public class Messages:BaseApi {
                 break;
             }
         }
-        
     }
     
     //    * @param to   接受人
@@ -83,13 +79,24 @@ public class Messages:BaseApi {
         NetApi().makeCallArray(Alamofire.Method.POST, section: "messages/search", headers: [:], params: params as? [String:AnyObject]) { (response: Response<[MessageBean], NSError>) -> Void in
             switch (response.result) {
             case .Success(let value):
-//                for msg in value {
-//                    let bean = MessageBean()
-//                    bean.to = msg.to
-//                    bean.x = msg.y
-//                    bean.y = msg.x
-//                    self.msgs.append(bean)
-//                }
+                self.msgs = value
+                completeHander(Result.Success(self.msgs))
+                break;
+            case .Failure(let error):
+                print("\(error)")
+                break;
+            }
+        }
+    }
+    
+//    /arrival/{x}/{y}/{id}
+//    validate/{id}/{answer}
+    func verifyMsg(id: String,x: String,y:String,answer:String,completeHander: CompletionHandlerType)
+    {
+        let params = [:]
+        NetApi().makeCallArray(Alamofire.Method.POST, section: "validate/\(id)/\(answer)", headers: [:], params: params as? [String:AnyObject]) { (response: Response<[MessageBean], NSError>) -> Void in
+            switch (response.result) {
+            case .Success(let value):
                 self.msgs = value
                 completeHander(Result.Success(self.msgs))
                 break;
@@ -128,7 +135,7 @@ class MessageBean: BaseModel {
     }
     
     var id: String = ""
-    //发送对象
+    //接受对象
     var to: String = ""
     //
     var from: String = ""
@@ -154,7 +161,7 @@ class MessageBean: BaseModel {
     var point: GeoJsonPoint?
     
 }
-
+//坐标点
 class GeoJsonPoint:BaseModel {
     //坐标
     var x: Double = 0.0
@@ -169,5 +176,44 @@ class GeoJsonPoint:BaseModel {
         super.mapping(map)
         x <- map["x"]
         y <- map["y"]
+    }
+}
+//解密消息
+class MessagesSecret:BaseModel {
+    
+    var msgId: String?
+    //期限
+    var limitDate: String?
+    //内容
+    var content: String?
+    //图片地址
+    var photos: [String] = [""]
+    //视频地址
+    var video: String?
+    //音频地址
+    var sound: String?
+    //阅后即焚
+    var burnAfterReading: Bool = false
+    //问题
+    var question: String?
+    //答案
+    var answer: String?
+    
+    
+    override static func newInstance() -> Mappable {
+        return MessagesSecret();
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        limitDate <- map["limit_date"]
+        content <- map["content"]
+        photos <- map["photos"]
+        video <- map["videoPath"]
+        question <- map["question"]
+        sound <- map["soundPath"]
+        answer <- map["answer"]
+        burnAfterReading <- map["burn_after_reading"]
+        
     }
 }

@@ -16,7 +16,7 @@ public class MessageViewModel {
     
     //id
     var id: String = ""
-    //发送对象
+    //接受对象
     var to: String = ""
     //期限
     var limitDate: String = ""

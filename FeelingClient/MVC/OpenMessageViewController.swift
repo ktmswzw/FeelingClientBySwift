@@ -13,6 +13,8 @@ import Alamofire
 
 class OpenMessageViewController: DesignableViewController,UITextFieldDelegate {
     
+    var viewModel: MessageViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
