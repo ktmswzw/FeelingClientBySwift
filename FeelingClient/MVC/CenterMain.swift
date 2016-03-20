@@ -19,26 +19,22 @@ class CenterMain: UIViewController,MessageViewModelDelegate, MKMapViewDelegate, 
     let locationManager = CLLocationManager()
     var latitude = 0.0
     var longitude = 0.0
+    var isOk = false
     var viewModel: MessageViewModel!
     @IBOutlet var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
         //地图初始化
-        self.locationManager.delegate = self
-        self.locationManager.distanceFilter = 1;
-        
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
-        
+        locationManager.delegate = self
+        //locationManager.distanceFilter = 1;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         self.mapView.delegate = self
-        self.mapView.showsUserLocation = true
-        
+        //self.mapView.showsUserLocation = true
         viewModel = MessageViewModel(delegate: self)
         
-        
-        
-        
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     }
     
     func sendMessage(){}
@@ -46,49 +42,32 @@ class CenterMain: UIViewController,MessageViewModelDelegate, MKMapViewDelegate, 
     
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MuseumInfo {
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("MUSEUM")
-            if annotationView == nil {
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "MUSEUM")
-                annotationView!.image = UIImage(named: "location")
-                annotationView!.canShowCallout = true
-                annotationView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
-                
-            }
-            else {
-                annotationView!.annotation = annotation
-            }
-            
-            return annotationView
-        }
-        else if annotation is TheaterInfo {
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("THEATER")
-            if annotationView == nil {
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "THEATER")
-                annotationView!.image = UIImage(named: "new")
-                annotationView!.canShowCallout = true
-                annotationView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
-            }
-            else {
-                annotationView!.annotation = annotation
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("DEFAULT")  as? MKPinAnnotationView
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "DEFAULT")
+            //            annotationView!.image = UIImage(named: "qq")
+            annotationView!.canShowCallout = true
+            if annotationView!.rightCalloutAccessoryView == nil {
+                let button = UIButton(type: .InfoLight)
+                button.userInteractionEnabled = false
+                annotationView!.rightCalloutAccessoryView = button
+                annotationView!.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didSelectAnnotationView:"))
             }
             
-            return annotationView
+            
+            let leftIconView = UIImageView(frame: CGRectMake(0, 0, 53, 53))
+            leftIconView.image = UIImage(named: "girl")
+            annotationView!.leftCalloutAccessoryView = leftIconView
+            
+            annotationView!.pinTintColor = UIColor.redColor()
+            
         }
         else {
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("DEFAULT")
-            if annotationView == nil {
-                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "DEFAULT")
-                annotationView!.image = UIImage(named: "new")
-                annotationView!.canShowCallout = true
-                annotationView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
-            }
-            else {
-                annotationView!.annotation = annotation
-            }
-            
-            return annotationView
+            annotationView!.annotation = annotation
         }
+        return annotationView
+        
+        
     }
     
     
@@ -111,11 +90,40 @@ class CenterMain: UIViewController,MessageViewModelDelegate, MKMapViewDelegate, 
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
         calloutAccessoryControlTapped control: UIControl) {
             print("点击注释视图按钮")
+            
+            selectedView = view;
+            
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         print("点击大头针注释视图")
+        selectedView = view;
     }
+    
+    
+    func didSelectAnnotationView(sender: UITapGestureRecognizer) {
+        guard let pinView = sender.view as? MKAnnotationView else {
+            return
+        }
+        
+        // Show Safari if pinView == selectedView and has a valid HTTP URL string
+        if pinView == selectedView {
+            
+            let pin = pinView.annotation! as! MyAnnotation
+            
+            let title = pin.title! as String
+            NSLog(title)
+            let id = pin.id as String
+            NSLog(id)
+            
+            
+            self.performSegueWithIdentifier("open", sender: self)
+            
+        }
+    }
+    
+    
+    var selectedView: MKAnnotationView?
     
     @IBAction func searchMsg(sender: AnyObject) {
         
@@ -125,13 +133,7 @@ class CenterMain: UIViewController,MessageViewModelDelegate, MKMapViewDelegate, 
     func searchMessage(){
         viewModel.longitude = self.longitude
         viewModel.latitude = self.latitude
-        viewModel.searchMessage(self.mapView)
-        
-        
-        
-        
-        
-    }
+        viewModel.searchMessage(self.mapView)    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -155,11 +157,15 @@ class CenterMain: UIViewController,MessageViewModelDelegate, MKMapViewDelegate, 
         longitude = location!.coordinate.longitude
         
         
-        UIView.animateWithDuration(1.5, animations: { () -> Void in
-            let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-            self.mapView.region = region
-        })
+        if(!isOk){
+            
+            UIView.animateWithDuration(1.5, animations: { () -> Void in
+                let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+                let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+                self.mapView.region = region
+                self.isOk = true
+            })
+        }
         
     }
     

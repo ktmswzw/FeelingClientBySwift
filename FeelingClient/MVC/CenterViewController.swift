@@ -67,16 +67,13 @@ class CenterViewController: DesignableViewController,MessageViewModelDelegate , 
         self.locationManager.delegate = self
         self.locationManager.distanceFilter = 1;
         
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         
         self.mapView.showsUserLocation = true
         
-        //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        //        self.navigationController?.navigationBar.shadowImage = UIImage()
-        //        self.navigationController?.navigationBar.translucent = true
-        //        self.navigationController?.hidesBottomBarWhenPushed = true
         self.photoCollectionView.delegate = self
         self.photoCollectionView.dataSource = self
     }

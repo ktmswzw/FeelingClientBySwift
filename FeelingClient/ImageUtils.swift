@@ -24,6 +24,18 @@ func getAssetThumbnail(asset: PHAsset) -> UIImage {
     return thumbnail
 }
 
+func imageResize (image:UIImage, sizeChange:CGSize)-> UIImage{
+    
+    let hasAlpha = true
+    let scale: CGFloat = 0.0 // Use scale factor of main screen
+    
+    UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+    image.drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
+    
+    let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+    return scaledImage
+}
+
 extension UITextField {
     var notEmpty: Bool{
         get {
@@ -62,7 +74,7 @@ extension UIViewController:MBProgressHUDDelegate {
     override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
     
     // MARK: - MBProgressHUDDelegate
     func hudWasHidden(hud: MBProgressHUD) {

@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--MAP-->
+        <!--发现-->
         <scene sceneID="FWN-tl-V6x">
             <objects>
                 <viewController id="k7f-3U-IcX" customClass="CenterMain" customModule="FeelingClient" customModuleProvider="target" sceneMemberID="viewController">
@@ -26,16 +26,18 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="uWt-oJ-loT"/>
                                 </constraints>
-                                <state key="normal" title="Search"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="2"/>
+                                        <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -59,8 +61,11 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="send" image="send" id="m87-yF-hbL"/>
-                    <navigationItem key="navigationItem" title="MAP" id="lTY-dc-LDc">
+                    <tabBarItem key="tabBarItem" title="发现" image="send" id="m87-yF-hbL"/>
+                    <navigationItem key="navigationItem" title="发现" id="lTY-dc-LDc">
+                        <barButtonItem key="backBarButtonItem" id="bgA-fX-xqW">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="WeX-lt-rtW">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -71,6 +76,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="8CY-GM-Klr" id="jjZ-dy-jH6"/>
+                        <segue destination="miY-Or-ZGL" kind="show" identifier="open" id="r4p-ne-w9p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BpN-6Y-Ry8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,13 +237,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRX-Kt-JdU">
                                         <rect key="frame" x="0.0" y="80" width="600" height="40"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="readfire" translatesAutoresizingMaskIntoConstraints="NO" id="RH1-fc-xS9">
-                                                <rect key="frame" x="20" y="13" width="15" height="15"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="15" id="v6D-64-87K"/>
-                                                    <constraint firstAttribute="height" constant="15" id="zuk-rd-Wl0"/>
-                                                </constraints>
-                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开启问题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="65" translatesAutoresizingMaskIntoConstraints="NO" id="Tfl-Cd-hZk">
                                                 <rect key="frame" x="55" y="10" width="80" height="20"/>
                                                 <constraints>
@@ -256,6 +255,13 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="readfire" translatesAutoresizingMaskIntoConstraints="NO" id="RH1-fc-xS9">
+                                                <rect key="frame" x="20" y="12" width="15" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="15" id="v6D-64-87K"/>
+                                                    <constraint firstAttribute="height" constant="15" id="zuk-rd-Wl0"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -298,7 +304,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="answer" translatesAutoresizingMaskIntoConstraints="NO" id="ujO-m1-npg">
-                                                <rect key="frame" x="20" y="13" width="15" height="15"/>
+                                                <rect key="frame" x="20" y="12" width="15" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="15" id="DZx-QX-sni"/>
                                                     <constraint firstAttribute="height" constant="15" id="u1n-aR-evj"/>
@@ -581,6 +587,144 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="duj-6f-IHm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3639" y="-86"/>
+        </scene>
+        <!--Open Message View Controller-->
+        <scene sceneID="OO4-PP-htn">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="miY-Or-ZGL" customClass="OpenMessageViewController" customModule="FeelingClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7aM-AK-vD7"/>
+                        <viewControllerLayoutGuide type="bottom" id="W4x-Qk-GWq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n1b-T4-CYS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AjU-jI-892" customClass="AnimatableStackView" customModule="IBAnimatable">
+                                <rect key="frame" x="20" y="179" width="560" height="178"/>
+                                <subviews>
+                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwy-Gr-CW2">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="178"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QL3-DM-iEM" customClass="AnimatableButton" customModule="IBAnimatable">
+                                                <rect key="frame" x="0.0" y="115" width="560" height="63"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="芝麻开门">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="我们第一次喝酒的地方？" placeholder="问题" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cg2-6J-e6C" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="58"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="readfire"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftImageRightPadding">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftImageLeftPadding">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="borderSide" value="buttom"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="公元前＊＊＊＊" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CF7-VZ-PcB" customClass="AnimatableTextField" customModule="IBAnimatable">
+                                                <rect key="frame" x="0.0" y="58" width="560" height="61"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="answer"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftImageRightPadding">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftImageLeftPadding">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="cg2-6J-e6C" firstAttribute="top" secondItem="dwy-Gr-CW2" secondAttribute="top" id="9Xe-gF-AKV"/>
+                                            <constraint firstItem="cg2-6J-e6C" firstAttribute="leading" secondItem="CF7-VZ-PcB" secondAttribute="leading" id="DJs-tc-bWO"/>
+                                            <constraint firstItem="QL3-DM-iEM" firstAttribute="leading" secondItem="dwy-Gr-CW2" secondAttribute="leading" id="Ff7-WX-Wsz"/>
+                                            <constraint firstItem="cg2-6J-e6C" firstAttribute="trailing" secondItem="CF7-VZ-PcB" secondAttribute="trailing" id="QTW-JU-bjc"/>
+                                            <constraint firstItem="CF7-VZ-PcB" firstAttribute="trailing" secondItem="QL3-DM-iEM" secondAttribute="trailing" id="Uld-f9-NNi"/>
+                                            <constraint firstAttribute="trailing" secondItem="cg2-6J-e6C" secondAttribute="trailing" id="X5j-Ob-bAv"/>
+                                            <constraint firstItem="QL3-DM-iEM" firstAttribute="top" secondItem="cg2-6J-e6C" secondAttribute="bottom" constant="57" id="d90-EB-yyu"/>
+                                            <constraint firstItem="CF7-VZ-PcB" firstAttribute="centerY" secondItem="dwy-Gr-CW2" secondAttribute="centerY" id="dNa-QM-iCL"/>
+                                            <constraint firstItem="CF7-VZ-PcB" firstAttribute="top" secondItem="cg2-6J-e6C" secondAttribute="bottom" id="kXT-5v-bc1"/>
+                                            <constraint firstAttribute="bottom" secondItem="QL3-DM-iEM" secondAttribute="bottom" id="nib-t4-NSP"/>
+                                            <constraint firstAttribute="bottom" secondItem="CF7-VZ-PcB" secondAttribute="bottom" constant="59" id="pQy-d9-qiY"/>
+                                            <constraint firstItem="CF7-VZ-PcB" firstAttribute="leading" secondItem="QL3-DM-iEM" secondAttribute="leading" id="pkQ-ng-uGw"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="178" id="M13-z7-0uI"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="Shake"/>
+                                </userDefinedRuntimeAttributes>
+                            </stackView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TA设置了密码" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEG-bu-7Nj" customClass="AnimatableLabel" customModule="IBAnimatable">
+                                <rect key="frame" x="20" y="84" width="560" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="37R-Si-c4P"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="37"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="3"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="SqueezeFadeInRight"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="jEG-bu-7Nj" firstAttribute="top" secondItem="7aM-AK-vD7" secondAttribute="bottom" constant="20" id="B4V-NZ-eaW"/>
+                            <constraint firstItem="AjU-jI-892" firstAttribute="trailing" secondItem="jEG-bu-7Nj" secondAttribute="trailing" id="LJp-3v-Abf"/>
+                            <constraint firstItem="jEG-bu-7Nj" firstAttribute="leading" secondItem="AjU-jI-892" secondAttribute="leading" id="NJ5-iI-j77"/>
+                            <constraint firstItem="AjU-jI-892" firstAttribute="top" secondItem="jEG-bu-7Nj" secondAttribute="bottom" constant="25" id="QjH-kn-9if"/>
+                            <constraint firstItem="jEG-bu-7Nj" firstAttribute="leading" secondItem="n1b-T4-CYS" secondAttribute="leadingMargin" id="WNY-PT-3W0"/>
+                            <constraint firstItem="AjU-jI-892" firstAttribute="trailing" secondItem="n1b-T4-CYS" secondAttribute="trailingMargin" id="vOO-MH-Vej"/>
+                            <constraint firstItem="W4x-Qk-GWq" firstAttribute="top" secondItem="AjU-jI-892" secondAttribute="bottom" constant="8" symbolic="YES" id="xZj-G1-1kK"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="xZj-G1-1kK"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="lightStatusBar" value="YES"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="rootWindowBackgroundColor">
+                            <color key="value" red="0.0" green="0.47843137383460999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4FZ-Xx-npe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4451" y="643"/>
         </scene>
     </scenes>
     <resources>

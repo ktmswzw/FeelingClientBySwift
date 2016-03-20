@@ -99,7 +99,7 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
                                     self.view.makeToast(myJosn.dictionary!["message"]!.stringValue, duration: 2, position: .Top)
                                 }
                                 else{
-                                    self.jwt.token = myJosn.dictionary!["message"]!.stringValue
+                                    self.jwt.jwtTemp = myJosn.dictionary!["message"]!.stringValue
                                     self.view.makeToast("登陆成功", duration: 1, position: .Top)
                                     self.performSegueWithIdentifier("login", sender: self)
                                 }
@@ -128,7 +128,8 @@ class LoginViewController: DesignableViewController,UITextFieldDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !jwt.token.isEmpty {
+        if !jwt.jwtTemp.isEmpty {            
+            self.view.makeToast("登陆成功", duration: 1, position: .Top)
             self.performSegueWithIdentifier("login", sender: self)
         }
         

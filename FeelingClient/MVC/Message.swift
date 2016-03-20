@@ -45,11 +45,11 @@ public class Messages:BaseApi {
                             let code:Int = Int(myJosn["status"].stringValue)!
                             let result = myJosn.dictionary!["message"]!.stringValue
                             if code != 200 {
-                                completeHander(Result.Failure(result))
+                                completeHander(Result.Success(result))
                             }
                             else{
                                 msg.id = result
-                                completeHander(Result.Success(result))
+                                completeHander(Result.Failure(result))
                             }
                         }
                         self.msgs.append(msg)
@@ -83,13 +83,14 @@ public class Messages:BaseApi {
         NetApi().makeCallArray(Alamofire.Method.POST, section: "messages/search", headers: [:], params: params as? [String:AnyObject]) { (response: Response<[MessageBean], NSError>) -> Void in
             switch (response.result) {
             case .Success(let value):
-                for msg in value {
-                    let bean = MessageBean()
-                    bean.to = msg.to
-                    bean.x = msg.y
-                    bean.y = msg.x
-                    self.msgs.append(bean)
-                }
+//                for msg in value {
+//                    let bean = MessageBean()
+//                    bean.to = msg.to
+//                    bean.x = msg.y
+//                    bean.y = msg.x
+//                    self.msgs.append(bean)
+//                }
+                self.msgs = value
                 completeHander(Result.Success(self.msgs))
                 break;
             case .Failure(let error):
@@ -100,20 +101,6 @@ public class Messages:BaseApi {
     }
     
 }
-
-//    
-//    let mappedObject = response.result.value
-//    
-//    XCTAssertNotNil(mappedObject, "Response should not be nil")
-//    XCTAssertNotNil(mappedObject?.location, "Location should not be nil")
-//    XCTAssertNotNil(mappedObject?.threeDayForecast, "ThreeDayForcast should not be nil")
-//    
-//    for forecast in mappedObject!.threeDayForecast! {
-//    XCTAssertNotNil(forecast.day, "day should not be nil")
-//    XCTAssertNotNil(forecast.conditions, "conditions should not be nil")
-//    XCTAssertNotNil(forecast.temperature, "temperature should not be nil")
-//    }
-
 
 class MessageBean: BaseModel {
     
@@ -136,6 +123,7 @@ class MessageBean: BaseModel {
         x <- map["x"]
         y <- map["y"]
         distance <- map["distance"]
+        point <- map["point"]
         
     }
     
@@ -163,35 +151,23 @@ class MessageBean: BaseModel {
     //距离
     var distance: Double = 0.0
     
+    var point: GeoJsonPoint?
+    
 }
 
-
-
-//"errorCode": "0",
-//"id": "56bae476841701c82215ff6b",
-//"from": "小红",
-//"to": "小明",
-//"content": "我在这里，你在哪里？",
-//"photos":[
-//{
-//"name": "1",
-//"source": "222",
-//"thumbnails": "111"
-//}
-//],
-//"soundPath": null,
-//"videoPath": null,
-//"point":{"x": 112.99206, "y": 22.740501, "type": "Point", "coordinates":[112.99206,…},
-//    "city": "宁波",
-//    "district": "鄞州",
-//    "address": "学士路655号",
-//    "question": "who is me",
-//    "answer": "me is who",
-//    "burnAfterReading": true,
-//    "state": 1,
-//    "fromId": null,
-//    "toId": null,
-//    "distance": 394.4369926352266,
-//    "limit_date": "2016-02-20 15:19:18",
-//    "create_date": "2016-02-10 15:19:18",
-//    "update_date": null
+class GeoJsonPoint:BaseModel {
+    //坐标
+    var x: Double = 0.0
+    //坐标
+    var y: Double = 0.0
+    
+    override static func newInstance() -> Mappable {
+        return GeoJsonPoint();
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        x <- map["x"]
+        y <- map["y"]
+    }
+}
